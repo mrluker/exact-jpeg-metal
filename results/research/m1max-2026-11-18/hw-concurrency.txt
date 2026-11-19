@@ -1,0 +1,17 @@
+load at start: { 14.47 15.13 14.39 }
+
+== concurrency: GPU 2 Decoder threads on dec_6720x4480_q95_s1.jpg next to VT hw 2 threads (BGRA) on dec_6720x4480_q95_s1.jpg, 3 s phases, 3 rounds
+  GPU alone GPU 223.12 img/s  VT    0.00 img/s  CPU/wall 0.20   rounds GPU [223.1, 219.4, 223.8] VT [0.0, 0.0, 0.0]  loads [14.47, 13.87, 13.44]
+  VT alone GPU   0.00 img/s  VT   45.38 img/s  CPU/wall 0.06   rounds GPU [0.0, 0.0, 0.0] VT [45.4, 44.8, 45.8]  loads [14.03, 13.48, 13.24]
+  GPU + VT together GPU 206.87 img/s  VT   44.47 img/s  CPU/wall 0.29   rounds GPU [213.0, 206.9, 200.7] VT [44.6, 44.5, 43.9]  loads [13.87, 13.48, 13.24]
+
+== concurrency: GPU 2 Decoder threads on dec_6720x4480_q95_s1.jpg next to VT hw 2 threads (BGRA) on dec_4032x3024_q90_s2.jpg, 3 s phases, 3 rounds
+  GPU alone GPU 215.77 img/s  VT    0.00 img/s  CPU/wall 0.24   rounds GPU [215.8, 213.0, 218.8] VT [0.0, 0.0, 0.0]  loads [12.90, 12.01, 12.43]
+  VT alone GPU   0.00 img/s  VT  113.44 img/s  CPU/wall 0.08   rounds GPU [0.0, 0.0, 0.0] VT [115.3, 113.4, 111.5]  loads [12.27, 11.77, 12.43]
+  GPU + VT together GPU 204.65 img/s  VT  110.00 img/s  CPU/wall 0.33   rounds GPU [203.8, 205.4, 204.7] VT [110.0, 115.8, 108.6]  loads [12.27, 11.77, 11.91]
+
+== concurrency: GPU 2 Decoder threads on dec_6720x4480_q95_s1.jpg next to VT hw 2 threads (420f) on dec_6720x4480_q95_s1.jpg, 3 s phases, 3 rounds
+  GPU alone GPU 215.49 img/s  VT    0.00 img/s  CPU/wall 0.21   rounds GPU [215.5, 217.7, 209.4] VT [0.0, 0.0, 0.0]  loads [11.44, 11.44, 13.15]
+  VT alone GPU   0.00 img/s  VT   75.86 img/s  CPU/wall 0.10   rounds GPU [0.0, 0.0, 0.0] VT [75.9, 76.9, 75.6]  loads [11.44, 11.44, 13.15]
+  GPU + VT together GPU 210.93 img/s  VT   73.96 img/s  CPU/wall 0.36   rounds GPU [209.5, 210.9, 216.3] VT [73.8, 74.0, 76.1]  loads [11.48, 11.25, 13.22]
+load at end: { 13.22 14.33 14.13 }

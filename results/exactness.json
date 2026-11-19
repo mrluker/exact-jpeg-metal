@@ -1,0 +1,176 @@
+{
+  "conditions" : {
+    "chip" : "Apple M1 Max",
+    "corpus" : "ejm synthetic v1 (Synth.make, decode seed 11, encode seed 21)",
+    "cpu_cores" : 10,
+    "date" : "2026-11-17",
+    "gpu" : "Apple M1 Max",
+    "gpu_cores" : 32,
+    "gpu_warmup" : "1.0 s of the same GPU work before each timed case, first 3 timed iterations discarded",
+    "load_average" : "15.14 23.13 22.71",
+    "macos" : "27.2.0",
+    "memory_gb" : 64,
+    "model" : "MacBookPro18,2",
+    "model_name" : "MacBook Pro",
+    "power" : "AC Power",
+    "reference" : "libjpeg-turbo 3.2.0"
+  },
+  "decode" : {
+    "declined_as_expected" : 36,
+    "decodes_exact" : 582,
+    "files" : 309,
+    "unexpected" : 0,
+    "wrong" : 0
+  },
+  "encode" : {
+    "different" : 0,
+    "files" : 869,
+    "identical" : 869
+  },
+  "fuzz" : {
+    "accepted_with_libjpeg_warning" : {
+      "Corrupt JPEG data: %u extraneous bytes before marker 0x%02x" : 9158,
+      "Premature end of JPEG file" : 434,
+      "Warning: unknown JFIF revision number %d.%02d" : 41
+    },
+    "counts" : {
+      "declined" : 149412,
+      "decoded_exact" : 40955,
+      "decoded_exact_with_benign_warning" : 9633
+    },
+    "device" : "Apple M1 Max",
+    "findings" : {
+
+    },
+    "iterations" : 200000,
+    "mutations" : {
+      "bitflip" : 12451,
+      "bytes" : 12418,
+      "delete" : 12492,
+      "dims" : 12602,
+      "drop-seg" : 4166,
+      "dup-seg" : 4265,
+      "ff-none" : 154,
+      "field" : 10558,
+      "field-none" : 2042,
+      "insert" : 12518,
+      "ncomp" : 5033,
+      "rand-none" : 1919,
+      "random-scan" : 10525,
+      "reorder-none" : 552,
+      "reorder-seg" : 3634,
+      "rst-insert" : 9985,
+      "rst-none" : 1263,
+      "rst-remove" : 673,
+      "rst-renumber" : 621,
+      "sampling" : 7375,
+      "seglen" : 12341,
+      "splice-scan" : 12634,
+      "stray-ff" : 12278,
+      "trailing" : 6180,
+      "trailing-com" : 6229,
+      "truncate" : 12589,
+      "truncate-structural" : 12503
+    },
+    "reference" : "libjpeg-turbo 3.2.0",
+    "seconds" : 157.92400002479553,
+    "seed" : 1,
+    "seed_files" : 72,
+    "shader_validation" : "0",
+    "top_decline_reasons" : {
+      "bad DHT length" : 1853,
+      "bad Huffman table" : 10833,
+      "bad marker length" : 22279,
+      "bad sampling factors" : 4293,
+      "bad SOF length" : 6305,
+      "coefficients outside the range where all libjpeg-turbo IDCTs agree" : 3365,
+      "entropy-coded data too short for the image size" : 5237,
+      "entropy-coded data too short; block runs past its restart marker" : 2555,
+      "entropy-coded data too short; block runs past its restart marker; coefficients outside the range where all libjpeg-turbo IDCTs agree" : 28938,
+      "entropy-coded data too short; block runs past its restart marker; restart markers missing or out of order; coefficients outside the range where all libjpeg-turbo IDCTs agree" : 3586,
+      "entropy-coded data too short; restart markers missing or out of order; coefficients outside the range where all libjpeg-turbo IDCTs agree" : 2993,
+      "garbage between markers" : 17014,
+      "no SOS" : 6185,
+      "restart markers missing or out of order" : 1876,
+      "truncated header" : 2464
+    }
+  },
+  "fuzz_shader_validation" : {
+    "accepted_with_libjpeg_warning" : {
+      "Corrupt JPEG data: %u extraneous bytes before marker 0x%02x" : 942,
+      "Premature end of JPEG file" : 43,
+      "Warning: unknown JFIF revision number %d.%02d" : 3
+    },
+    "counts" : {
+      "declined" : 14958,
+      "decoded_exact" : 4054,
+      "decoded_exact_with_benign_warning" : 988
+    },
+    "device" : "Apple M1 Max",
+    "findings" : {
+
+    },
+    "iterations" : 20000,
+    "mutations" : {
+      "bitflip" : 1323,
+      "bytes" : 1331,
+      "delete" : 1196,
+      "dims" : 1230,
+      "drop-seg" : 413,
+      "dup-seg" : 452,
+      "ff-none" : 14,
+      "field" : 1014,
+      "field-none" : 169,
+      "insert" : 1245,
+      "ncomp" : 490,
+      "rand-none" : 185,
+      "random-scan" : 1020,
+      "reorder-none" : 62,
+      "reorder-seg" : 348,
+      "rst-insert" : 1057,
+      "rst-none" : 109,
+      "rst-remove" : 76,
+      "rst-renumber" : 59,
+      "sampling" : 744,
+      "seglen" : 1253,
+      "splice-scan" : 1284,
+      "stray-ff" : 1198,
+      "trailing" : 625,
+      "trailing-com" : 587,
+      "truncate" : 1256,
+      "truncate-structural" : 1260
+    },
+    "reference" : "libjpeg-turbo 3.2.0",
+    "seconds" : 47.565493941307068,
+    "seed" : 7,
+    "seed_files" : 72,
+    "shader_validation" : "1",
+    "top_decline_reasons" : {
+      "bad DHT length" : 197,
+      "bad Huffman table" : 1081,
+      "bad marker length" : 2309,
+      "bad sampling factors" : 429,
+      "bad SOF length" : 633,
+      "block runs past its restart marker" : 178,
+      "coefficients outside the range where all libjpeg-turbo IDCTs agree" : 401,
+      "entropy-coded data too short for the image size" : 504,
+      "entropy-coded data too short; block runs past its restart marker" : 243,
+      "entropy-coded data too short; block runs past its restart marker; coefficients outside the range where all libjpeg-turbo IDCTs agree" : 2858,
+      "entropy-coded data too short; block runs past its restart marker; restart markers missing or out of order; coefficients outside the range where all libjpeg-turbo IDCTs agree" : 356,
+      "entropy-coded data too short; restart markers missing or out of order; coefficients outside the range where all libjpeg-turbo IDCTs agree" : 330,
+      "garbage between markers" : 1637,
+      "no SOS" : 591,
+      "truncated header" : 250
+    }
+  },
+  "manifest" : {
+    "declined_as_expected" : 36,
+    "decode_exact_vs_manifest" : 582,
+    "decode_jpeg_matches_manifest" : 309,
+    "encode_exact_vs_manifest" : 864,
+    "failures" : 0,
+    "local_libjpeg_encode_matches" : 864,
+    "sources_match" : 36
+  },
+  "shader_validation_reports" : 0
+}

@@ -1,0 +1,4545 @@
+{
+  "archives" : [
+    {
+      "bytes" : 346126330,
+      "images" : "imagecompression_info\/*.ppm",
+      "name" : "rgb8bit.zip",
+      "sha256" : "16c273504425923259b1ddf8e39dfa9cb27585d249f6263cfc6bea39cfafa660",
+      "url" : "https:\/\/imagecompression.info\/test_images\/rgb8bit.zip"
+    },
+    {
+      "bytes" : 764181,
+      "images" : "libjpeg_turbo_3dtest\/*.ppm",
+      "name" : "3dtestimages.tar.bz2",
+      "sha256" : "60e5cac0da25712a9b49da60212f14266d07c586dfb5d6c968e34fec6937b667",
+      "url" : "https:\/\/libjpeg-turbo.org\/pmwiki\/uploads\/About\/3dtestimages.tar.bz2"
+    }
+  ],
+  "conditions" : {
+    "load_average_after" : "2.34 1.64 1.41",
+    "load_average_before" : "1.39 1.38 1.30",
+    "thermal_state_after" : "nominal",
+    "thermal_state_before" : "nominal"
+  },
+  "encode" : "Metal Encoder of the source PPM's RGB at the setting's quality and subsampling against the Pillow file (encode_same_bytes); encode_detail compares it with libjpeg-turbo's own encode of the same pixels and, when it differs from Pillow's file, gives the first differing offset and the segment there",
+  "files" : [
+    {
+      "blocks" : 147456,
+      "bytes_per_pixel" : 0.15890000000000001,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "artificial",
+      "megapixels" : 6.29,
+      "ms" : {
+        "Apple ImageIO" : 12.273,
+        "libjpeg-turbo, one thread" : 8.6400000000000006,
+        "this library" : 3.669,
+        "VideoToolbox (Apple hardware JPEG)" : 8.5899999999999999
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 85,
+          "pixels_differ" : 0.26979999999999998,
+          "psnr" : 44.030000000000001,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 77,
+          "pixels_differ" : 0.45132,
+          "psnr" : 44.329999999999998,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_420"
+    },
+    {
+      "blocks" : 196608,
+      "bytes_per_pixel" : 0.17849999999999999,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "artificial",
+      "megapixels" : 6.29,
+      "ms" : {
+        "Apple ImageIO" : 13.08,
+        "libjpeg-turbo, one thread" : 10.103999999999999,
+        "this library" : 2.9199999999999999,
+        "VideoToolbox (Apple hardware JPEG)" : 10.016999999999999
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 57,
+          "pixels_differ" : 0.18698000000000001,
+          "psnr" : 47.57,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 94,
+          "pixels_differ" : 0.43071999999999999,
+          "psnr" : 42.640000000000001,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_422"
+    },
+    {
+      "blocks" : 294912,
+      "bytes_per_pixel" : 0.2087,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "artificial",
+      "megapixels" : 6.29,
+      "ms" : {
+        "Apple ImageIO" : 13.468,
+        "libjpeg-turbo, one thread" : 11.888,
+        "this library" : 3.492,
+        "VideoToolbox (Apple hardware JPEG)" : 11.949999999999999
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 3,
+          "pixels_differ" : 0.069190000000000002,
+          "psnr" : 62.920000000000002,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 141,
+          "pixels_differ" : 0.41065000000000002,
+          "psnr" : 41.090000000000003,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_444"
+    },
+    {
+      "blocks" : 98304,
+      "bytes_per_pixel" : 0.1232,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "artificial",
+      "megapixels" : 6.29,
+      "ms" : {
+        "Apple ImageIO" : 7.8940000000000001,
+        "libjpeg-turbo, one thread" : 7.7690000000000001,
+        "this library" : 3.6160000000000001,
+        "VideoToolbox (Apple hardware JPEG)" : 8.0210000000000008
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 1,
+          "pixels_differ" : 0.0058500000000000002,
+          "psnr" : 70.459999999999994,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 1,
+          "pixels_differ" : 0.0058500000000000002,
+          "psnr" : 70.459999999999994,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_gray"
+    },
+    {
+      "blocks" : 147456,
+      "bytes_per_pixel" : 0.1124,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "artificial",
+      "megapixels" : 6.29,
+      "ms" : {
+        "Apple ImageIO" : 13.666,
+        "libjpeg-turbo, one thread" : 7.2910000000000004,
+        "this library" : 5.1130000000000004,
+        "VideoToolbox (Apple hardware JPEG)" : 8.5739999999999998
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 83,
+          "pixels_differ" : 0.27775,
+          "psnr" : 44.219999999999999,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 70,
+          "pixels_differ" : 0.45787,
+          "psnr" : 44.460000000000001,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q90_420"
+    },
+    {
+      "blocks" : 147456,
+      "bytes_per_pixel" : 0.1532,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "artificial",
+      "megapixels" : 6.29,
+      "ms" : {
+        "Apple ImageIO" : 13.736000000000001,
+        "libjpeg-turbo, one thread" : 8.4410000000000007,
+        "this library" : 6.8369999999999997,
+        "VideoToolbox (Apple hardware JPEG)" : 8.8879999999999999
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 85,
+          "pixels_differ" : 0.26979999999999998,
+          "psnr" : 44.030000000000001,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 77,
+          "pixels_differ" : 0.45132,
+          "psnr" : 44.329999999999998,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_420_opt"
+    },
+    {
+      "blocks" : 917334,
+      "bytes_per_pixel" : 0.34689999999999999,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "big_building",
+      "megapixels" : 39.049999999999997,
+      "ms" : {
+        "Apple ImageIO" : 63.561999999999998,
+        "libjpeg-turbo, one thread" : 96.147000000000006,
+        "this library" : 14.366,
+        "VideoToolbox (Apple hardware JPEG)" : 45.981999999999999
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 44,
+          "pixels_differ" : 0.58743999999999996,
+          "psnr" : 45.369999999999997,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 44,
+          "pixels_differ" : 0.80483000000000005,
+          "psnr" : 44.920000000000002,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_420"
+    },
+    {
+      "blocks" : 1221308,
+      "bytes_per_pixel" : 0.39589999999999997,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "big_building",
+      "megapixels" : 39.049999999999997,
+      "ms" : {
+        "Apple ImageIO" : 64.558999999999997,
+        "libjpeg-turbo, one thread" : 113.923,
+        "this library" : 16.106999999999999,
+        "VideoToolbox (Apple hardware JPEG)" : 52.572000000000003
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 34,
+          "pixels_differ" : 0.52153000000000005,
+          "psnr" : 47.100000000000001,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 73,
+          "pixels_differ" : 0.86195999999999995,
+          "psnr" : 43.020000000000003,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_422"
+    },
+    {
+      "blocks" : 1831962,
+      "bytes_per_pixel" : 0.48770000000000002,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "big_building",
+      "megapixels" : 39.049999999999997,
+      "ms" : {
+        "Apple ImageIO" : 71.519000000000005,
+        "libjpeg-turbo, one thread" : 142.607,
+        "this library" : 20.196000000000002,
+        "VideoToolbox (Apple hardware JPEG)" : 64.947000000000003
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 3,
+          "pixels_differ" : 0.099479999999999999,
+          "psnr" : 59.859999999999999,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 144,
+          "pixels_differ" : 0.90073999999999999,
+          "psnr" : 40.409999999999997,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_444"
+    },
+    {
+      "blocks" : 610654,
+      "bytes_per_pixel" : 0.2964,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "big_building",
+      "megapixels" : 39.049999999999997,
+      "ms" : {
+        "Apple ImageIO" : 39.612000000000002,
+        "libjpeg-turbo, one thread" : 85.164000000000001,
+        "this library" : 10.257,
+        "VideoToolbox (Apple hardware JPEG)" : 40.680999999999997
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 1,
+          "pixels_differ" : 0.017420000000000001,
+          "psnr" : 65.719999999999999,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 1,
+          "pixels_differ" : 0.017420000000000001,
+          "psnr" : 65.719999999999999,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_gray"
+    },
+    {
+      "blocks" : 917334,
+      "bytes_per_pixel" : 0.23230000000000001,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "big_building",
+      "megapixels" : 39.049999999999997,
+      "ms" : {
+        "Apple ImageIO" : 62.963999999999999,
+        "libjpeg-turbo, one thread" : 76.060000000000002,
+        "this library" : 12.037000000000001,
+        "VideoToolbox (Apple hardware JPEG)" : 39.988
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 42,
+          "pixels_differ" : 0.48261999999999999,
+          "psnr" : 47.009999999999998,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 40,
+          "pixels_differ" : 0.75724000000000002,
+          "psnr" : 45.979999999999997,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q90_420"
+    },
+    {
+      "blocks" : 917334,
+      "bytes_per_pixel" : 0.3377,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "big_building",
+      "megapixels" : 39.049999999999997,
+      "ms" : {
+        "Apple ImageIO" : 65.646000000000001,
+        "libjpeg-turbo, one thread" : 95.936000000000007,
+        "this library" : 14.942,
+        "VideoToolbox (Apple hardware JPEG)" : 46.323
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 44,
+          "pixels_differ" : 0.58743999999999996,
+          "psnr" : 45.369999999999997,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 44,
+          "pixels_differ" : 0.80483000000000005,
+          "psnr" : 44.920000000000002,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_420_opt"
+    },
+    {
+      "blocks" : 651510,
+      "bytes_per_pixel" : 0.38590000000000002,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "big_tree",
+      "megapixels" : 27.699999999999999,
+      "ms" : {
+        "Apple ImageIO" : 47.444000000000003,
+        "libjpeg-turbo, one thread" : 78.459999999999994,
+        "this library" : 10.625999999999999,
+        "VideoToolbox (Apple hardware JPEG)" : 37.637999999999998
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 72,
+          "pixels_differ" : 0.91461000000000003,
+          "psnr" : 38.799999999999997,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 67,
+          "pixels_differ" : 0.94767999999999997,
+          "psnr" : 39.439999999999998,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_420"
+    },
+    {
+      "blocks" : 867156,
+      "bytes_per_pixel" : 0.46820000000000001,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "big_tree",
+      "megapixels" : 27.699999999999999,
+      "ms" : {
+        "Apple ImageIO" : 48.850999999999999,
+        "libjpeg-turbo, one thread" : 97.781999999999996,
+        "this library" : 12.023,
+        "VideoToolbox (Apple hardware JPEG)" : 43.226999999999997
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 50,
+          "pixels_differ" : 0.86677000000000004,
+          "psnr" : 41.149999999999999,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 97,
+          "pixels_differ" : 0.96462000000000003,
+          "psnr" : 37.659999999999997,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_422"
+    },
+    {
+      "blocks" : 1299027,
+      "bytes_per_pixel" : 0.62470000000000003,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "big_tree",
+      "megapixels" : 27.699999999999999,
+      "ms" : {
+        "Apple ImageIO" : 56.819000000000003,
+        "libjpeg-turbo, one thread" : 127.604,
+        "this library" : 15.744,
+        "VideoToolbox (Apple hardware JPEG)" : 54.451999999999998
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 3,
+          "pixels_differ" : 0.088940000000000005,
+          "psnr" : 59.93,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 163,
+          "pixels_differ" : 0.97797000000000001,
+          "psnr" : 34.359999999999999,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_444"
+    },
+    {
+      "blocks" : 433009,
+      "bytes_per_pixel" : 0.28910000000000002,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "big_tree",
+      "megapixels" : 27.699999999999999,
+      "ms" : {
+        "Apple ImageIO" : 33.256,
+        "libjpeg-turbo, one thread" : 62.320999999999998,
+        "this library" : 7.5419999999999998,
+        "VideoToolbox (Apple hardware JPEG)" : 30.305
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 1,
+          "pixels_differ" : 0.017940000000000001,
+          "psnr" : 65.590000000000003,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 1,
+          "pixels_differ" : 0.017940000000000001,
+          "psnr" : 65.590000000000003,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_gray"
+    },
+    {
+      "blocks" : 651510,
+      "bytes_per_pixel" : 0.2409,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "big_tree",
+      "megapixels" : 27.699999999999999,
+      "ms" : {
+        "Apple ImageIO" : 48.088000000000001,
+        "libjpeg-turbo, one thread" : 58.118000000000002,
+        "this library" : 8.6170000000000009,
+        "VideoToolbox (Apple hardware JPEG)" : 28.893999999999998
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 76,
+          "pixels_differ" : 0.84914999999999996,
+          "psnr" : 39.990000000000002,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 65,
+          "pixels_differ" : 0.92018,
+          "psnr" : 40.390000000000001,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q90_420"
+    },
+    {
+      "blocks" : 651510,
+      "bytes_per_pixel" : 0.37740000000000001,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "big_tree",
+      "megapixels" : 27.699999999999999,
+      "ms" : {
+        "Apple ImageIO" : 47.863999999999997,
+        "libjpeg-turbo, one thread" : 76.326999999999998,
+        "this library" : 10.823,
+        "VideoToolbox (Apple hardware JPEG)" : 37.469000000000001
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 72,
+          "pixels_differ" : 0.91461000000000003,
+          "psnr" : 38.799999999999997,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 67,
+          "pixels_differ" : 0.94767999999999997,
+          "psnr" : 39.439999999999998,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_420_opt"
+    },
+    {
+      "blocks" : 262128,
+      "bytes_per_pixel" : 0.42759999999999998,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "bridge",
+      "megapixels" : 11.130000000000001,
+      "ms" : {
+        "Apple ImageIO" : 20.178999999999998,
+        "libjpeg-turbo, one thread" : 33.576999999999998,
+        "this library" : 5.1420000000000003,
+        "VideoToolbox (Apple hardware JPEG)" : 16.459
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 29,
+          "pixels_differ" : 0.89007000000000003,
+          "psnr" : 40.920000000000002,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 80,
+          "pixels_differ" : 0.98877000000000004,
+          "psnr" : 31.93,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_420"
+    },
+    {
+      "blocks" : 348816,
+      "bytes_per_pixel" : 0.51439999999999997,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "bridge",
+      "megapixels" : 11.130000000000001,
+      "ms" : {
+        "Apple ImageIO" : 23.959,
+        "libjpeg-turbo, one thread" : 41.558,
+        "this library" : 5.3700000000000001,
+        "VideoToolbox (Apple hardware JPEG)" : 19.427
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 22,
+          "pixels_differ" : 0.85682000000000003,
+          "psnr" : 42.93,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 89,
+          "pixels_differ" : 0.99319999999999997,
+          "psnr" : 31.539999999999999,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_422"
+    },
+    {
+      "blocks" : 523224,
+      "bytes_per_pixel" : 0.67069999999999996,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "bridge",
+      "megapixels" : 11.130000000000001,
+      "ms" : {
+        "Apple ImageIO" : 27.625,
+        "libjpeg-turbo, one thread" : 54.561,
+        "this library" : 6.8179999999999996,
+        "VideoToolbox (Apple hardware JPEG)" : 23.866
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 3,
+          "pixels_differ" : 0.10482,
+          "psnr" : 59.509999999999998,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 83,
+          "pixels_differ" : 0.99617,
+          "psnr" : 30.809999999999999,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_444"
+    },
+    {
+      "blocks" : 174408,
+      "bytes_per_pixel" : 0.34189999999999998,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "bridge",
+      "megapixels" : 11.130000000000001,
+      "ms" : {
+        "Apple ImageIO" : 13.276999999999999,
+        "libjpeg-turbo, one thread" : 27.396999999999998,
+        "this library" : 3.6219999999999999,
+        "VideoToolbox (Apple hardware JPEG)" : 13.938000000000001
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 1,
+          "pixels_differ" : 0.0184,
+          "psnr" : 65.480000000000004,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 76,
+          "pixels_differ" : 0.90636000000000005,
+          "psnr" : 32.060000000000002,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_gray"
+    },
+    {
+      "blocks" : 262128,
+      "bytes_per_pixel" : 0.26910000000000001,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "bridge",
+      "megapixels" : 11.130000000000001,
+      "ms" : {
+        "Apple ImageIO" : 23.021000000000001,
+        "libjpeg-turbo, one thread" : 24.157,
+        "this library" : 4.0570000000000004,
+        "VideoToolbox (Apple hardware JPEG)" : 12.930999999999999
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 28,
+          "pixels_differ" : 0.72824,
+          "psnr" : 43.68,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 84,
+          "pixels_differ" : 0.98240000000000005,
+          "psnr" : 32.18,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q90_420"
+    },
+    {
+      "blocks" : 262128,
+      "bytes_per_pixel" : 0.41760000000000003,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "bridge",
+      "megapixels" : 11.130000000000001,
+      "ms" : {
+        "Apple ImageIO" : 23.675999999999998,
+        "libjpeg-turbo, one thread" : 32.399000000000001,
+        "this library" : 5.6379999999999999,
+        "VideoToolbox (Apple hardware JPEG)" : 16.536000000000001
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 29,
+          "pixels_differ" : 0.89007000000000003,
+          "psnr" : 40.920000000000002,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 80,
+          "pixels_differ" : 0.98877000000000004,
+          "psnr" : 31.93,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_420_opt"
+    },
+    {
+      "blocks" : 141000,
+      "bytes_per_pixel" : 0.33639999999999998,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "cathedral",
+      "megapixels" : 6.0199999999999996,
+      "ms" : {
+        "Apple ImageIO" : 12.077999999999999,
+        "libjpeg-turbo, one thread" : 15.247,
+        "this library" : 2.7949999999999999,
+        "VideoToolbox (Apple hardware JPEG)" : 9.8849999999999998
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 47,
+          "pixels_differ" : 0.61773,
+          "psnr" : 45.859999999999999,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 46,
+          "pixels_differ" : 0.81096999999999997,
+          "psnr" : 45.359999999999999,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_420"
+    },
+    {
+      "blocks" : 188000,
+      "bytes_per_pixel" : 0.3891,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "cathedral",
+      "megapixels" : 6.0199999999999996,
+      "ms" : {
+        "Apple ImageIO" : 12.474,
+        "libjpeg-turbo, one thread" : 18.012,
+        "this library" : 2.8959999999999999,
+        "VideoToolbox (Apple hardware JPEG)" : 10.888999999999999
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 35,
+          "pixels_differ" : 0.57252000000000003,
+          "psnr" : 47.25,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 92,
+          "pixels_differ" : 0.87273999999999996,
+          "psnr" : 43.380000000000003,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_422"
+    },
+    {
+      "blocks" : 282000,
+      "bytes_per_pixel" : 0.48549999999999999,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "cathedral",
+      "megapixels" : 6.0199999999999996,
+      "ms" : {
+        "Apple ImageIO" : 12.853999999999999,
+        "libjpeg-turbo, one thread" : 22.920000000000002,
+        "this library" : 3.5630000000000002,
+        "VideoToolbox (Apple hardware JPEG)" : 12.529
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 3,
+          "pixels_differ" : 0.063280000000000003,
+          "psnr" : 60.939999999999998,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 107,
+          "pixels_differ" : 0.91047999999999996,
+          "psnr" : 40.799999999999997,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_444"
+    },
+    {
+      "blocks" : 94000,
+      "bytes_per_pixel" : 0.28460000000000002,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "cathedral",
+      "megapixels" : 6.0199999999999996,
+      "ms" : {
+        "Apple ImageIO" : 9.3740000000000006,
+        "libjpeg-turbo, one thread" : 13.029,
+        "this library" : 2.0499999999999998,
+        "VideoToolbox (Apple hardware JPEG)" : 8.9039999999999999
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 1,
+          "pixels_differ" : 0.017399999999999999,
+          "psnr" : 65.730000000000004,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 1,
+          "pixels_differ" : 0.017399999999999999,
+          "psnr" : 65.730000000000004,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_gray"
+    },
+    {
+      "blocks" : 141000,
+      "bytes_per_pixel" : 0.21659999999999999,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "cathedral",
+      "megapixels" : 6.0199999999999996,
+      "ms" : {
+        "Apple ImageIO" : 11.856,
+        "libjpeg-turbo, one thread" : 11.456,
+        "this library" : 2.4980000000000002,
+        "VideoToolbox (Apple hardware JPEG)" : 8.532
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 50,
+          "pixels_differ" : 0.47233999999999998,
+          "psnr" : 47.399999999999999,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 57,
+          "pixels_differ" : 0.75295999999999996,
+          "psnr" : 46.369999999999997,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q90_420"
+    },
+    {
+      "blocks" : 141000,
+      "bytes_per_pixel" : 0.33139999999999997,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "cathedral",
+      "megapixels" : 6.0199999999999996,
+      "ms" : {
+        "Apple ImageIO" : 9.4939999999999998,
+        "libjpeg-turbo, one thread" : 15.006,
+        "this library" : 3.0830000000000002,
+        "VideoToolbox (Apple hardware JPEG)" : 9.9060000000000006
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 47,
+          "pixels_differ" : 0.61773,
+          "psnr" : 45.859999999999999,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 46,
+          "pixels_differ" : 0.81096999999999997,
+          "psnr" : 45.359999999999999,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_420_opt"
+    },
+    {
+      "blocks" : 251988,
+      "bytes_per_pixel" : 0.4536,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "deer",
+      "megapixels" : 10.68,
+      "ms" : {
+        "Apple ImageIO" : 19.797999999999998,
+        "libjpeg-turbo, one thread" : 35.332999999999998,
+        "this library" : 5.2930000000000001,
+        "VideoToolbox (Apple hardware JPEG)" : 18.085000000000001
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 72,
+          "pixels_differ" : 0.91883000000000004,
+          "psnr" : 39.75,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 137,
+          "pixels_differ" : 0.99216000000000004,
+          "psnr" : 32.68,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_420"
+    },
+    {
+      "blocks" : 334972,
+      "bytes_per_pixel" : 0.57599999999999996,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "deer",
+      "megapixels" : 10.68,
+      "ms" : {
+        "Apple ImageIO" : 26.518000000000001,
+        "libjpeg-turbo, one thread" : 44.662999999999997,
+        "this library" : 5.7270000000000003,
+        "VideoToolbox (Apple hardware JPEG)" : 21.748999999999999
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 50,
+          "pixels_differ" : 0.92025999999999997,
+          "psnr" : 40.549999999999997,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 149,
+          "pixels_differ" : 0.99589000000000005,
+          "psnr" : 31.690000000000001,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_422"
+    },
+    {
+      "blocks" : 502458,
+      "bytes_per_pixel" : 0.88849999999999996,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "deer",
+      "megapixels" : 10.68,
+      "ms" : {
+        "Apple ImageIO" : 34.539000000000001,
+        "libjpeg-turbo, one thread" : 66.103999999999999,
+        "this library" : 7.6589999999999998,
+        "VideoToolbox (Apple hardware JPEG)" : 31.079000000000001
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 3,
+          "pixels_differ" : 0.095350000000000004,
+          "psnr" : 59.280000000000001,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 168,
+          "pixels_differ" : 0.99629000000000001,
+          "psnr" : 29.219999999999999,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_444"
+    },
+    {
+      "blocks" : 167486,
+      "bytes_per_pixel" : 0.3674,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "deer",
+      "megapixels" : 10.68,
+      "ms" : {
+        "Apple ImageIO" : 14.749000000000001,
+        "libjpeg-turbo, one thread" : 29.065000000000001,
+        "this library" : 3.6480000000000001,
+        "VideoToolbox (Apple hardware JPEG)" : 15.206
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 1,
+          "pixels_differ" : 0.02009,
+          "psnr" : 65.099999999999994,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 133,
+          "pixels_differ" : 0.92325000000000002,
+          "psnr" : 32.939999999999998,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_gray"
+    },
+    {
+      "blocks" : 251988,
+      "bytes_per_pixel" : 0.2757,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "deer",
+      "megapixels" : 10.68,
+      "ms" : {
+        "Apple ImageIO" : 18.667000000000002,
+        "libjpeg-turbo, one thread" : 25.178999999999998,
+        "this library" : 4.1970000000000001,
+        "VideoToolbox (Apple hardware JPEG)" : 13.387
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 69,
+          "pixels_differ" : 0.63165000000000004,
+          "psnr" : 44.420000000000002,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 147,
+          "pixels_differ" : 0.98431999999999997,
+          "psnr" : 33.030000000000001,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q90_420"
+    },
+    {
+      "blocks" : 251988,
+      "bytes_per_pixel" : 0.44090000000000001,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "deer",
+      "megapixels" : 10.68,
+      "ms" : {
+        "Apple ImageIO" : 19.835999999999999,
+        "libjpeg-turbo, one thread" : 34.548000000000002,
+        "this library" : 5.5389999999999997,
+        "VideoToolbox (Apple hardware JPEG)" : 17.960999999999999
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 72,
+          "pixels_differ" : 0.91883000000000004,
+          "psnr" : 39.75,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 137,
+          "pixels_differ" : 0.99216000000000004,
+          "psnr" : 32.68,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_420_opt"
+    },
+    {
+      "blocks" : 172872,
+      "bytes_per_pixel" : 0.15359999999999999,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "fireworks",
+      "megapixels" : 7.3799999999999999,
+      "ms" : {
+        "Apple ImageIO" : 15.656000000000001,
+        "libjpeg-turbo, one thread" : 11.234999999999999,
+        "this library" : 2.8650000000000002,
+        "VideoToolbox (Apple hardware JPEG)" : 10.02
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 50,
+          "pixels_differ" : 0.15931999999999999,
+          "psnr" : 49.450000000000003,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 35,
+          "pixels_differ" : 0.32956999999999997,
+          "psnr" : 48.960000000000001,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_420"
+    },
+    {
+      "blocks" : 230496,
+      "bytes_per_pixel" : 0.1736,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "fireworks",
+      "megapixels" : 7.3799999999999999,
+      "ms" : {
+        "Apple ImageIO" : 15.406000000000001,
+        "libjpeg-turbo, one thread" : 12.702999999999999,
+        "this library" : 2.8069999999999999,
+        "VideoToolbox (Apple hardware JPEG)" : 11.398
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 35,
+          "pixels_differ" : 0.12401,
+          "psnr" : 51.770000000000003,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 57,
+          "pixels_differ" : 0.36315999999999998,
+          "psnr" : 47.380000000000003,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_422"
+    },
+    {
+      "blocks" : 345744,
+      "bytes_per_pixel" : 0.21340000000000001,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "fireworks",
+      "megapixels" : 7.3799999999999999,
+      "ms" : {
+        "Apple ImageIO" : 15.631,
+        "libjpeg-turbo, one thread" : 15.977,
+        "this library" : 3.4279999999999999,
+        "VideoToolbox (Apple hardware JPEG)" : 13.705
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 3,
+          "pixels_differ" : 0.027189999999999999,
+          "psnr" : 64.689999999999998,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 101,
+          "pixels_differ" : 0.40064,
+          "psnr" : 44.979999999999997,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_444"
+    },
+    {
+      "blocks" : 115248,
+      "bytes_per_pixel" : 0.1305,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "fireworks",
+      "megapixels" : 7.3799999999999999,
+      "ms" : {
+        "Apple ImageIO" : 9.6699999999999999,
+        "libjpeg-turbo, one thread" : 10.19,
+        "this library" : 2.2050000000000001,
+        "VideoToolbox (Apple hardware JPEG)" : 8.8219999999999992
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 1,
+          "pixels_differ" : 0.0103,
+          "psnr" : 68,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 1,
+          "pixels_differ" : 0.0103,
+          "psnr" : 68,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_gray"
+    },
+    {
+      "blocks" : 172872,
+      "bytes_per_pixel" : 0.097100000000000006,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "fireworks",
+      "megapixels" : 7.3799999999999999,
+      "ms" : {
+        "Apple ImageIO" : 15.738,
+        "libjpeg-turbo, one thread" : 8.4239999999999995,
+        "this library" : 2.548,
+        "VideoToolbox (Apple hardware JPEG)" : 9.7400000000000002
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 53,
+          "pixels_differ" : 0.14355999999999999,
+          "psnr" : 50.090000000000003,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 41,
+          "pixels_differ" : 0.29930000000000001,
+          "psnr" : 49.5,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q90_420"
+    },
+    {
+      "blocks" : 172872,
+      "bytes_per_pixel" : 0.14999999999999999,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "fireworks",
+      "megapixels" : 7.3799999999999999,
+      "ms" : {
+        "Apple ImageIO" : 15.414999999999999,
+        "libjpeg-turbo, one thread" : 10.958,
+        "this library" : 2.7890000000000001,
+        "VideoToolbox (Apple hardware JPEG)" : 10.035
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 50,
+          "pixels_differ" : 0.15931999999999999,
+          "psnr" : 49.450000000000003,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 35,
+          "pixels_differ" : 0.32956999999999997,
+          "psnr" : 48.960000000000001,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_420_opt"
+    },
+    {
+      "blocks" : 80940,
+      "bytes_per_pixel" : 0.1573,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "flower_foveon",
+      "megapixels" : 3.4300000000000002,
+      "ms" : {
+        "Apple ImageIO" : 7.8440000000000003,
+        "libjpeg-turbo, one thread" : 5.3869999999999996,
+        "this library" : 1.7070000000000001,
+        "VideoToolbox (Apple hardware JPEG)" : 5.1870000000000003
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 29,
+          "pixels_differ" : 0.25978000000000001,
+          "psnr" : 47.43,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 26,
+          "pixels_differ" : 0.65795000000000003,
+          "psnr" : 46.329999999999998,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_420"
+    },
+    {
+      "blocks" : 107352,
+      "bytes_per_pixel" : 0.17899999999999999,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "flower_foveon",
+      "megapixels" : 3.4300000000000002,
+      "ms" : {
+        "Apple ImageIO" : 7.649,
+        "libjpeg-turbo, one thread" : 6.1950000000000003,
+        "this library" : 1.679,
+        "VideoToolbox (Apple hardware JPEG)" : 5.7210000000000001
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 22,
+          "pixels_differ" : 0.21210000000000001,
+          "psnr" : 49.780000000000001,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 34,
+          "pixels_differ" : 0.66156999999999999,
+          "psnr" : 45.890000000000001,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_422"
+    },
+    {
+      "blocks" : 161028,
+      "bytes_per_pixel" : 0.21390000000000001,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "flower_foveon",
+      "megapixels" : 3.4300000000000002,
+      "ms" : {
+        "Apple ImageIO" : 7.8239999999999998,
+        "libjpeg-turbo, one thread" : 7.6120000000000001,
+        "this library" : 1.98,
+        "VideoToolbox (Apple hardware JPEG)" : 6.8479999999999999
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 3,
+          "pixels_differ" : 0.06105,
+          "psnr" : 62.149999999999999,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 46,
+          "pixels_differ" : 0.67059000000000002,
+          "psnr" : 44.909999999999997,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_444"
+    },
+    {
+      "blocks" : 53676,
+      "bytes_per_pixel" : 0.127,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "flower_foveon",
+      "megapixels" : 3.4300000000000002,
+      "ms" : {
+        "Apple ImageIO" : 6.0209999999999999,
+        "libjpeg-turbo, one thread" : 4.8719999999999999,
+        "this library" : 1.304,
+        "VideoToolbox (Apple hardware JPEG)" : 4.7800000000000002
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 1,
+          "pixels_differ" : 0.01409,
+          "psnr" : 66.640000000000001,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 1,
+          "pixels_differ" : 0.01409,
+          "psnr" : 66.640000000000001,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_gray"
+    },
+    {
+      "blocks" : 80940,
+      "bytes_per_pixel" : 0.094399999999999998,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "flower_foveon",
+      "megapixels" : 3.4300000000000002,
+      "ms" : {
+        "Apple ImageIO" : 7.8040000000000003,
+        "libjpeg-turbo, one thread" : 3.8780000000000001,
+        "this library" : 1.569,
+        "VideoToolbox (Apple hardware JPEG)" : 5.0709999999999997
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 29,
+          "pixels_differ" : 0.251,
+          "psnr" : 47.630000000000003,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 25,
+          "pixels_differ" : 0.65724000000000005,
+          "psnr" : 46.460000000000001,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q90_420"
+    },
+    {
+      "blocks" : 80940,
+      "bytes_per_pixel" : 0.15529999999999999,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "flower_foveon",
+      "megapixels" : 3.4300000000000002,
+      "ms" : {
+        "Apple ImageIO" : 7.8109999999999999,
+        "libjpeg-turbo, one thread" : 5.3259999999999996,
+        "this library" : 1.726,
+        "VideoToolbox (Apple hardware JPEG)" : 5.1699999999999999
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 29,
+          "pixels_differ" : 0.25978000000000001,
+          "psnr" : 47.43,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 26,
+          "pixels_differ" : 0.65795000000000003,
+          "psnr" : 46.329999999999998,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_420_opt"
+    },
+    {
+      "blocks" : 147456,
+      "bytes_per_pixel" : 0.16669999999999999,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "hdr",
+      "megapixels" : 6.29,
+      "ms" : {
+        "Apple ImageIO" : 12.191000000000001,
+        "libjpeg-turbo, one thread" : 10.169,
+        "this library" : 2.4180000000000001,
+        "VideoToolbox (Apple hardware JPEG)" : 8.6259999999999994
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 48,
+          "pixels_differ" : 0.22137000000000001,
+          "psnr" : 50.119999999999997,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 44,
+          "pixels_differ" : 0.63360000000000005,
+          "psnr" : 48.479999999999997,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_420"
+    },
+    {
+      "blocks" : 196608,
+      "bytes_per_pixel" : 0.18709999999999999,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "hdr",
+      "megapixels" : 6.29,
+      "ms" : {
+        "Apple ImageIO" : 13.148999999999999,
+        "libjpeg-turbo, one thread" : 11.923999999999999,
+        "this library" : 2.387,
+        "VideoToolbox (Apple hardware JPEG)" : 9.6489999999999991
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 37,
+          "pixels_differ" : 0.17133999999999999,
+          "psnr" : 52.57,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 46,
+          "pixels_differ" : 0.65169999999999995,
+          "psnr" : 47.32,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_422"
+    },
+    {
+      "blocks" : 294912,
+      "bytes_per_pixel" : 0.22339999999999999,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "hdr",
+      "megapixels" : 6.29,
+      "ms" : {
+        "Apple ImageIO" : 11.385999999999999,
+        "libjpeg-turbo, one thread" : 14.391999999999999,
+        "this library" : 2.9249999999999998,
+        "VideoToolbox (Apple hardware JPEG)" : 11.691000000000001
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 3,
+          "pixels_differ" : 0.067989999999999995,
+          "psnr" : 61.719999999999999,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 100,
+          "pixels_differ" : 0.67581999999999998,
+          "psnr" : 45.740000000000002,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_444"
+    },
+    {
+      "blocks" : 98304,
+      "bytes_per_pixel" : 0.1414,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "hdr",
+      "megapixels" : 6.29,
+      "ms" : {
+        "Apple ImageIO" : 8.6850000000000005,
+        "libjpeg-turbo, one thread" : 9.3360000000000003,
+        "this library" : 1.79,
+        "VideoToolbox (Apple hardware JPEG)" : 7.9489999999999998
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 1,
+          "pixels_differ" : 0.014120000000000001,
+          "psnr" : 66.629999999999995,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 1,
+          "pixels_differ" : 0.014120000000000001,
+          "psnr" : 66.629999999999995,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_gray"
+    },
+    {
+      "blocks" : 147456,
+      "bytes_per_pixel" : 0.1038,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "hdr",
+      "megapixels" : 6.29,
+      "ms" : {
+        "Apple ImageIO" : 13.807,
+        "libjpeg-turbo, one thread" : 7.7919999999999998,
+        "this library" : 2.262,
+        "VideoToolbox (Apple hardware JPEG)" : 8.3620000000000001
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 53,
+          "pixels_differ" : 0.20219999999999999,
+          "psnr" : 50.710000000000001,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 38,
+          "pixels_differ" : 0.61301000000000005,
+          "psnr" : 48.859999999999999,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q90_420"
+    },
+    {
+      "blocks" : 147456,
+      "bytes_per_pixel" : 0.1658,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "hdr",
+      "megapixels" : 6.29,
+      "ms" : {
+        "Apple ImageIO" : 13.302,
+        "libjpeg-turbo, one thread" : 10.238,
+        "this library" : 2.331,
+        "VideoToolbox (Apple hardware JPEG)" : 8.6389999999999993
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 48,
+          "pixels_differ" : 0.22137000000000001,
+          "psnr" : 50.119999999999997,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 44,
+          "pixels_differ" : 0.63360000000000005,
+          "psnr" : 48.479999999999997,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_420_opt"
+    },
+    {
+      "blocks" : 141000,
+      "bytes_per_pixel" : 0.51070000000000004,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "leaves_iso_1600",
+      "megapixels" : 6.0199999999999996,
+      "ms" : {
+        "Apple ImageIO" : 12.875999999999999,
+        "libjpeg-turbo, one thread" : 19.585000000000001,
+        "this library" : 3.3319999999999999,
+        "VideoToolbox (Apple hardware JPEG)" : 11.833
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 33,
+          "pixels_differ" : 0.89517000000000002,
+          "psnr" : 40.149999999999999,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 32,
+          "pixels_differ" : 0.92928999999999995,
+          "psnr" : 40.600000000000001,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_420"
+    },
+    {
+      "blocks" : 188000,
+      "bytes_per_pixel" : 0.58660000000000001,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "leaves_iso_1600",
+      "megapixels" : 6.0199999999999996,
+      "ms" : {
+        "Apple ImageIO" : 13.622999999999999,
+        "libjpeg-turbo, one thread" : 23.381,
+        "this library" : 3.4700000000000002,
+        "VideoToolbox (Apple hardware JPEG)" : 13.013999999999999
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 24,
+          "pixels_differ" : 0.82969000000000004,
+          "psnr" : 42.859999999999999,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 48,
+          "pixels_differ" : 0.95099,
+          "psnr" : 38.229999999999997,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_422"
+    },
+    {
+      "blocks" : 282000,
+      "bytes_per_pixel" : 0.72399999999999998,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "leaves_iso_1600",
+      "megapixels" : 6.0199999999999996,
+      "ms" : {
+        "Apple ImageIO" : 15.228,
+        "libjpeg-turbo, one thread" : 29.356999999999999,
+        "this library" : 4.4009999999999998,
+        "VideoToolbox (Apple hardware JPEG)" : 15.244
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 3,
+          "pixels_differ" : 0.095280000000000004,
+          "psnr" : 59.890000000000001,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 74,
+          "pixels_differ" : 0.96392999999999995,
+          "psnr" : 35.850000000000001,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_444"
+    },
+    {
+      "blocks" : 94000,
+      "bytes_per_pixel" : 0.42009999999999997,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "leaves_iso_1600",
+      "megapixels" : 6.0199999999999996,
+      "ms" : {
+        "Apple ImageIO" : 10.763999999999999,
+        "libjpeg-turbo, one thread" : 16.065999999999999,
+        "this library" : 2.456,
+        "VideoToolbox (Apple hardware JPEG)" : 10.286
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 1,
+          "pixels_differ" : 0.01908,
+          "psnr" : 65.329999999999998,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 1,
+          "pixels_differ" : 0.01908,
+          "psnr" : 65.329999999999998,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_gray"
+    },
+    {
+      "blocks" : 141000,
+      "bytes_per_pixel" : 0.33750000000000002,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "leaves_iso_1600",
+      "megapixels" : 6.0199999999999996,
+      "ms" : {
+        "Apple ImageIO" : 13.265000000000001,
+        "libjpeg-turbo, one thread" : 14.359,
+        "this library" : 2.782,
+        "VideoToolbox (Apple hardware JPEG)" : 9.8030000000000008
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 37,
+          "pixels_differ" : 0.81255999999999995,
+          "psnr" : 41.479999999999997,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 33,
+          "pixels_differ" : 0.89185000000000003,
+          "psnr" : 41.670000000000002,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q90_420"
+    },
+    {
+      "blocks" : 141000,
+      "bytes_per_pixel" : 0.48949999999999999,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "leaves_iso_1600",
+      "megapixels" : 6.0199999999999996,
+      "ms" : {
+        "Apple ImageIO" : 12.819000000000001,
+        "libjpeg-turbo, one thread" : 18.719000000000001,
+        "this library" : 3.5750000000000002,
+        "VideoToolbox (Apple hardware JPEG)" : 10.781000000000001
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 33,
+          "pixels_differ" : 0.89517000000000002,
+          "psnr" : 40.149999999999999,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 32,
+          "pixels_differ" : 0.92928999999999995,
+          "psnr" : 40.600000000000001,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_420_opt"
+    },
+    {
+      "blocks" : 141000,
+      "bytes_per_pixel" : 0.42830000000000001,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "leaves_iso_200",
+      "megapixels" : 6.0199999999999996,
+      "ms" : {
+        "Apple ImageIO" : 13.19,
+        "libjpeg-turbo, one thread" : 16.617000000000001,
+        "this library" : 3.1240000000000001,
+        "VideoToolbox (Apple hardware JPEG)" : 10.766999999999999
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 32,
+          "pixels_differ" : 0.69830000000000003,
+          "psnr" : 41.780000000000001,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 29,
+          "pixels_differ" : 0.82199999999999995,
+          "psnr" : 42.020000000000003,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_420"
+    },
+    {
+      "blocks" : 188000,
+      "bytes_per_pixel" : 0.4793,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "leaves_iso_200",
+      "megapixels" : 6.0199999999999996,
+      "ms" : {
+        "Apple ImageIO" : 11.943,
+        "libjpeg-turbo, one thread" : 19.286999999999999,
+        "this library" : 3.2679999999999998,
+        "VideoToolbox (Apple hardware JPEG)" : 11.558999999999999
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 25,
+          "pixels_differ" : 0.56903999999999999,
+          "psnr" : 44.890000000000001,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 53,
+          "pixels_differ" : 0.84738000000000002,
+          "psnr" : 40.020000000000003,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_422"
+    },
+    {
+      "blocks" : 282000,
+      "bytes_per_pixel" : 0.57089999999999996,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "leaves_iso_200",
+      "megapixels" : 6.0199999999999996,
+      "ms" : {
+        "Apple ImageIO" : 13.975,
+        "libjpeg-turbo, one thread" : 23.768999999999998,
+        "this library" : 3.9489999999999998,
+        "VideoToolbox (Apple hardware JPEG)" : 13.186999999999999
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 3,
+          "pixels_differ" : 0.092880000000000004,
+          "psnr" : 60.170000000000002,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 68,
+          "pixels_differ" : 0.87034999999999996,
+          "psnr" : 38.18,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_444"
+    },
+    {
+      "blocks" : 94000,
+      "bytes_per_pixel" : 0.36230000000000001,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "leaves_iso_200",
+      "megapixels" : 6.0199999999999996,
+      "ms" : {
+        "Apple ImageIO" : 10,
+        "libjpeg-turbo, one thread" : 14.516,
+        "this library" : 2.3610000000000002,
+        "VideoToolbox (Apple hardware JPEG)" : 9.3930000000000007
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 1,
+          "pixels_differ" : 0.017760000000000001,
+          "psnr" : 65.640000000000001,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 1,
+          "pixels_differ" : 0.017760000000000001,
+          "psnr" : 65.640000000000001,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_gray"
+    },
+    {
+      "blocks" : 141000,
+      "bytes_per_pixel" : 0.29459999999999997,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "leaves_iso_200",
+      "megapixels" : 6.0199999999999996,
+      "ms" : {
+        "Apple ImageIO" : 13.471,
+        "libjpeg-turbo, one thread" : 13.244999999999999,
+        "this library" : 2.7160000000000002,
+        "VideoToolbox (Apple hardware JPEG)" : 9.2189999999999994
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 36,
+          "pixels_differ" : 0.65910000000000002,
+          "psnr" : 42.450000000000003,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 32,
+          "pixels_differ" : 0.80023,
+          "psnr" : 42.539999999999999,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q90_420"
+    },
+    {
+      "blocks" : 141000,
+      "bytes_per_pixel" : 0.40910000000000002,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "leaves_iso_200",
+      "megapixels" : 6.0199999999999996,
+      "ms" : {
+        "Apple ImageIO" : 12.922000000000001,
+        "libjpeg-turbo, one thread" : 16.379000000000001,
+        "this library" : 3.4209999999999998,
+        "VideoToolbox (Apple hardware JPEG)" : 10.574999999999999
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 32,
+          "pixels_differ" : 0.69830000000000003,
+          "psnr" : 41.780000000000001,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 29,
+          "pixels_differ" : 0.82199999999999995,
+          "psnr" : 42.020000000000003,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_420_opt"
+    },
+    {
+      "blocks" : 172872,
+      "bytes_per_pixel" : 0.1895,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "nightshot_iso_100",
+      "megapixels" : 7.3799999999999999,
+      "ms" : {
+        "Apple ImageIO" : 15.677,
+        "libjpeg-turbo, one thread" : 13.064,
+        "this library" : 2.758,
+        "VideoToolbox (Apple hardware JPEG)" : 10.099
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 59,
+          "pixels_differ" : 0.2757,
+          "psnr" : 46.560000000000002,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 47,
+          "pixels_differ" : 0.59350000000000003,
+          "psnr" : 45.210000000000001,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_420"
+    },
+    {
+      "blocks" : 230496,
+      "bytes_per_pixel" : 0.21890000000000001,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "nightshot_iso_100",
+      "megapixels" : 7.3799999999999999,
+      "ms" : {
+        "Apple ImageIO" : 15.079000000000001,
+        "libjpeg-turbo, one thread" : 15.124000000000001,
+        "this library" : 2.7280000000000002,
+        "VideoToolbox (Apple hardware JPEG)" : 11.302
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 41,
+          "pixels_differ" : 0.22070999999999999,
+          "psnr" : 50.289999999999999,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 87,
+          "pixels_differ" : 0.63609000000000004,
+          "psnr" : 43.609999999999999,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_422"
+    },
+    {
+      "blocks" : 345744,
+      "bytes_per_pixel" : 0.27300000000000002,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "nightshot_iso_100",
+      "megapixels" : 7.3799999999999999,
+      "ms" : {
+        "Apple ImageIO" : 15.140000000000001,
+        "libjpeg-turbo, one thread" : 18.943999999999999,
+        "this library" : 3.3919999999999999,
+        "VideoToolbox (Apple hardware JPEG)" : 13.542
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 3,
+          "pixels_differ" : 0.06411,
+          "psnr" : 61.409999999999997,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 117,
+          "pixels_differ" : 0.68403000000000003,
+          "psnr" : 42.579999999999998,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_444"
+    },
+    {
+      "blocks" : 115248,
+      "bytes_per_pixel" : 0.15529999999999999,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "nightshot_iso_100",
+      "megapixels" : 7.3799999999999999,
+      "ms" : {
+        "Apple ImageIO" : 9.6669999999999998,
+        "libjpeg-turbo, one thread" : 11.617000000000001,
+        "this library" : 2.069,
+        "VideoToolbox (Apple hardware JPEG)" : 9.1129999999999995
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 1,
+          "pixels_differ" : 0.014840000000000001,
+          "psnr" : 66.420000000000002,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 1,
+          "pixels_differ" : 0.014840000000000001,
+          "psnr" : 66.420000000000002,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_gray"
+    },
+    {
+      "blocks" : 172872,
+      "bytes_per_pixel" : 0.1174,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "nightshot_iso_100",
+      "megapixels" : 7.3799999999999999,
+      "ms" : {
+        "Apple ImageIO" : 14.965999999999999,
+        "libjpeg-turbo, one thread" : 9.7230000000000008,
+        "this library" : 2.5,
+        "VideoToolbox (Apple hardware JPEG)" : 9.7089999999999996
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 50,
+          "pixels_differ" : 0.25411,
+          "psnr" : 46.770000000000003,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 47,
+          "pixels_differ" : 0.55764999999999998,
+          "psnr" : 45.5,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q90_420"
+    },
+    {
+      "blocks" : 172872,
+      "bytes_per_pixel" : 0.18740000000000001,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "nightshot_iso_100",
+      "megapixels" : 7.3799999999999999,
+      "ms" : {
+        "Apple ImageIO" : 14.384,
+        "libjpeg-turbo, one thread" : 12.722,
+        "this library" : 2.7229999999999999,
+        "VideoToolbox (Apple hardware JPEG)" : 10.162000000000001
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 59,
+          "pixels_differ" : 0.2757,
+          "psnr" : 46.560000000000002,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 47,
+          "pixels_differ" : 0.59350000000000003,
+          "psnr" : 45.210000000000001,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_420_opt"
+    },
+    {
+      "blocks" : 172872,
+      "bytes_per_pixel" : 0.39589999999999997,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "nightshot_iso_1600",
+      "megapixels" : 7.3799999999999999,
+      "ms" : {
+        "Apple ImageIO" : 15.673999999999999,
+        "libjpeg-turbo, one thread" : 21.32,
+        "this library" : 3.3530000000000002,
+        "VideoToolbox (Apple hardware JPEG)" : 13.388
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 62,
+          "pixels_differ" : 0.86133000000000004,
+          "psnr" : 41.060000000000002,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 53,
+          "pixels_differ" : 0.91578000000000004,
+          "psnr" : 41.159999999999997,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_420"
+    },
+    {
+      "blocks" : 230496,
+      "bytes_per_pixel" : 0.47160000000000002,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "nightshot_iso_1600",
+      "megapixels" : 7.3799999999999999,
+      "ms" : {
+        "Apple ImageIO" : 13.898,
+        "libjpeg-turbo, one thread" : 25.829999999999998,
+        "this library" : 3.5510000000000002,
+        "VideoToolbox (Apple hardware JPEG)" : 14.794
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 46,
+          "pixels_differ" : 0.79934000000000005,
+          "psnr" : 43.560000000000002,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 75,
+          "pixels_differ" : 0.94084999999999996,
+          "psnr" : 38.509999999999998,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_422"
+    },
+    {
+      "blocks" : 345744,
+      "bytes_per_pixel" : 0.62229999999999996,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "nightshot_iso_1600",
+      "megapixels" : 7.3799999999999999,
+      "ms" : {
+        "Apple ImageIO" : 18.228999999999999,
+        "libjpeg-turbo, one thread" : 34.271000000000001,
+        "this library" : 4.6500000000000004,
+        "VideoToolbox (Apple hardware JPEG)" : 17.731000000000002
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 3,
+          "pixels_differ" : 0.07961,
+          "psnr" : 60.409999999999997,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 112,
+          "pixels_differ" : 0.95838999999999996,
+          "psnr" : 35.75,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_444"
+    },
+    {
+      "blocks" : 115248,
+      "bytes_per_pixel" : 0.31209999999999999,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "nightshot_iso_1600",
+      "megapixels" : 7.3799999999999999,
+      "ms" : {
+        "Apple ImageIO" : 11.818,
+        "libjpeg-turbo, one thread" : 17.835999999999999,
+        "this library" : 2.4359999999999999,
+        "VideoToolbox (Apple hardware JPEG)" : 11.474
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 1,
+          "pixels_differ" : 0.01847,
+          "psnr" : 65.469999999999999,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 1,
+          "pixels_differ" : 0.01847,
+          "psnr" : 65.469999999999999,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_gray"
+    },
+    {
+      "blocks" : 172872,
+      "bytes_per_pixel" : 0.24390000000000001,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "nightshot_iso_1600",
+      "megapixels" : 7.3799999999999999,
+      "ms" : {
+        "Apple ImageIO" : 14.612,
+        "libjpeg-turbo, one thread" : 15.727,
+        "this library" : 2.806,
+        "VideoToolbox (Apple hardware JPEG)" : 10.811
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 64,
+          "pixels_differ" : 0.76785999999999999,
+          "psnr" : 42.899999999999999,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 48,
+          "pixels_differ" : 0.87588999999999995,
+          "psnr" : 42.539999999999999,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q90_420"
+    },
+    {
+      "blocks" : 172872,
+      "bytes_per_pixel" : 0.38929999999999998,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "nightshot_iso_1600",
+      "megapixels" : 7.3799999999999999,
+      "ms" : {
+        "Apple ImageIO" : 15.646000000000001,
+        "libjpeg-turbo, one thread" : 21.103999999999999,
+        "this library" : 3.7090000000000001,
+        "VideoToolbox (Apple hardware JPEG)" : 13.292
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 62,
+          "pixels_differ" : 0.86133000000000004,
+          "psnr" : 41.060000000000002,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 53,
+          "pixels_differ" : 0.91578000000000004,
+          "psnr" : 41.159999999999997,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_420_opt"
+    },
+    {
+      "blocks" : 284088,
+      "bytes_per_pixel" : 0.16450000000000001,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "spider_web",
+      "megapixels" : 12.119999999999999,
+      "ms" : {
+        "Apple ImageIO" : 22.224,
+        "libjpeg-turbo, one thread" : 20.213000000000001,
+        "this library" : 3.7709999999999999,
+        "VideoToolbox (Apple hardware JPEG)" : 11.686999999999999
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 23,
+          "pixels_differ" : 0.14304,
+          "psnr" : 55.280000000000001,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 20,
+          "pixels_differ" : 0.61124999999999996,
+          "psnr" : 50.25,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_420"
+    },
+    {
+      "blocks" : 378784,
+      "bytes_per_pixel" : 0.1852,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "spider_web",
+      "megapixels" : 12.119999999999999,
+      "ms" : {
+        "Apple ImageIO" : 22.003,
+        "libjpeg-turbo, one thread" : 23.289000000000001,
+        "this library" : 3.802,
+        "VideoToolbox (Apple hardware JPEG)" : 13.683999999999999
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 14,
+          "pixels_differ" : 0.11248,
+          "psnr" : 57.43,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 42,
+          "pixels_differ" : 0.64359999999999995,
+          "psnr" : 49.649999999999999,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_422"
+    },
+    {
+      "blocks" : 568176,
+      "bytes_per_pixel" : 0.22620000000000001,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "spider_web",
+      "megapixels" : 12.119999999999999,
+      "ms" : {
+        "Apple ImageIO" : 24.57,
+        "libjpeg-turbo, one thread" : 29.030000000000001,
+        "this library" : 4.8280000000000003,
+        "VideoToolbox (Apple hardware JPEG)" : 17.745000000000001
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 3,
+          "pixels_differ" : 0.071279999999999996,
+          "psnr" : 61.079999999999998,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 48,
+          "pixels_differ" : 0.68162,
+          "psnr" : 48.880000000000003,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_444"
+    },
+    {
+      "blocks" : 189392,
+      "bytes_per_pixel" : 0.1414,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "spider_web",
+      "megapixels" : 12.119999999999999,
+      "ms" : {
+        "Apple ImageIO" : 13.616,
+        "libjpeg-turbo, one thread" : 18.920000000000002,
+        "this library" : 2.6360000000000001,
+        "VideoToolbox (Apple hardware JPEG)" : 10.247999999999999
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 1,
+          "pixels_differ" : 0.014760000000000001,
+          "psnr" : 66.439999999999998,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 1,
+          "pixels_differ" : 0.014760000000000001,
+          "psnr" : 66.439999999999998,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_gray"
+    },
+    {
+      "blocks" : 284088,
+      "bytes_per_pixel" : 0.1038,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "spider_web",
+      "megapixels" : 12.119999999999999,
+      "ms" : {
+        "Apple ImageIO" : 23.088000000000001,
+        "libjpeg-turbo, one thread" : 15.488,
+        "this library" : 3.3460000000000001,
+        "VideoToolbox (Apple hardware JPEG)" : 11.34
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 21,
+          "pixels_differ" : 0.12791,
+          "psnr" : 55.950000000000003,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 18,
+          "pixels_differ" : 0.58177000000000001,
+          "psnr" : 50.859999999999999,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q90_420"
+    },
+    {
+      "blocks" : 284088,
+      "bytes_per_pixel" : 0.16289999999999999,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "spider_web",
+      "megapixels" : 12.119999999999999,
+      "ms" : {
+        "Apple ImageIO" : 24.805,
+        "libjpeg-turbo, one thread" : 20.382000000000001,
+        "this library" : 3.8340000000000001,
+        "VideoToolbox (Apple hardware JPEG)" : 11.593999999999999
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 23,
+          "pixels_differ" : 0.14304,
+          "psnr" : 55.280000000000001,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 20,
+          "pixels_differ" : 0.61124999999999996,
+          "psnr" : 50.25,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_420_opt"
+    },
+    {
+      "blocks" : 28080,
+      "bytes_per_pixel" : 0.4204,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "vgl_5674_0098",
+      "megapixels" : 1.1899999999999999,
+      "ms" : {
+        "Apple ImageIO" : 3.4159999999999999,
+        "libjpeg-turbo, one thread" : 2.9790000000000001,
+        "this library" : 3.024,
+        "VideoToolbox (Apple hardware JPEG)" : 3.0339999999999998
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 97,
+          "pixels_differ" : 0.46109,
+          "psnr" : 38.270000000000003,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 88,
+          "pixels_differ" : 0.80405000000000004,
+          "psnr" : 39.369999999999997,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_420"
+    },
+    {
+      "blocks" : 37440,
+      "bytes_per_pixel" : 0.48530000000000001,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "vgl_5674_0098",
+      "megapixels" : 1.1899999999999999,
+      "ms" : {
+        "Apple ImageIO" : 3.5630000000000002,
+        "libjpeg-turbo, one thread" : 3.5419999999999998,
+        "this library" : 1.8149999999999999,
+        "VideoToolbox (Apple hardware JPEG)" : 3.2919999999999998
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 75,
+          "pixels_differ" : 0.38636999999999999,
+          "psnr" : 40.229999999999997,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 208,
+          "pixels_differ" : 0.82286999999999999,
+          "psnr" : 33.380000000000003,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_422"
+    },
+    {
+      "blocks" : 55800,
+      "bytes_per_pixel" : 0.625,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "vgl_5674_0098",
+      "megapixels" : 1.1899999999999999,
+      "ms" : {
+        "Apple ImageIO" : 3.9740000000000002,
+        "libjpeg-turbo, one thread" : 4.7210000000000001,
+        "this library" : 2.0819999999999999,
+        "VideoToolbox (Apple hardware JPEG)" : 3.8759999999999999
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 3,
+          "pixels_differ" : 0.064089999999999994,
+          "psnr" : 61.509999999999998,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 255,
+          "pixels_differ" : 0.83265,
+          "psnr" : 29.59,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_444"
+    },
+    {
+      "blocks" : 18600,
+      "bytes_per_pixel" : 0.35880000000000001,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "vgl_5674_0098",
+      "megapixels" : 1.1899999999999999,
+      "ms" : {
+        "Apple ImageIO" : 3.9809999999999999,
+        "libjpeg-turbo, one thread" : 2.5920000000000001,
+        "this library" : 2.2829999999999999,
+        "VideoToolbox (Apple hardware JPEG)" : 2.2040000000000002
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 1,
+          "pixels_differ" : 0.01273,
+          "psnr" : 67.079999999999998,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 1,
+          "pixels_differ" : 0.01273,
+          "psnr" : 67.079999999999998,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_gray"
+    },
+    {
+      "blocks" : 28080,
+      "bytes_per_pixel" : 0.30430000000000001,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "vgl_5674_0098",
+      "megapixels" : 1.1899999999999999,
+      "ms" : {
+        "Apple ImageIO" : 3.3690000000000002,
+        "libjpeg-turbo, one thread" : 2.4569999999999999,
+        "this library" : 2.3460000000000001,
+        "VideoToolbox (Apple hardware JPEG)" : 2.8809999999999998
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 96,
+          "pixels_differ" : 0.43398999999999999,
+          "psnr" : 38.32,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 91,
+          "pixels_differ" : 0.79557,
+          "psnr" : 39.380000000000003,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q90_420"
+    },
+    {
+      "blocks" : 28080,
+      "bytes_per_pixel" : 0.40039999999999998,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "vgl_5674_0098",
+      "megapixels" : 1.1899999999999999,
+      "ms" : {
+        "Apple ImageIO" : 3.5710000000000002,
+        "libjpeg-turbo, one thread" : 2.879,
+        "this library" : 2.9580000000000002,
+        "VideoToolbox (Apple hardware JPEG)" : 3.0219999999999998
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 97,
+          "pixels_differ" : 0.46109,
+          "psnr" : 38.270000000000003,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 88,
+          "pixels_differ" : 0.80405000000000004,
+          "psnr" : 39.369999999999997,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_420_opt"
+    },
+    {
+      "blocks" : 28080,
+      "bytes_per_pixel" : 0.18479999999999999,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "vgl_6434_0018",
+      "megapixels" : 1.1899999999999999,
+      "ms" : {
+        "Apple ImageIO" : 3.25,
+        "libjpeg-turbo, one thread" : 1.617,
+        "this library" : 1.488,
+        "VideoToolbox (Apple hardware JPEG)" : 2.7370000000000001
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 110,
+          "pixels_differ" : 0.25844,
+          "psnr" : 37.280000000000001,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 110,
+          "pixels_differ" : 0.66008999999999995,
+          "psnr" : 38.219999999999999,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_420"
+    },
+    {
+      "blocks" : 37440,
+      "bytes_per_pixel" : 0.21829999999999999,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "vgl_6434_0018",
+      "megapixels" : 1.1899999999999999,
+      "ms" : {
+        "Apple ImageIO" : 3.427,
+        "libjpeg-turbo, one thread" : 1.9650000000000001,
+        "this library" : 1.319,
+        "VideoToolbox (Apple hardware JPEG)" : 2.956
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 78,
+          "pixels_differ" : 0.20283999999999999,
+          "psnr" : 39.960000000000001,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 216,
+          "pixels_differ" : 0.64919000000000004,
+          "psnr" : 34.710000000000001,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_422"
+    },
+    {
+      "blocks" : 55800,
+      "bytes_per_pixel" : 0.28610000000000002,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "vgl_6434_0018",
+      "megapixels" : 1.1899999999999999,
+      "ms" : {
+        "Apple ImageIO" : 3.4929999999999999,
+        "libjpeg-turbo, one thread" : 2.4449999999999998,
+        "this library" : 1.637,
+        "VideoToolbox (Apple hardware JPEG)" : 3.4100000000000001
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 3,
+          "pixels_differ" : 0.060990000000000003,
+          "psnr" : 62.93,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 251,
+          "pixels_differ" : 0.63590999999999998,
+          "psnr" : 31.449999999999999,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_444"
+    },
+    {
+      "blocks" : 18600,
+      "bytes_per_pixel" : 0.13439999999999999,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "vgl_6434_0018",
+      "megapixels" : 1.1899999999999999,
+      "ms" : {
+        "Apple ImageIO" : 3.6840000000000002,
+        "libjpeg-turbo, one thread" : 1.385,
+        "this library" : 1.0149999999999999,
+        "VideoToolbox (Apple hardware JPEG)" : 2.4209999999999998
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 1,
+          "pixels_differ" : 0.0043200000000000001,
+          "psnr" : 71.780000000000001,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 1,
+          "pixels_differ" : 0.0043200000000000001,
+          "psnr" : 71.780000000000001,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_gray"
+    },
+    {
+      "blocks" : 28080,
+      "bytes_per_pixel" : 0.13200000000000001,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "vgl_6434_0018",
+      "megapixels" : 1.1899999999999999,
+      "ms" : {
+        "Apple ImageIO" : 3.161,
+        "libjpeg-turbo, one thread" : 1.3660000000000001,
+        "this library" : 1.282,
+        "VideoToolbox (Apple hardware JPEG)" : 2.6539999999999999
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 108,
+          "pixels_differ" : 0.26423000000000002,
+          "psnr" : 37.210000000000001,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 107,
+          "pixels_differ" : 0.65751000000000004,
+          "psnr" : 38.119999999999997,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q90_420"
+    },
+    {
+      "blocks" : 28080,
+      "bytes_per_pixel" : 0.1787,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "vgl_6434_0018",
+      "megapixels" : 1.1899999999999999,
+      "ms" : {
+        "Apple ImageIO" : 3.202,
+        "libjpeg-turbo, one thread" : 1.6200000000000001,
+        "this library" : 1.478,
+        "VideoToolbox (Apple hardware JPEG)" : 2.5990000000000002
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 110,
+          "pixels_differ" : 0.25844,
+          "psnr" : 37.280000000000001,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 110,
+          "pixels_differ" : 0.66008999999999995,
+          "psnr" : 38.219999999999999,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_420_opt"
+    },
+    {
+      "blocks" : 28080,
+      "bytes_per_pixel" : 0.27550000000000002,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "vgl_6548_0026",
+      "megapixels" : 1.1899999999999999,
+      "ms" : {
+        "Apple ImageIO" : 3.3050000000000002,
+        "libjpeg-turbo, one thread" : 1.9470000000000001,
+        "this library" : 3.2210000000000001,
+        "VideoToolbox (Apple hardware JPEG)" : 2.8090000000000002
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 60,
+          "pixels_differ" : 0.0099100000000000004,
+          "psnr" : 56.299999999999997,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 58,
+          "pixels_differ" : 0.01025,
+          "psnr" : 56.920000000000002,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_420"
+    },
+    {
+      "blocks" : 37440,
+      "bytes_per_pixel" : 0.27939999999999998,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "vgl_6548_0026",
+      "megapixels" : 1.1899999999999999,
+      "ms" : {
+        "Apple ImageIO" : 3.3490000000000002,
+        "libjpeg-turbo, one thread" : 2.0449999999999999,
+        "this library" : 2.4430000000000001,
+        "VideoToolbox (Apple hardware JPEG)" : 2.9569999999999999
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 43,
+          "pixels_differ" : 0.0089700000000000005,
+          "psnr" : 58.369999999999997,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 131,
+          "pixels_differ" : 0.0094900000000000002,
+          "psnr" : 54.020000000000003,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_422"
+    },
+    {
+      "blocks" : 55800,
+      "bytes_per_pixel" : 0.28760000000000002,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "vgl_6548_0026",
+      "megapixels" : 1.1899999999999999,
+      "ms" : {
+        "Apple ImageIO" : 3.3290000000000002,
+        "libjpeg-turbo, one thread" : 2.1709999999999998,
+        "this library" : 1.843,
+        "VideoToolbox (Apple hardware JPEG)" : 3.2189999999999999
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 3,
+          "pixels_differ" : 0.0066400000000000001,
+          "psnr" : 69.939999999999998,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 153,
+          "pixels_differ" : 0.0087600000000000004,
+          "psnr" : 50.780000000000001,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_444"
+    },
+    {
+      "blocks" : 18600,
+      "bytes_per_pixel" : 0.27060000000000001,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "vgl_6548_0026",
+      "megapixels" : 1.1899999999999999,
+      "ms" : {
+        "Apple ImageIO" : 3.8700000000000001,
+        "libjpeg-turbo, one thread" : 2.0049999999999999,
+        "this library" : 1.8959999999999999,
+        "VideoToolbox (Apple hardware JPEG)" : 2.7240000000000002
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 1,
+          "pixels_differ" : 0.0064700000000000001,
+          "psnr" : 70.019999999999996,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 1,
+          "pixels_differ" : 0.0064700000000000001,
+          "psnr" : 70.019999999999996,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_gray"
+    },
+    {
+      "blocks" : 28080,
+      "bytes_per_pixel" : 0.2152,
+      "encode_detail" : {
+        "libjpeg_turbo_same_as_pillow" : true,
+        "same_as_libjpeg_turbo_encode" : true
+      },
+      "encode_same_bytes" : true,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "vgl_6548_0026",
+      "megapixels" : 1.1899999999999999,
+      "ms" : {
+        "Apple ImageIO" : 3.2189999999999999,
+        "libjpeg-turbo, one thread" : 1.706,
+        "this library" : 2.9119999999999999,
+        "VideoToolbox (Apple hardware JPEG)" : 2.1560000000000001
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 56,
+          "pixels_differ" : 0.010070000000000001,
+          "psnr" : 56.43,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 55,
+          "pixels_differ" : 0.010410000000000001,
+          "psnr" : 56.960000000000001,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q90_420"
+    },
+    {
+      "blocks" : 28080,
+      "bytes_per_pixel" : 0.2472,
+      "from_packed_same" : true,
+      "gpu_decoded" : true,
+      "image" : "vgl_6548_0026",
+      "megapixels" : 1.1899999999999999,
+      "ms" : {
+        "Apple ImageIO" : 3.2709999999999999,
+        "libjpeg-turbo, one thread" : 1.839,
+        "this library" : 2.6899999999999999,
+        "VideoToolbox (Apple hardware JPEG)" : 2.8370000000000002
+      },
+      "others" : {
+        "Apple ImageIO" : {
+          "max_diff" : 60,
+          "pixels_differ" : 0.0099100000000000004,
+          "psnr" : 56.299999999999997,
+          "same" : false
+        },
+        "VideoToolbox (Apple hardware JPEG)" : {
+          "max_diff" : 58,
+          "pixels_differ" : 0.01025,
+          "psnr" : 56.920000000000002,
+          "same" : false
+        }
+      },
+      "passes" : 2,
+      "route" : "gpu",
+      "same_pixels" : true,
+      "setting" : "q95_420_opt"
+    }
+  ],
+  "generator" : "Pillow 13.0.0, libjpeg-turbo 3.2.0",
+  "gpu" : {
+    "chip" : "Apple M4",
+    "cores" : 8
+  },
+  "gray" : "q95_gray JPEGs are compared as RGB: the reference is libjpeg-turbo's JCS_RGB output of the gray file (R = G = B = Y), the Metal Decoder decodes them to PixelFormat.rgb, ImageIO's 8-bit gray CGImage is expanded to R = G = B, VideoToolbox's BGRA is read as RGB",
+  "inputs" : [
+    {
+      "bytes" : 1000384,
+      "file" : "artificial__q95_420.jpg",
+      "sha256" : "ed7c90ff08fbccc668dd2fbae66e98a46b30536d22319a824ca8b1fae35bf748",
+      "source" : "imagecompression_info\/artificial.ppm"
+    },
+    {
+      "bytes" : 1123492,
+      "file" : "artificial__q95_422.jpg",
+      "sha256" : "73eb60d6ba4e2e3fbea3cc0f809f6a462f5241f3869e08e0cad22e331b266d9e",
+      "source" : "imagecompression_info\/artificial.ppm"
+    },
+    {
+      "bytes" : 1313640,
+      "file" : "artificial__q95_444.jpg",
+      "sha256" : "662bc213179f7c9f1e2b3b5f8ea05ea5338a0748e61d3dfeae474f3090d9161d",
+      "source" : "imagecompression_info\/artificial.ppm"
+    },
+    {
+      "bytes" : 775619,
+      "file" : "artificial__q95_gray.jpg",
+      "sha256" : "ff4dbbfabcad13a326b4a7815deb112a08c549f74a6374d6305b8a9963db5b8d",
+      "source" : "imagecompression_info\/artificial.ppm"
+    },
+    {
+      "bytes" : 707491,
+      "file" : "artificial__q90_420.jpg",
+      "sha256" : "6afd71207927c2382de8c068fdefb8ee6c5a6237db17808339c57cb3e36b783f",
+      "source" : "imagecompression_info\/artificial.ppm"
+    },
+    {
+      "bytes" : 964277,
+      "file" : "artificial__q95_420_opt.jpg",
+      "sha256" : "d2b08562de191704e1d69363a9a486cb275e439a7972d8cacec12f8a7f6cc8c1",
+      "source" : "imagecompression_info\/artificial.ppm"
+    },
+    {
+      "bytes" : 13548972,
+      "file" : "big_building__q95_420.jpg",
+      "sha256" : "400cc10cdf35015d9ffc952dc956b7d79dcb0558e774741e11a6db436b5fccca",
+      "source" : "imagecompression_info\/big_building.ppm"
+    },
+    {
+      "bytes" : 15459875,
+      "file" : "big_building__q95_422.jpg",
+      "sha256" : "933ff88c3d1b3c50559a57bf8b4c61da86c0c274f729e6ef85aff40e04b26b5f",
+      "source" : "imagecompression_info\/big_building.ppm"
+    },
+    {
+      "bytes" : 19045547,
+      "file" : "big_building__q95_444.jpg",
+      "sha256" : "22a68f279a49684bb061933ff58ada3414c3ee45574664076f02bc693a889c15",
+      "source" : "imagecompression_info\/big_building.ppm"
+    },
+    {
+      "bytes" : 11577319,
+      "file" : "big_building__q95_gray.jpg",
+      "sha256" : "18c61a9e3e290001b18e15fa2fac42d1facfdd02024bdc8691e4f1a48bb445a1",
+      "source" : "imagecompression_info\/big_building.ppm"
+    },
+    {
+      "bytes" : 9072642,
+      "file" : "big_building__q90_420.jpg",
+      "sha256" : "34797d651750b128972ad0361f39cf8dabc984ef843c47d451b1375f49e335c0",
+      "source" : "imagecompression_info\/big_building.ppm"
+    },
+    {
+      "bytes" : 13188084,
+      "file" : "big_building__q95_420_opt.jpg",
+      "sha256" : "34730fcc0bcfef8ed62b13705a4151da38875aa4dd495d695f8fe3a56d870a67",
+      "source" : "imagecompression_info\/big_building.ppm"
+    },
+    {
+      "bytes" : 10689798,
+      "file" : "big_tree__q95_420.jpg",
+      "sha256" : "3cc5b98175c0f850a3ee69a727bbedd788972ce1a1ebb5917750cc605a512a8d",
+      "source" : "imagecompression_info\/big_tree.ppm"
+    },
+    {
+      "bytes" : 12969337,
+      "file" : "big_tree__q95_422.jpg",
+      "sha256" : "463156a5dab19c6e98e518f23ae272f757959d769f8d3884e924d53901b1b87d",
+      "source" : "imagecompression_info\/big_tree.ppm"
+    },
+    {
+      "bytes" : 17304156,
+      "file" : "big_tree__q95_444.jpg",
+      "sha256" : "eb0f6990ad91c519b619f9dc0b004a630e2d24ef20722ced7df76b7af94d839f",
+      "source" : "imagecompression_info\/big_tree.ppm"
+    },
+    {
+      "bytes" : 8009608,
+      "file" : "big_tree__q95_gray.jpg",
+      "sha256" : "c242d67efad2564609106202dab293340abdf305d461c1013b1828cbb1353212",
+      "source" : "imagecompression_info\/big_tree.ppm"
+    },
+    {
+      "bytes" : 6674517,
+      "file" : "big_tree__q90_420.jpg",
+      "sha256" : "3c11740bc5e7915603dd9df975d5313480f4d2a28e996aba7c61a23c7789d9a6",
+      "source" : "imagecompression_info\/big_tree.ppm"
+    },
+    {
+      "bytes" : 10454037,
+      "file" : "big_tree__q95_420_opt.jpg",
+      "sha256" : "6d2bfedd84090089cfdbf742e7d3751c18bbf58cd6c579bb80b9b04506f35d72",
+      "source" : "imagecompression_info\/big_tree.ppm"
+    },
+    {
+      "bytes" : 4760617,
+      "file" : "bridge__q95_420.jpg",
+      "sha256" : "7a15dee6c75345eeb9e4c8bd7fc7ec605d5d13d43cb3447cbbd1552b1018375e",
+      "source" : "imagecompression_info\/bridge.ppm"
+    },
+    {
+      "bytes" : 5725988,
+      "file" : "bridge__q95_422.jpg",
+      "sha256" : "f8f9884d23ac5002089b29a349ad76cb0966351c0d3d394caaf5d216ae2691a1",
+      "source" : "imagecompression_info\/bridge.ppm"
+    },
+    {
+      "bytes" : 7465659,
+      "file" : "bridge__q95_444.jpg",
+      "sha256" : "972feea70c9dd228974c5f6359f39fdfcd1678423e8b088b31fa04426d18dbe5",
+      "source" : "imagecompression_info\/bridge.ppm"
+    },
+    {
+      "bytes" : 3806043,
+      "file" : "bridge__q95_gray.jpg",
+      "sha256" : "5ec10f0829d17c8078d306b181cbd208e6976328c671422e4a0bed00261da7bc",
+      "source" : "imagecompression_info\/bridge.ppm"
+    },
+    {
+      "bytes" : 2995686,
+      "file" : "bridge__q90_420.jpg",
+      "sha256" : "1309aa0dce701385300a3a4d4d83e4c52d2e2187ecc248ac0d76c6625bc77fa8",
+      "source" : "imagecompression_info\/bridge.ppm"
+    },
+    {
+      "bytes" : 4648252,
+      "file" : "bridge__q95_420_opt.jpg",
+      "sha256" : "59d4b6f8def216c82787bb6fa9be560e06863b5f4abc05fa2f0f7942f7bef3ff",
+      "source" : "imagecompression_info\/bridge.ppm"
+    },
+    {
+      "bytes" : 2024289,
+      "file" : "cathedral__q95_420.jpg",
+      "sha256" : "f82b8005ce4c856fe6f6c27e9f870532912e39fe41eab8a48fb5184df997106d",
+      "source" : "imagecompression_info\/cathedral.ppm"
+    },
+    {
+      "bytes" : 2341314,
+      "file" : "cathedral__q95_422.jpg",
+      "sha256" : "786515f429eddf80ef8cf0e8ebadf59aa0cf3c291121ce47cf7bf30c86a44c64",
+      "source" : "imagecompression_info\/cathedral.ppm"
+    },
+    {
+      "bytes" : 2921342,
+      "file" : "cathedral__q95_444.jpg",
+      "sha256" : "91a416056cfe89e3911f347a1873efbdcf3f017610edc50295ece7ec626e8163",
+      "source" : "imagecompression_info\/cathedral.ppm"
+    },
+    {
+      "bytes" : 1712237,
+      "file" : "cathedral__q95_gray.jpg",
+      "sha256" : "651b43de157adf071825cdd2574bad269534432e04857f5c50280e6bc099ae55",
+      "source" : "imagecompression_info\/cathedral.ppm"
+    },
+    {
+      "bytes" : 1303469,
+      "file" : "cathedral__q90_420.jpg",
+      "sha256" : "b62ddbe2706f03af1bd4c6d53444bbab6ba487891efedfcd50e6c3d0ee705559",
+      "source" : "imagecompression_info\/cathedral.ppm"
+    },
+    {
+      "bytes" : 1993969,
+      "file" : "cathedral__q95_420_opt.jpg",
+      "sha256" : "1e3ffb1e109fc0041b3a170ed892a502653c73694fc6d2af8ecf00cfa0954a29",
+      "source" : "imagecompression_info\/cathedral.ppm"
+    },
+    {
+      "bytes" : 4843888,
+      "file" : "deer__q95_420.jpg",
+      "sha256" : "2f09cdc5fff6845d3c11b30049fd326a5a1ac9f32069f51f0eb6899a8928519d",
+      "source" : "imagecompression_info\/deer.ppm"
+    },
+    {
+      "bytes" : 6151323,
+      "file" : "deer__q95_422.jpg",
+      "sha256" : "1e99ce50c5990e43b0014cd3bcde9838f7d17d5fb442e63a8dadeb0109d5498f",
+      "source" : "imagecompression_info\/deer.ppm"
+    },
+    {
+      "bytes" : 9487364,
+      "file" : "deer__q95_444.jpg",
+      "sha256" : "d4e8402a93f686c43751c92520e9fa2ca50389222156f7cf6e2f1c157811567d",
+      "source" : "imagecompression_info\/deer.ppm"
+    },
+    {
+      "bytes" : 3923369,
+      "file" : "deer__q95_gray.jpg",
+      "sha256" : "b27a7ff22e4dedee285b46f1b7b8e10b989ce0697afcb80615376f0e5fe618f3",
+      "source" : "imagecompression_info\/deer.ppm"
+    },
+    {
+      "bytes" : 2944060,
+      "file" : "deer__q90_420.jpg",
+      "sha256" : "2177c2305177e84b84c64c2aacaea61d5375e47a58d0407ee6104784f064455a",
+      "source" : "imagecompression_info\/deer.ppm"
+    },
+    {
+      "bytes" : 4708016,
+      "file" : "deer__q95_420_opt.jpg",
+      "sha256" : "5f444c4e8793b87fa0cb30a159606b8095fa210887816f20f26efcfa69026993",
+      "source" : "imagecompression_info\/deer.ppm"
+    },
+    {
+      "bytes" : 1133235,
+      "file" : "fireworks__q95_420.jpg",
+      "sha256" : "368b7b98e146e90ca042abb1e3fb83f8cba8870560d5ce1b7ab2fcaeab0c5994",
+      "source" : "imagecompression_info\/fireworks.ppm"
+    },
+    {
+      "bytes" : 1281167,
+      "file" : "fireworks__q95_422.jpg",
+      "sha256" : "ea2f73ab206661fed3e7bd88a912233c5fba95d0f897817fa4af585a430c4859",
+      "source" : "imagecompression_info\/fireworks.ppm"
+    },
+    {
+      "bytes" : 1574802,
+      "file" : "fireworks__q95_444.jpg",
+      "sha256" : "6a7696ff3f319ae21e523128bbcddbe4035dea6d8107400fc2a42960903ae402",
+      "source" : "imagecompression_info\/fireworks.ppm"
+    },
+    {
+      "bytes" : 962696,
+      "file" : "fireworks__q95_gray.jpg",
+      "sha256" : "d9fc1baaa3c89e4ccd035e06c8134e903a09c40629d88a02faf9217c382ebcd4",
+      "source" : "imagecompression_info\/fireworks.ppm"
+    },
+    {
+      "bytes" : 716740,
+      "file" : "fireworks__q90_420.jpg",
+      "sha256" : "3f3b2b7e20a49257bc0053811d82c77717d970f4d1896bcf6fe5785e2a3d9f0f",
+      "source" : "imagecompression_info\/fireworks.ppm"
+    },
+    {
+      "bytes" : 1106810,
+      "file" : "fireworks__q95_420_opt.jpg",
+      "sha256" : "7d39a21c555ecc806b1de170c22f7be86d0034dc65bac4c9a8a0680b0fcb5eb7",
+      "source" : "imagecompression_info\/fireworks.ppm"
+    },
+    {
+      "bytes" : 540163,
+      "file" : "flower_foveon__q95_420.jpg",
+      "sha256" : "ad703c98974f0df1b694a91540fdbaa76f90fb3a7ee5ca33672666ab9cb73216",
+      "source" : "imagecompression_info\/flower_foveon.ppm"
+    },
+    {
+      "bytes" : 614313,
+      "file" : "flower_foveon__q95_422.jpg",
+      "sha256" : "25d8eb4a74c8456ed9aed55f070d08794b9830738f8517c33731a1042516715e",
+      "source" : "imagecompression_info\/flower_foveon.ppm"
+    },
+    {
+      "bytes" : 734125,
+      "file" : "flower_foveon__q95_444.jpg",
+      "sha256" : "6e981df7a8172bc1599d247a0794481430f382bf3b80ab4e779e1cc7701df345",
+      "source" : "imagecompression_info\/flower_foveon.ppm"
+    },
+    {
+      "bytes" : 435746,
+      "file" : "flower_foveon__q95_gray.jpg",
+      "sha256" : "f33455089d8d935c846413c1aae8489d42a12049de4ca3d6c57945e6af0c830c",
+      "source" : "imagecompression_info\/flower_foveon.ppm"
+    },
+    {
+      "bytes" : 324262,
+      "file" : "flower_foveon__q90_420.jpg",
+      "sha256" : "9f380f0bf39485f1be2c985513e1e8e7945098e4839664830866269492d9693b",
+      "source" : "imagecompression_info\/flower_foveon.ppm"
+    },
+    {
+      "bytes" : 532937,
+      "file" : "flower_foveon__q95_420_opt.jpg",
+      "sha256" : "fce4ab1ffca163845b653a2b1ef03ea120e71622e19f70b7cda57a868667b232",
+      "source" : "imagecompression_info\/flower_foveon.ppm"
+    },
+    {
+      "bytes" : 1049249,
+      "file" : "hdr__q95_420.jpg",
+      "sha256" : "cddca64767fc21b15f49abd2a450660ab2b7132760ed12ee5651531abacb453b",
+      "source" : "imagecompression_info\/hdr.ppm"
+    },
+    {
+      "bytes" : 1177600,
+      "file" : "hdr__q95_422.jpg",
+      "sha256" : "abcd9d14a74542bc6e09be25e17058f44eb082aabbc1dc52280403aca225fec5",
+      "source" : "imagecompression_info\/hdr.ppm"
+    },
+    {
+      "bytes" : 1405843,
+      "file" : "hdr__q95_444.jpg",
+      "sha256" : "cc31089c83e4c139685331179f5680fe1a5897102b68b1e27a08c56c3001d0e4",
+      "source" : "imagecompression_info\/hdr.ppm"
+    },
+    {
+      "bytes" : 889894,
+      "file" : "hdr__q95_gray.jpg",
+      "sha256" : "9da9c092a11cf18ee1022ae263ebea1fade8c1b7497ff31811790582f837eed9",
+      "source" : "imagecompression_info\/hdr.ppm"
+    },
+    {
+      "bytes" : 653489,
+      "file" : "hdr__q90_420.jpg",
+      "sha256" : "a35ef7d6eb016ec907292da65326ab8842421994dd5b1e6c78ab9f07205ec140",
+      "source" : "imagecompression_info\/hdr.ppm"
+    },
+    {
+      "bytes" : 1043608,
+      "file" : "hdr__q95_420_opt.jpg",
+      "sha256" : "337d072a24c8aa152565a5e1efca525906b39bc17b939b950c258052381ad912",
+      "source" : "imagecompression_info\/hdr.ppm"
+    },
+    {
+      "bytes" : 3073295,
+      "file" : "leaves_iso_1600__q95_420.jpg",
+      "sha256" : "6b3eb76ee377fce99b671ead446fe4f33c2371527217d7871fb760918c815a54",
+      "source" : "imagecompression_info\/leaves_iso_1600.ppm"
+    },
+    {
+      "bytes" : 3529439,
+      "file" : "leaves_iso_1600__q95_422.jpg",
+      "sha256" : "11a64ff6e80bb0b6c7c9cc17ff9b5fc2cdc1a121434e9cc54b4382bb3d90f0f0",
+      "source" : "imagecompression_info\/leaves_iso_1600.ppm"
+    },
+    {
+      "bytes" : 4355922,
+      "file" : "leaves_iso_1600__q95_444.jpg",
+      "sha256" : "db1fcac284caada07b7a8a18622158bf3c215b7e7a6fa14303157838528e0381",
+      "source" : "imagecompression_info\/leaves_iso_1600.ppm"
+    },
+    {
+      "bytes" : 2527792,
+      "file" : "leaves_iso_1600__q95_gray.jpg",
+      "sha256" : "4e7b210a0561d38d78115490f8ccf6837553ab0482391c4025abb206efacaef1",
+      "source" : "imagecompression_info\/leaves_iso_1600.ppm"
+    },
+    {
+      "bytes" : 2031206,
+      "file" : "leaves_iso_1600__q90_420.jpg",
+      "sha256" : "1696670498b78487429c638b1ec35ab5438c78d290d0ed098cb0e4d604b4ee8a",
+      "source" : "imagecompression_info\/leaves_iso_1600.ppm"
+    },
+    {
+      "bytes" : 2945093,
+      "file" : "leaves_iso_1600__q95_420_opt.jpg",
+      "sha256" : "7adbab49e85778251fd9906ce1da94fd4e2b7cd84ddc5becb58ebf3568f6606f",
+      "source" : "imagecompression_info\/leaves_iso_1600.ppm"
+    },
+    {
+      "bytes" : 2577560,
+      "file" : "leaves_iso_200__q95_420.jpg",
+      "sha256" : "d279a065908861ef5de51487816970d3f96eb0df04d443ba52d0d6f56140c6f8",
+      "source" : "imagecompression_info\/leaves_iso_200.ppm"
+    },
+    {
+      "bytes" : 2884058,
+      "file" : "leaves_iso_200__q95_422.jpg",
+      "sha256" : "4b52c7f1f0f5f9cb22bca3a4f59971a574619ce54c718b6bb782f32d21d3cda6",
+      "source" : "imagecompression_info\/leaves_iso_200.ppm"
+    },
+    {
+      "bytes" : 3435200,
+      "file" : "leaves_iso_200__q95_444.jpg",
+      "sha256" : "b11d6ae7d059391256bb0dbe035a97a5c68f5ac1cd2e605893a9863e378a4403",
+      "source" : "imagecompression_info\/leaves_iso_200.ppm"
+    },
+    {
+      "bytes" : 2180107,
+      "file" : "leaves_iso_200__q95_gray.jpg",
+      "sha256" : "fea0b7599b950e82e839ee1ac44a085a306e64a0da64f93771b3cf8373e9a7b2",
+      "source" : "imagecompression_info\/leaves_iso_200.ppm"
+    },
+    {
+      "bytes" : 1773121,
+      "file" : "leaves_iso_200__q90_420.jpg",
+      "sha256" : "c2f7d6ae616a24907c62e72357402adc2c3122d38ac108e0d8e77790de647ca4",
+      "source" : "imagecompression_info\/leaves_iso_200.ppm"
+    },
+    {
+      "bytes" : 2461456,
+      "file" : "leaves_iso_200__q95_420_opt.jpg",
+      "sha256" : "2767b78815061d6e03e276e88e0282839eb3e29beeb5ede7c4cff378a4e0c9e4",
+      "source" : "imagecompression_info\/leaves_iso_200.ppm"
+    },
+    {
+      "bytes" : 1398233,
+      "file" : "nightshot_iso_100__q95_420.jpg",
+      "sha256" : "cbdad906fc08113967b21bedeade473b918a7bb12967c13f5e383d8c921c635f",
+      "source" : "imagecompression_info\/nightshot_iso_100.ppm"
+    },
+    {
+      "bytes" : 1615563,
+      "file" : "nightshot_iso_100__q95_422.jpg",
+      "sha256" : "1129d86324976e5f5b6ec37767f8b4ab7db626c7d3cadcc2cee8ac09d131ce64",
+      "source" : "imagecompression_info\/nightshot_iso_100.ppm"
+    },
+    {
+      "bytes" : 2014023,
+      "file" : "nightshot_iso_100__q95_444.jpg",
+      "sha256" : "50949994ebb3ccf00d0fe906142cb6d2f516946b9f8820c4f06091f5d7762d7b",
+      "source" : "imagecompression_info\/nightshot_iso_100.ppm"
+    },
+    {
+      "bytes" : 1145536,
+      "file" : "nightshot_iso_100__q95_gray.jpg",
+      "sha256" : "c102712ed34b8457e701d2f8223bc48af18052eea3d06bed1c1ce6b515a92bdf",
+      "source" : "imagecompression_info\/nightshot_iso_100.ppm"
+    },
+    {
+      "bytes" : 866730,
+      "file" : "nightshot_iso_100__q90_420.jpg",
+      "sha256" : "5a3bd15eeecadd37436bf934ce3d9c3ce1435e6f07b4412657ef0be0793d57dd",
+      "source" : "imagecompression_info\/nightshot_iso_100.ppm"
+    },
+    {
+      "bytes" : 1382885,
+      "file" : "nightshot_iso_100__q95_420_opt.jpg",
+      "sha256" : "d5f7c5db4edc0bf549fa33f84b018fffc5cef36d337588b6b780373e0d8f4170",
+      "source" : "imagecompression_info\/nightshot_iso_100.ppm"
+    },
+    {
+      "bytes" : 2920435,
+      "file" : "nightshot_iso_1600__q95_420.jpg",
+      "sha256" : "f014bcdce28a7e8411ce93e2a79c54dae99267c4f6c37c8426be005e6e0a012c",
+      "source" : "imagecompression_info\/nightshot_iso_1600.ppm"
+    },
+    {
+      "bytes" : 3478727,
+      "file" : "nightshot_iso_1600__q95_422.jpg",
+      "sha256" : "181c8fa92a466c8401cfa0fa67eff89b8a1f8e26efcd82ee6aebd1a238444d8b",
+      "source" : "imagecompression_info\/nightshot_iso_1600.ppm"
+    },
+    {
+      "bytes" : 4590563,
+      "file" : "nightshot_iso_1600__q95_444.jpg",
+      "sha256" : "e6f5f73b7057289d0a1eff5ded7b6f352ab7d9d754c5a7d72695e22282162cd8",
+      "source" : "imagecompression_info\/nightshot_iso_1600.ppm"
+    },
+    {
+      "bytes" : 2302177,
+      "file" : "nightshot_iso_1600__q95_gray.jpg",
+      "sha256" : "32e58eb905810aebba2965bb2f02469d3c25fc73e56756f27203c5f50df2f949",
+      "source" : "imagecompression_info\/nightshot_iso_1600.ppm"
+    },
+    {
+      "bytes" : 1799692,
+      "file" : "nightshot_iso_1600__q90_420.jpg",
+      "sha256" : "d66b23647c814bbc4135adbeae0e61c1c78868e7cdc55cfd55d44c804eeb5b4a",
+      "source" : "imagecompression_info\/nightshot_iso_1600.ppm"
+    },
+    {
+      "bytes" : 2871972,
+      "file" : "nightshot_iso_1600__q95_420_opt.jpg",
+      "sha256" : "984ae53fa6bd13f89cf75576a8f0f9da9ad9a6e770e8a09b84c0ca388e43e466",
+      "source" : "imagecompression_info\/nightshot_iso_1600.ppm"
+    },
+    {
+      "bytes" : 1994159,
+      "file" : "spider_web__q95_420.jpg",
+      "sha256" : "19e448b3c3ace89b57ebf2261ff43e3f397cf8838ef029a03192f689ffb83709",
+      "source" : "imagecompression_info\/spider_web.ppm"
+    },
+    {
+      "bytes" : 2245112,
+      "file" : "spider_web__q95_422.jpg",
+      "sha256" : "c850104591ea0f36f01a68668055b84487519362f14390da21e499b4804b1fd9",
+      "source" : "imagecompression_info\/spider_web.ppm"
+    },
+    {
+      "bytes" : 2742288,
+      "file" : "spider_web__q95_444.jpg",
+      "sha256" : "dea4a675b37df917cce7da61bace11a08bc5383e17c34e66d6bc3ebc048be845",
+      "source" : "imagecompression_info\/spider_web.ppm"
+    },
+    {
+      "bytes" : 1714815,
+      "file" : "spider_web__q95_gray.jpg",
+      "sha256" : "7c5bc15a1c69336f9d7d56f41a331950a56f36ba7145e628b45c2d29ac2b9932",
+      "source" : "imagecompression_info\/spider_web.ppm"
+    },
+    {
+      "bytes" : 1258973,
+      "file" : "spider_web__q90_420.jpg",
+      "sha256" : "18f1f673701f5401df2cf8785c0d9ae444f468c4f11c52672dd308a6029fe786",
+      "source" : "imagecompression_info\/spider_web.ppm"
+    },
+    {
+      "bytes" : 1975364,
+      "file" : "spider_web__q95_420_opt.jpg",
+      "sha256" : "5af0161a7457c80c1914303769990be576a0f82aa720ddd5fb5f972ea4973089",
+      "source" : "imagecompression_info\/spider_web.ppm"
+    },
+    {
+      "bytes" : 501015,
+      "file" : "vgl_5674_0098__q95_420.jpg",
+      "sha256" : "523da7624e87bada0dd93b4e4f2de69f9dca56f62a3d60fa11fecf73f64c0c6a",
+      "source" : "libjpeg_turbo_3dtest\/vgl_5674_0098.ppm"
+    },
+    {
+      "bytes" : 578377,
+      "file" : "vgl_5674_0098__q95_422.jpg",
+      "sha256" : "7e5e90eaf566f2abe62d041b234449e28789a00b85f0e7253e89c581aa60084d",
+      "source" : "libjpeg_turbo_3dtest\/vgl_5674_0098.ppm"
+    },
+    {
+      "bytes" : 744669,
+      "file" : "vgl_5674_0098__q95_444.jpg",
+      "sha256" : "a795b7ce5b136702e52b20ad443b14dbedd0c61d06e3257c97bc7170233ffb0c",
+      "source" : "libjpeg_turbo_3dtest\/vgl_5674_0098.ppm"
+    },
+    {
+      "bytes" : 427419,
+      "file" : "vgl_5674_0098__q95_gray.jpg",
+      "sha256" : "3bc877e6a30dc437498344e7e7ece187a488c6fa61280b5b3d189399144b9892",
+      "source" : "libjpeg_turbo_3dtest\/vgl_5674_0098.ppm"
+    },
+    {
+      "bytes" : 362887,
+      "file" : "vgl_5674_0098__q90_420.jpg",
+      "sha256" : "c6287b0cafdf6aaead6e34338ac08a254f7e9f90dd47fd5c9e677646ac71ee0f",
+      "source" : "libjpeg_turbo_3dtest\/vgl_5674_0098.ppm"
+    },
+    {
+      "bytes" : 477143,
+      "file" : "vgl_5674_0098__q95_420_opt.jpg",
+      "sha256" : "5a48347c29c9f59813db9725187132c6606b5c168065ccb41db170c32327ccec",
+      "source" : "libjpeg_turbo_3dtest\/vgl_5674_0098.ppm"
+    },
+    {
+      "bytes" : 220609,
+      "file" : "vgl_6434_0018__q95_420.jpg",
+      "sha256" : "5d66939dfb86bda6fab0e173ff29c1fea3c1eb2f7004cf1b2de956045758c588",
+      "source" : "libjpeg_turbo_3dtest\/vgl_6434_0018.ppm"
+    },
+    {
+      "bytes" : 260512,
+      "file" : "vgl_6434_0018__q95_422.jpg",
+      "sha256" : "d633b60c5f29322dee9200e506be0beac2149a6429eef1fa9b30f86d468d6449",
+      "source" : "libjpeg_turbo_3dtest\/vgl_6434_0018.ppm"
+    },
+    {
+      "bytes" : 341176,
+      "file" : "vgl_6434_0018__q95_444.jpg",
+      "sha256" : "977bb4599e051c3ac4cd66add231dc1e782507d2fc9aff37ebf73de0fe4c9db4",
+      "source" : "libjpeg_turbo_3dtest\/vgl_6434_0018.ppm"
+    },
+    {
+      "bytes" : 160321,
+      "file" : "vgl_6434_0018__q95_gray.jpg",
+      "sha256" : "66a4382ea6a075ee76c5975bae4358eeb1b4e2fb05c5858f951507c243218038",
+      "source" : "libjpeg_turbo_3dtest\/vgl_6434_0018.ppm"
+    },
+    {
+      "bytes" : 157740,
+      "file" : "vgl_6434_0018__q90_420.jpg",
+      "sha256" : "b3e4953cf6e4bd1c483ceec0f69d2e5110c3323a7ef1984ce5fa874be0fba752",
+      "source" : "libjpeg_turbo_3dtest\/vgl_6434_0018.ppm"
+    },
+    {
+      "bytes" : 213174,
+      "file" : "vgl_6434_0018__q95_420_opt.jpg",
+      "sha256" : "a574955e6c30c06bcb5aafc1fb7541e785c90df76ce8f71ed2ffe9a71d9ba144",
+      "source" : "libjpeg_turbo_3dtest\/vgl_6434_0018.ppm"
+    },
+    {
+      "bytes" : 328622,
+      "file" : "vgl_6548_0026__q95_420.jpg",
+      "sha256" : "3199d158919af6c50cd4271defd035750faed7929ee2096dcb3b7f8d2c72d4dc",
+      "source" : "libjpeg_turbo_3dtest\/vgl_6548_0026.ppm"
+    },
+    {
+      "bytes" : 333198,
+      "file" : "vgl_6548_0026__q95_422.jpg",
+      "sha256" : "8f4cacff10b3af99291aa8714c5d906768422efecf7391624398f4bd4d86f916",
+      "source" : "libjpeg_turbo_3dtest\/vgl_6548_0026.ppm"
+    },
+    {
+      "bytes" : 342997,
+      "file" : "vgl_6548_0026__q95_444.jpg",
+      "sha256" : "ad1cb012fbae58b396c500ca940bc056754dbe6cbeaeeb6485a6bc2d06e97537",
+      "source" : "libjpeg_turbo_3dtest\/vgl_6548_0026.ppm"
+    },
+    {
+      "bytes" : 322408,
+      "file" : "vgl_6548_0026__q95_gray.jpg",
+      "sha256" : "1a07c7e84a4401f701b57cf796fc01e8e8d92615597fce6d264638af24a3b9fb",
+      "source" : "libjpeg_turbo_3dtest\/vgl_6548_0026.ppm"
+    },
+    {
+      "bytes" : 256783,
+      "file" : "vgl_6548_0026__q90_420.jpg",
+      "sha256" : "ce43d3e825c87fa65a2afab89905295a219bf7205abda24dcff02cd80a725f74",
+      "source" : "libjpeg_turbo_3dtest\/vgl_6548_0026.ppm"
+    },
+    {
+      "bytes" : 294712,
+      "file" : "vgl_6548_0026__q95_420_opt.jpg",
+      "sha256" : "c1f5016e51c5fee2d74117e3b803e94dcda1ea939ef571ec110dcd96a467a245",
+      "source" : "libjpeg_turbo_3dtest\/vgl_6548_0026.ppm"
+    }
+  ],
+  "measured" : "2026-11-19T13:06:08-06:00",
+  "other_decoders" : {
+    "Apple ImageIO" : "CGImageSourceCreateImageAtIndex with kCGImageSourceUseHardwareAcceleration true and kCGImageSourceShouldCacheImmediately; the CGImage's own bytes as RGB",
+    "VideoToolbox (Apple hardware JPEG)" : "VTDecompressionSession, hardware decoder required, 32BGRA output read as RGB (includes VideoToolbox's YCbCr to RGB conversion); its timed call makes the sample buffer from the bytes and decodes it"
+  },
+  "pc_set_dir" : "pc-set",
+  "quick" : false,
+  "reference" : "libjpeg-turbo 3.2.0 TurboRef islow fancy; the PC uses simplejpeg 1.9.0 \/ libjpeg-turbo 3.1.2",
+  "settings" : [
+    {
+      "encode_compared" : true,
+      "name" : "q95_420",
+      "pillow" : "quality=95, subsampling=2 (4:2:0)",
+      "quality" : 95
+    },
+    {
+      "encode_compared" : true,
+      "name" : "q95_422",
+      "pillow" : "quality=95, subsampling=1 (4:2:2)",
+      "quality" : 95
+    },
+    {
+      "encode_compared" : true,
+      "name" : "q95_444",
+      "pillow" : "quality=95, subsampling=0 (4:4:4)",
+      "quality" : 95
+    },
+    {
+      "encode_compared" : false,
+      "name" : "q95_gray",
+      "pillow" : "converted to L, quality=95, no subsampling argument",
+      "quality" : 95
+    },
+    {
+      "encode_compared" : true,
+      "name" : "q90_420",
+      "pillow" : "quality=90, subsampling=2 (4:2:0)",
+      "quality" : 90
+    },
+    {
+      "encode_compared" : false,
+      "name" : "q95_420_opt",
+      "pillow" : "quality=95, subsampling=2 (4:2:0), optimize=True",
+      "quality" : 95
+    }
+  ],
+  "skipped" : [
+
+  ],
+  "summary" : {
+    "bytes_per_pixel" : [
+      0.094399999999999998,
+      0.88849999999999996
+    ],
+    "decoded_on_the_gpu" : 102,
+    "encodes_byte_identical" : 68,
+    "encodes_compared" : 68,
+    "encodes_same_as_libjpeg_turbo" : 68,
+    "from_packed_identical" : 102,
+    "jpegs" : 102,
+    "ms_per_coded_mb" : {
+      "fits" : {
+        "4:2:0" : {
+          "Apple ImageIO" : {
+            "a_ms" : 3.3650000000000002,
+            "b_ms_per_mp" : 1.569,
+            "c_ms_per_coded_mb" : 0.025000000000000001,
+            "n" : 42,
+            "se_a" : 0.28100000000000003,
+            "se_b" : 0.050999999999999997,
+            "se_c" : 0.14599999999999999
+          },
+          "libjpeg-turbo, one thread" : {
+            "a_ms" : 0.079000000000000001,
+            "b_ms_per_mp" : 0.73299999999999998,
+            "c_ms_per_coded_mb" : 5.2329999999999997,
+            "n" : 42,
+            "se_a" : 0.29399999999999998,
+            "se_b" : 0.053999999999999999,
+            "se_c" : 0.153
+          },
+          "this library" : {
+            "a_ms" : 1.149,
+            "b_ms_per_mp" : 0.17499999999999999,
+            "c_ms_per_coded_mb" : 0.46500000000000002,
+            "n" : 42,
+            "se_a" : 0.20999999999999999,
+            "se_b" : 0.037999999999999999,
+            "se_c" : 0.109
+          },
+          "VideoToolbox (Apple hardware JPEG)" : {
+            "a_ms" : 3.4289999999999998,
+            "b_ms_per_mp" : 0.503,
+            "c_ms_per_coded_mb" : 1.788,
+            "n" : 42,
+            "se_a" : 0.20499999999999999,
+            "se_b" : 0.036999999999999998,
+            "se_c" : 0.107
+          }
+        },
+        "4:2:2" : {
+          "Apple ImageIO" : {
+            "a_ms" : 4.1159999999999997,
+            "b_ms_per_mp" : 1.226,
+            "c_ms_per_coded_mb" : 0.86299999999999999,
+            "n" : 14,
+            "se_a" : 0.748,
+            "se_b" : 0.16200000000000001,
+            "se_c" : 0.35599999999999998
+          },
+          "libjpeg-turbo, one thread" : {
+            "a_ms" : 0.47599999999999998,
+            "b_ms_per_mp" : 0.61499999999999999,
+            "c_ms_per_coded_mb" : 5.9509999999999996,
+            "n" : 14,
+            "se_a" : 0.70399999999999996,
+            "se_b" : 0.153,
+            "se_c" : 0.33500000000000002
+          },
+          "this library" : {
+            "a_ms" : 0.57599999999999996,
+            "b_ms_per_mp" : 0.217,
+            "c_ms_per_coded_mb" : 0.44,
+            "n" : 14,
+            "se_a" : 0.10299999999999999,
+            "se_b" : 0.021999999999999999,
+            "se_c" : 0.049000000000000002
+          },
+          "VideoToolbox (Apple hardware JPEG)" : {
+            "a_ms" : 3.851,
+            "b_ms_per_mp" : 0.53400000000000003,
+            "c_ms_per_coded_mb" : 1.8380000000000001,
+            "n" : 14,
+            "se_a" : 0.36899999999999999,
+            "se_b" : 0.080000000000000002,
+            "se_c" : 0.17599999999999999
+          }
+        },
+        "4:4:4" : {
+          "Apple ImageIO" : {
+            "a_ms" : 4.6130000000000004,
+            "b_ms_per_mp" : 0.98599999999999999,
+            "c_ms_per_coded_mb" : 1.5249999999999999,
+            "n" : 14,
+            "se_a" : 0.98199999999999998,
+            "se_b" : 0.182,
+            "se_c" : 0.308
+          },
+          "libjpeg-turbo, one thread" : {
+            "a_ms" : 0.66500000000000004,
+            "b_ms_per_mp" : 0.77000000000000002,
+            "c_ms_per_coded_mb" : 5.984,
+            "n" : 14,
+            "se_a" : 0.66200000000000003,
+            "se_b" : 0.123,
+            "se_c" : 0.20799999999999999
+          },
+          "this library" : {
+            "a_ms" : 0.61099999999999999,
+            "b_ms_per_mp" : 0.28899999999999998,
+            "c_ms_per_coded_mb" : 0.42199999999999999,
+            "n" : 14,
+            "se_a" : 0.106,
+            "se_b" : 0.02,
+            "se_c" : 0.033000000000000002
+          },
+          "VideoToolbox (Apple hardware JPEG)" : {
+            "a_ms" : 4.2729999999999997,
+            "b_ms_per_mp" : 0.69399999999999995,
+            "c_ms_per_coded_mb" : 1.784,
+            "n" : 14,
+            "se_a" : 0.53000000000000003,
+            "se_b" : 0.098000000000000004,
+            "se_c" : 0.16600000000000001
+          }
+        }
+      },
+      "groups" : {
+        "4:2:0" : "q95_420, q90_420, q95_420_opt",
+        "4:2:2" : "q95_422",
+        "4:4:4" : "q95_444"
+      },
+      "model" : "least squares ms = a + b*MP + c*codedMB over JPEGs of 3 MP and up; codedMB = (file length - scan start - 2) \/ 1e6; se_*: standard errors"
+    },
+    "on_the_gpu_route" : 102,
+    "others" : {
+      "Apple ImageIO" : {
+        "by_setting" : {
+          "q90_420" : {
+            "differ" : 17,
+            "failed" : 0,
+            "identical" : 0
+          },
+          "q95_420" : {
+            "differ" : 17,
+            "failed" : 0,
+            "identical" : 0
+          },
+          "q95_420_opt" : {
+            "differ" : 17,
+            "failed" : 0,
+            "identical" : 0
+          },
+          "q95_422" : {
+            "differ" : 17,
+            "failed" : 0,
+            "identical" : 0
+          },
+          "q95_444" : {
+            "differ" : 17,
+            "failed" : 0,
+            "identical" : 0
+          },
+          "q95_gray" : {
+            "differ" : 17,
+            "failed" : 0,
+            "identical" : 0
+          }
+        },
+        "differ" : 102,
+        "failed" : 0,
+        "identical" : 0,
+        "max_diff" : 110,
+        "pixels_differ" : [
+          0.0043200000000000001,
+          0.92025999999999997
+        ],
+        "psnr" : [
+          37.210000000000001,
+          71.780000000000001
+        ]
+      },
+      "VideoToolbox (Apple hardware JPEG)" : {
+        "by_setting" : {
+          "q90_420" : {
+            "differ" : 17,
+            "failed" : 0,
+            "identical" : 0
+          },
+          "q95_420" : {
+            "differ" : 17,
+            "failed" : 0,
+            "identical" : 0
+          },
+          "q95_420_opt" : {
+            "differ" : 17,
+            "failed" : 0,
+            "identical" : 0
+          },
+          "q95_422" : {
+            "differ" : 17,
+            "failed" : 0,
+            "identical" : 0
+          },
+          "q95_444" : {
+            "differ" : 17,
+            "failed" : 0,
+            "identical" : 0
+          },
+          "q95_gray" : {
+            "differ" : 17,
+            "failed" : 0,
+            "identical" : 0
+          }
+        },
+        "differ" : 102,
+        "failed" : 0,
+        "identical" : 0,
+        "max_diff" : 255,
+        "pixels_differ" : [
+          0.0043200000000000001,
+          0.99629000000000001
+        ],
+        "psnr" : [
+          29.219999999999999,
+          71.780000000000001
+        ]
+      }
+    },
+    "passes" : {
+      "2" : 102
+    },
+    "pixels_identical" : 102
+  },
+  "timing" : "at least 2 calls and 0.3 s back to back, then the median of 9 calls, each waited for, from bytes in memory, CLOCK_UPTIME_RAW; null when a call failed",
+  "timing_notes" : [
+    "VideoToolbox: each timed call builds the CMSampleBuffer from the bytes and decodes it (a decode from bytes in memory); the session is made once per JPEG, outside the timed calls",
+    "this library: one Decoder is reused across calls (its header and layout cache warm), as the PC reuses its library state"
+  ],
+  "versions" : {
+    "ejm commit" : "99e178e",
+    "libjpeg-turbo runtime" : "3.2.1",
+    "macOS" : "26.5.2"
+  }
+}

@@ -1,0 +1,70 @@
+# XcodeGen spec of the iOS check app: `xcodegen generate` writes ExactJPEGCheck.xcodeproj (gitignored).
+# run-device.sh exports the corpus, generates, builds, installs, runs and fetches the results.
+name: ExactJPEGCheck
+options:
+  bundleIdPrefix: com.lukeriley
+  deploymentTarget:
+    iOS: "16.0"
+  createIntermediateGroups: true
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+configFiles:
+  Debug: Config/Signing.xcconfig
+  Release: Config/Signing.xcconfig
+packages:
+  ExactJPEG:
+    path: ../..
+targets:
+  ExactJPEGCheck:
+    type: application
+    platform: iOS
+    sources:
+      - path: App
+      # the pure-Swift synthetic generators and encoder case list, shared with ejm (not copied)
+      - path: ../../Tools/Sources/ejm/Synth.swift
+        group: Shared
+      # per-stage decode profile (--decode-profile), shared with `ejm decode-profile`
+      - path: ../../Tools/Sources/ejm/DecodeProfile.swift
+        group: Shared
+      # public-bench's timing and pixel-identity helpers (--public), shared with `ejm public-bench`
+      - path: ../../Tools/Sources/ejm/PublicShared.swift
+        group: Shared
+      # the decoder corpus and timing inputs written by `ejm export-corpus Corpus` (gitignored, generated)
+      - path: Corpus
+        type: folder
+        buildPhase: resources
+      # the public JPEGs and libjpeg-turbo references written by `ejm export-public Public <dir> ...` for --public
+      # (gitignored, generated; run-device.sh creates it, empty, in the other modes)
+      - path: Public
+        type: folder
+        buildPhase: resources
+      - path: ../../testdata/manifest-libjpeg-turbo-3.2.0.json
+        buildPhase: resources
+        group: Shared
+    dependencies:
+      - package: ExactJPEG
+        product: ExactJPEG
+    info:
+      path: App/Info.plist
+      properties:
+        CFBundleDisplayName: ExactJPEG Check
+        UILaunchScreen: {}
+        UIRequiredDeviceCapabilities: [metal]
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
+        UIFileSharingEnabled: true
+        LSSupportsOpeningDocumentsInPlace: true
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.lukeriley.ExactJPEGCheck
+        TARGETED_DEVICE_FAMILY: "1"
+        CODE_SIGN_STYLE: Automatic
+        GENERATE_INFOPLIST_FILE: NO
+        SWIFT_OPTIMIZATION_LEVEL: -O
+schemes:
+  ExactJPEGCheck:
+    build:
+      targets:
+        ExactJPEGCheck: all
+    run:
+      config: Release

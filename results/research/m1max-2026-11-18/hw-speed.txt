@@ -1,0 +1,60 @@
+load at start: { 8.57 9.85 12.24 }
+
+== dec_6720x4480_q95_s1.jpg (7965 KB): rounds 3, each variant 1.5 s, interleaved
+  loads per round: { 8.57 9.85 12.24 } | { 8.06 9.68 12.14 } | { 7.94 9.57 12.05 }
+  VT JPEG decode 420f (hw) x1    38.25 img/s    26.14 ms/img/thread  CPU/wall 0.07  engine frames last round +352/+0  (rounds: 38.3, 38.1, 38.3)
+  VT JPEG decode BGRA (hw) x1    26.62 img/s    37.57 ms/img/thread  CPU/wall 0.04  engine frames last round +256/+0  (rounds: 26.6, 26.1, 27.4)
+  ImageIO decode x1    11.89 img/s    84.13 ms/img/thread  CPU/wall 0.62  engine frames last round +180/+0  (rounds: 11.9, 12.2, 11.5)
+  VT JPEG decode 420f (hw) x2    74.44 img/s    26.87 ms/img/thread  CPU/wall 0.12  engine frames last round +358/+352  (rounds: 74.0, 74.4, 75.7)
+  VT JPEG decode BGRA (hw) x2    44.69 img/s    44.75 ms/img/thread  CPU/wall 0.08  engine frames last round +216/+198  (rounds: 43.5, 44.7, 44.7)
+  ImageIO decode x2    16.67 img/s   119.94 ms/img/thread  CPU/wall 0.87  engine frames last round +260/+0  (rounds: 16.6, 16.7, 16.7)
+  VT JPEG decode 420f (hw) x4    91.40 img/s    43.76 ms/img/thread  CPU/wall 0.15  engine frames last round +150/+150  (rounds: 91.4, 91.1, 91.4)
+  VT JPEG decode BGRA (hw) x4    88.72 img/s    45.09 ms/img/thread  CPU/wall 0.13  engine frames last round +158/+176  (rounds: 85.4, 88.7, 89.3)
+  ImageIO decode x4    16.69 img/s   239.67 ms/img/thread  CPU/wall 0.86  engine frames last round +280/+0  (rounds: 16.6, 16.7, 16.7)
+
+== dec_4032x3024_q90_s2.jpg (2575 KB): rounds 3, each variant 1.5 s, interleaved
+  loads per round: { 8.86 9.69 12.05 } | { 8.09 9.47 11.93 } | { 8.83 9.56 11.92 }
+  VT JPEG decode 420f (hw) x1   103.45 img/s     9.67 ms/img/thread  CPU/wall 0.08  engine frames last round +1090/+0  (rounds: 103.4, 102.0, 120.1)
+  VT JPEG decode BGRA (hw) x1    72.63 img/s    13.77 ms/img/thread  CPU/wall 0.03  engine frames last round +664/+0  (rounds: 64.1, 72.6, 72.7)
+  ImageIO decode x1    29.75 img/s    33.61 ms/img/thread  CPU/wall 0.62  engine frames last round +440/+0  (rounds: 29.8, 29.8, 29.2)
+  VT JPEG decode 420f (hw) x2   241.75 img/s     8.27 ms/img/thread  CPU/wall 0.10  engine frames last round +1096/+1096  (rounds: 210.5, 241.8, 241.8)
+  VT JPEG decode BGRA (hw) x2   148.14 img/s    13.50 ms/img/thread  CPU/wall 0.06  engine frames last round +676/+676  (rounds: 115.3, 148.5, 148.1)
+  ImageIO decode x2    39.77 img/s    50.30 ms/img/thread  CPU/wall 0.88  engine frames last round +610/+0  (rounds: 40.7, 39.8, 39.5)
+  VT JPEG decode 420f (hw) x4   280.20 img/s    14.28 ms/img/thread  CPU/wall 0.13  engine frames last round +432/+432  (rounds: 271.6, 280.4, 280.2)
+  VT JPEG decode BGRA (hw) x4   277.44 img/s    14.42 ms/img/thread  CPU/wall 0.11  engine frames last round +440/+446  (rounds: 223.0, 279.2, 277.4)
+  ImageIO decode x4    40.68 img/s    98.32 ms/img/thread  CPU/wall 0.88  engine frames last round +650/+0  (rounds: 41.1, 40.2, 40.7)
+
+== dec_1600x1200_q90_s2.jpg (470 KB): rounds 3, each variant 1.5 s, interleaved
+  loads per round: { 8.82 9.53 11.87 } | { 8.64 9.46 11.80 } | { 9.06 9.51 11.78 }
+  VT JPEG decode 420f (hw) x1   370.01 img/s     2.70 ms/img/thread  CPU/wall 0.11  engine frames last round +3088/+0  (rounds: 477.6, 370.0, 341.5)
+  VT JPEG decode BGRA (hw) x1   183.46 img/s     5.45 ms/img/thread  CPU/wall 0.09  engine frames last round +1666/+0  (rounds: 230.7, 172.9, 183.5)
+  ImageIO decode x1   158.65 img/s     6.30 ms/img/thread  CPU/wall 0.66  engine frames last round +2390/+0  (rounds: 158.1, 158.6, 158.8)
+  VT JPEG decode 420f (hw) x2   980.26 img/s     2.04 ms/img/thread  CPU/wall 0.18  engine frames last round +3574/+3454  (rounds: 1082.3, 980.3, 774.5)
+  VT JPEG decode BGRA (hw) x2   416.62 img/s     4.80 ms/img/thread  CPU/wall 0.12  engine frames last round +1978/+1792  (rounds: 490.8, 369.0, 416.6)
+  ImageIO decode x2   201.22 img/s     9.94 ms/img/thread  CPU/wall 0.86  engine frames last round +3030/+0  (rounds: 198.3, 207.2, 201.2)
+  VT JPEG decode 420f (hw) x4  1594.69 img/s     2.51 ms/img/thread  CPU/wall 0.29  engine frames last round +2546/+2622  (rounds: 1659.8, 1594.7, 1430.4)
+  VT JPEG decode BGRA (hw) x4   743.46 img/s     5.38 ms/img/thread  CPU/wall 0.18  engine frames last round +2682/+2788  (rounds: 743.5, 833.4, 699.0)
+  ImageIO decode x4   198.35 img/s    20.17 ms/img/thread  CPU/wall 0.84  engine frames last round +2750/+0  (rounds: 203.1, 198.3, 181.4)
+
+== dec_640x480_q90_s2.jpg (93 KB): rounds 3, each variant 1.5 s, interleaved
+  loads per round: { 9.54 9.59 11.77 } | { 29.01 13.78 13.22 } | { 27.34 14.19 13.37 }
+  VT JPEG decode 420f (hw) x1   798.87 img/s     1.25 ms/img/thread  CPU/wall 0.14  engine frames last round +8314/+0  (rounds: 798.9, 754.0, 922.5)
+  VT JPEG decode BGRA (hw) x1   347.76 img/s     2.88 ms/img/thread  CPU/wall 0.07  engine frames last round +3136/+0  (rounds: 250.9, 366.6, 347.8)
+  ImageIO decode x1   453.72 img/s     2.20 ms/img/thread  CPU/wall 0.72  engine frames last round +6880/+0  (rounds: 438.0, 453.7, 458.6)
+  VT JPEG decode 420f (hw) x2  2065.22 img/s     0.97 ms/img/thread  CPU/wall 0.25  engine frames last round +9364/+9328  (rounds: 1922.7, 2167.5, 2065.2)
+  VT JPEG decode BGRA (hw) x2   721.06 img/s     2.77 ms/img/thread  CPU/wall 0.11  engine frames last round +3402/+3100  (rounds: 634.5, 828.1, 721.1)
+  ImageIO decode x2   523.10 img/s     3.82 ms/img/thread  CPU/wall 0.84  engine frames last round +7880/+0  (rounds: 498.2, 523.1, 524.3)
+  VT JPEG decode 420f (hw) x4  5761.34 img/s     0.69 ms/img/thread  CPU/wall 0.59  engine frames last round +12442/+14436  (rounds: 5187.0, 5829.5, 5761.3)
+  VT JPEG decode BGRA (hw) x4  1311.27 img/s     3.05 ms/img/thread  CPU/wall 0.17  engine frames last round +7044/+4652  (rounds: 1221.4, 1311.3, 1348.7)
+  ImageIO decode x4   493.53 img/s     8.10 ms/img/thread  CPU/wall 0.76  engine frames last round +7510/+0  (rounds: 515.9, 483.5, 493.5)
+
+== concurrency: GPU 2 Decoder threads on dec_6720x4480_q95_s1.jpg next to VT hw 2 threads on dec_6720x4480_q95_s1.jpg, 3 s phases, 3 rounds
+  GPU alone GPU 180.26 img/s  VT    0.00 img/s  CPU/wall 0.10   rounds GPU [171.8, 180.3, 186.4] VT [0.0, 0.0, 0.0]  loads [24.08, 22.92, 20.56]
+  VT alone GPU   0.00 img/s  VT   76.07 img/s  CPU/wall 0.08   rounds GPU [0.0, 0.0, 0.0] VT [76.1, 84.3, 74.4]  loads [23.35, 21.65, 19.39]
+  GPU + VT together GPU 186.84 img/s  VT   78.18 img/s  CPU/wall 0.25   rounds GPU [173.2, 186.8, 188.0] VT [76.8, 78.2, 83.6]  loads [22.92, 21.65, 19.39]
+
+== concurrency: GPU 2 Decoder threads on dec_6720x4480_q95_s1.jpg next to VT hw 2 threads on dec_4032x3024_q90_s2.jpg, 3 s phases, 3 rounds
+  GPU alone GPU 191.62 img/s  VT    0.00 img/s  CPU/wall 0.13   rounds GPU [188.1, 192.7, 191.6] VT [0.0, 0.0, 0.0]  loads [18.24, 16.28, 14.84]
+  VT alone GPU   0.00 img/s  VT  240.44 img/s  CPU/wall 0.09   rounds GPU [0.0, 0.0, 0.0] VT [240.4, 240.4, 244.1]  loads [17.26, 15.61, 14.84]
+  GPU + VT together GPU 191.94 img/s  VT  224.31 img/s  CPU/wall 0.22   rounds GPU [191.7, 191.9, 195.9] VT [224.3, 229.5, 222.2]  loads [17.26, 15.61, 13.97]
+load at end: { 13.42 12.95 12.98 }

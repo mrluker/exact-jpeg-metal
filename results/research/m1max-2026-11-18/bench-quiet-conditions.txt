@@ -1,0 +1,119 @@
+start 13:43:39 load { 2.31 18.16 27.86 } top: 63.0 /System/Library/PrivateFrameworks/AppleNeuralEngine.framework/XPCServices/ANECompilerService.xpc/Contents/MacOS/ANECompilerService; 59.7 /usr/libexec/aned; 
+== ejm compile-cost
+Metal library from source, cold (unique source): 156.2 ms; building all 47 pipelines (warmUp): 1.7 ms
+same source again in a new context (OS shader cache): 2.4 ms including pipelines
+== ejm host
+45 dispatches: encode Swift 11.1 us, Objective-C++ 11.5 us; commit->done Swift 303 us, ObjC++ 301 us
+200 dispatches: encode Swift 38.0 us, Objective-C++ 38.9 us; commit->done Swift 531 us, ObjC++ 529 us
+== ejm bench-json (decode + encode)
+device profile: Apple M1 Max, apple7, 32 GPU cores, working set 53084 MB, 8 CPU performance cores, encoder fused, in flight 3, maxGPUBytes 26542 MB; routing (cache): sporadic (cold GPU) decode 6.117 ms + 0.722 ms/MP (ramp about 1.3 ms, then 0.354 ms/MP), encode 1.117 ms + 2.097 ms/MP (ramp about 6.0 ms, then 0.396 ms/MP), cold start 6.96 ms; sustained (estimate) decode 1.330 ms + 0.354 ms/MP, encode 0.290 ms + 0.396 ms/MP; measured idle (GPU 2%/0%, load 7.93 of 10 cores), measurement 4146 ms wall, 51.9 ms GPU; CPU cold model (default) ratio 4.00, ramp 18.0 ms
+reference: libjpeg-turbo 3.2.0; corpus: ejm synthetic v1, Synth.make(6720x4480, seed 11), encoded by the reference
+Metal kernels compiled in 1 ms on Apple M1 Max
+
+== camera-like q95 4:2:2: 7965 KB
+  Metal exact vs libjpeg-turbo: max diff 0 (byte-identical)
+  host: prep 0.080 ms, encode commands 0.019 ms, commit->done 5.276 ms (GPU busy 4.978)
+  Metal exact: wall 5.54 ms, GPU 4.98 ms (median of 20), sync passes 2
+  libjpeg-turbo (NEON, 1 thread): 97.15 ms
+  ImageIO decode: 55.16 ms; vs libjpeg-turbo: max 29, p99.9 12, mean |d| 0.149, 8.1% values differ, PSNR 49.7 dB
+
+== q90 4:2:0: 4961 KB
+  Metal exact vs libjpeg-turbo: max diff 0 (byte-identical)
+  host: prep 0.052 ms, encode commands 0.018 ms, commit->done 4.947 ms (GPU busy 4.642)
+  Metal exact: wall 5.13 ms, GPU 4.64 ms (median of 20), sync passes 2
+  libjpeg-turbo (NEON, 1 thread): 66.87 ms
+  ImageIO decode: 55.63 ms; vs libjpeg-turbo: max 51, p99.9 16, mean |d| 0.303, 12.6% values differ, PSNR 45.6 dB
+
+== q95 4:4:4: 8496 KB
+  Metal exact vs libjpeg-turbo: max diff 0 (byte-identical)
+  host: prep 0.084 ms, encode commands 0.018 ms, commit->done 5.784 ms (GPU busy 5.468)
+  Metal exact: wall 6.07 ms, GPU 5.47 ms (median of 20), sync passes 2
+  libjpeg-turbo (NEON, 1 thread): 107.24 ms
+  ImageIO decode: 55.54 ms; vs libjpeg-turbo: max 3, p99.9 1, mean |d| 0.052, 5.1% values differ, PSNR 60.8 dB
+device profile: Apple M1 Max, apple7, 32 GPU cores, working set 53084 MB, 8 CPU performance cores, encoder fused, in flight 3, maxGPUBytes 26542 MB; routing (cache): sporadic (cold GPU) decode 6.117 ms + 0.722 ms/MP (ramp about 1.3 ms, then 0.354 ms/MP), encode 1.117 ms + 2.097 ms/MP (ramp about 6.0 ms, then 0.396 ms/MP), cold start 6.96 ms; sustained (estimate) decode 1.330 ms + 0.354 ms/MP, encode 0.290 ms + 0.396 ms/MP; measured idle (GPU 2%/0%, load 7.93 of 10 cores), measurement 4146 ms wall, 51.9 ms GPU; CPU cold model (default) ratio 4.00, ramp 18.0 ms
+reference: libjpeg-turbo 3.2.0; corpus: ejm synthetic v1, Synth.make(w x h, seed 21)
+
+== 3840x2560 q95 4:4:4 (banner): 3657 KB, Metal byte-identical to libjpeg-turbo
+  Metal exact: wall 3.47 ms, GPU 2.93 ms (retries 0)
+  libjpeg-turbo (NEON, 1 thread): 37.27 ms
+  ImageIO encode (quality 0.98, 3726 KB): 58.14 ms; decoded vs source PSNR 39.0 dB max 71 (libjpeg-turbo q95: 43.7 dB max 20)
+
+== 1500x1000 q90 4:4:4: 472 KB, Metal byte-identical to libjpeg-turbo
+  Metal exact: wall 0.85 ms, GPU 0.52 ms (retries 0)
+  libjpeg-turbo (NEON, 1 thread): 5.60 ms
+  ImageIO encode (quality 0.82, 468 KB): 7.75 ms; decoded vs source PSNR 36.0 dB max 68 (libjpeg-turbo q90: 39.7 dB max 33)
+
+== 1200x800 q87 4:2:0: 227 KB, Metal byte-identical to libjpeg-turbo
+  first call after 5 s idle: wall 4.59 ms, GPU 1.00 ms
+  Metal exact: wall 0.64 ms, GPU 0.34 ms (retries 1)
+  libjpeg-turbo (NEON, 1 thread): 2.16 ms
+  ImageIO encode (quality 0.70, 265 KB): 4.58 ms; decoded vs source PSNR 34.8 dB max 63 (libjpeg-turbo q87: 34.0 dB max 70)
+
+== 6720x4480 q95 4:2:2: 9876 KB, Metal byte-identical to libjpeg-turbo
+  Metal exact: wall 8.59 ms, GPU 7.57 ms (retries 1)
+  libjpeg-turbo (NEON, 1 thread): 87.84 ms
+  ImageIO encode (quality 0.92, 10092 KB): 160.71 ms; decoded vs source PSNR 40.3 dB max 67 (libjpeg-turbo q95: 41.7 dB max 57)
+
+== 2048x1365 q90 4:4:4 (listing): 808 KB, Metal byte-identical to libjpeg-turbo
+  Metal exact: wall 1.16 ms, GPU 0.81 ms (retries 1)
+  libjpeg-turbo (NEON, 1 thread): 9.99 ms
+  ImageIO encode (quality 0.80, 808 KB): 13.82 ms; decoded vs source PSNR 36.7 dB max 67 (libjpeg-turbo q90: 40.0 dB max 34)
+
+== 1365x2048 q90 4:4:4 (listing, portrait): 686 KB, Metal byte-identical to libjpeg-turbo
+  Metal exact: wall 1.09 ms, GPU 0.75 ms (retries 1)
+  libjpeg-turbo (NEON, 1 thread): 9.62 ms
+  ImageIO encode (quality 0.82, 660 KB): 12.36 ms; decoded vs source PSNR 36.2 dB max 69 (libjpeg-turbo q90: 40.9 dB max 36)
+
+== 2560x3840 q95 4:4:4 (master, portrait): 2965 KB, Metal byte-identical to libjpeg-turbo
+  Metal exact: wall 3.16 ms, GPU 2.70 ms (retries 1)
+  libjpeg-turbo (NEON, 1 thread): 35.25 ms
+  ImageIO encode (quality 0.96, 2896 KB): 50.89 ms; decoded vs source PSNR 38.7 dB max 70 (libjpeg-turbo q95: 44.3 dB max 22)
+
+== 3840x2880 q95 4:4:4 (master, 4:3): 3907 KB, Metal byte-identical to libjpeg-turbo
+  Metal exact: wall 3.77 ms, GPU 3.22 ms (retries 1)
+  libjpeg-turbo (NEON, 1 thread): 41.89 ms
+  ImageIO encode (quality 0.96, 3860 KB): 61.65 ms; decoded vs source PSNR 39.1 dB max 65 (libjpeg-turbo q95: 43.8 dB max 22)
+device profile: Apple M1 Max, apple7, 32 GPU cores, working set 53084 MB, 8 CPU performance cores, encoder fused, in flight 3, maxGPUBytes 26542 MB; routing (cache): sporadic (cold GPU) decode 6.117 ms + 0.722 ms/MP (ramp about 1.3 ms, then 0.354 ms/MP), encode 1.117 ms + 2.097 ms/MP (ramp about 6.0 ms, then 0.396 ms/MP), cold start 6.96 ms; sustained (estimate) decode 1.330 ms + 0.354 ms/MP, encode 0.290 ms + 0.396 ms/MP; measured idle (GPU 2%/0%, load 7.93 of 10 cores), measurement 4146 ms wall, 51.9 ms GPU; CPU cold model (default) ratio 4.00, ramp 18.0 ms
+
+== batch throughput (images per second), each variant at least 1.5 s; CPU: 10 cores (8 performance + 2 efficiency)
+decode 6720x4480 q95 4:2:2 (7965 KB)
+  metal x1  179.96 images/s
+  metal x2  215.08 images/s
+  libjpeg-turbo x1   10.27 images/s
+  libjpeg-turbo x10   81.57 images/s
+  imageio x1   17.86 images/s
+  imageio x10   17.91 images/s
+encode 3840x2560 q95 4:4:4
+  metal x1  288.29 images/s
+  metal x2  317.02 images/s
+  metal-batch16 x1  320.77 images/s
+  libjpeg-turbo x1   26.43 images/s
+  libjpeg-turbo x10  215.06 images/s
+  hybrid x10  499.79 images/s
+    hybrid split: GPU 468 images, CPU 333 images (9 threads), GPU outputs byte-identical
+  imageio x1   18.81 images/s
+  imageio x10  158.62 images/s
+encode 1500x1000 q90 4:4:4
+  metal x1 1180.07 images/s
+  metal x2 2089.52 images/s
+  metal-batch16 x1 2323.53 images/s
+  libjpeg-turbo x1  176.69 images/s
+  libjpeg-turbo x10 1450.42 images/s
+  hybrid x10 3255.51 images/s
+    hybrid split: GPU 3296 images, CPU 2512 images (9 threads), GPU outputs byte-identical
+  imageio x1  111.63 images/s
+  imageio x10  926.69 images/s
+encode 1200x800 q87 4:2:0
+  metal x1 1574.52 images/s
+  metal x2 2340.10 images/s
+  metal-batch16 x1 4356.38 images/s
+  libjpeg-turbo x1  456.46 images/s
+  libjpeg-turbo x10 3731.98 images/s
+  hybrid x10 5924.14 images/s
+    hybrid split: GPU 4288 images, CPU 6602 images (9 threads), GPU outputs byte-identical
+  imageio x1  169.59 images/s
+  imageio x10 1412.15 images/s
+wrote results/bench/m1max-gpu32-2026-11-18-1345.json (64 records)
+commit the new results/bench/*.json and run: Tools/.build/release/ejm charts
+results: work/bench-Lukes-MacBook-Pro-2-20261118-134339
+rc=0 end 13:45:23 load { 4.48 14.03 25.10 } top: 94.9 /System/Library/PrivateFrameworks/AppleNeuralEngine.framework/XPCServices/ANECompilerService.xpc/Contents/MacOS/ANECompilerService; 4.0 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer; 

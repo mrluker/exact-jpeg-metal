@@ -1,0 +1,8 @@
+q0.5: 50453 bytes, SOF sampling 2x2,1x1,1x1
+q0.7: 79623 bytes, SOF sampling 2x2,1x1,1x1
+q0.8: 89767 bytes, SOF sampling 2x2,1x1,1x1
+q0.82: 91491 bytes, SOF sampling 2x2,1x1,1x1
+q0.9: 108735 bytes, SOF sampling 2x2,1x1,1x1
+q0.95: 114351 bytes, SOF sampling 2x2,1x1,1x1
+q0.98: 116987 bytes, SOF sampling 2x2,1x1,1x1
+q1.0: 386157 bytes, SOF sampling 1x1,1x1,1x1

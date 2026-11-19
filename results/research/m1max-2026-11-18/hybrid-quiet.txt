@@ -1,0 +1,53 @@
+start 13:48:05 load { 3.89 10.31 21.71 }
+load at start: { 3.89 10.31 21.71 }; CPU (total: 10, performance: 8, efficiency: 2)
+
+== hybrid decode dec_6720x4480_q95_s1.jpg (7965 KB), 2.5 s per variant, 3 rounds interleaved
+  verification pass: 1796 GPU outputs compared byte for byte, 0 mismatches/failures
+  CPU buffers equal libjpeg-turbo reference: true
+  loads per round: { 7.37 10.72 21.65 } | { 8.33 10.69 21.32 } | { 8.07 10.35 20.83 }
+  GPU-only x2  213.49 img/s  (rounds 221.3, 212.3, 213.5)  GPU share 100%  CPU/wall 0.12
+  GPU-only x3  227.27 img/s  (rounds 228.1, 227.0, 227.3)  GPU share 100%  CPU/wall 0.11
+  hybrid GPU x2 + CPU x2  234.11 img/s  (rounds 234.7, 233.4, 234.1)  GPU share  92%  CPU/wall 2.12
+  hybrid GPU x2 + CPU x4  247.76 img/s  (rounds 247.8, 249.2, 247.1)  GPU share  84%  CPU/wall 4.11
+  hybrid GPU x2 + CPU x6  268.25 img/s  (rounds 269.5, 263.7, 268.3)  GPU share  79%  CPU/wall 6.06
+  hybrid GPU x2 + CPU x8  298.88 img/s  (rounds 292.7, 299.3, 298.9)  GPU share  75%  CPU/wall 8.17
+  hybrid GPU x3 + CPU x2  247.01 img/s  (rounds 247.0, 247.7, 247.0)  GPU share  92%  CPU/wall 2.12
+  hybrid GPU x3 + CPU x4  259.33 img/s  (rounds 259.8, 258.9, 259.3)  GPU share  85%  CPU/wall 4.10
+  hybrid GPU x3 + CPU x6  276.60 img/s  (rounds 276.6, 274.5, 278.3)  GPU share  80%  CPU/wall 6.01
+  hybrid GPU x3 + CPU x8  290.11 img/s  (rounds 293.4, 283.5, 290.1)  GPU share  75%  CPU/wall 8.18
+  CPU-only libjpeg-turbo x10   80.77 img/s  (rounds 80.8, 80.0, 82.1)  GPU share   0%  CPU/wall 9.66
+
+== hybrid decode dec_4032x3024_q90_s2.jpg (2575 KB), 2.5 s per variant, 3 rounds interleaved
+  verification pass: 3738 GPU outputs compared byte for byte, 0 mismatches/failures
+  CPU buffers equal libjpeg-turbo reference: true
+  loads per round: { 7.50 9.90 20.18 } | { 7.39 9.67 19.80 } | { 7.01 9.32 19.32 }
+  GPU-only x2  423.62 img/s  (rounds 423.6, 418.0, 478.9)  GPU share 100%  CPU/wall 0.10
+  GPU-only x3  407.88 img/s  (rounds 407.8, 407.9, 408.1)  GPU share 100%  CPU/wall 0.09
+  hybrid GPU x2 + CPU x2  482.07 img/s  (rounds 482.1, 486.7, 479.3)  GPU share  87%  CPU/wall 2.11
+  hybrid GPU x2 + CPU x4  544.89 img/s  (rounds 568.7, 544.9, 540.7)  GPU share  78%  CPU/wall 4.09
+  hybrid GPU x2 + CPU x6  603.89 img/s  (rounds 603.9, 600.0, 611.8)  GPU share  70%  CPU/wall 6.09
+  hybrid GPU x2 + CPU x8  685.30 img/s  (rounds 683.6, 685.3, 686.5)  GPU share  65%  CPU/wall 8.19
+  hybrid GPU x3 + CPU x2  472.35 img/s  (rounds 472.5, 471.3, 472.4)  GPU share  87%  CPU/wall 2.10
+  hybrid GPU x3 + CPU x4  527.29 img/s  (rounds 527.8, 527.2, 527.3)  GPU share  77%  CPU/wall 4.09
+  hybrid GPU x3 + CPU x6  588.52 img/s  (rounds 588.8, 588.0, 588.5)  GPU share  70%  CPU/wall 6.06
+  hybrid GPU x3 + CPU x8  650.57 img/s  (rounds 652.6, 649.3, 650.6)  GPU share  64%  CPU/wall 8.20
+  CPU-only libjpeg-turbo x10  263.04 img/s  (rounds 263.0, 263.0, 263.1)  GPU share   0%  CPU/wall 9.79
+
+== hybrid decode dec_1600x1200_q90_s2.jpg (470 KB), 2.5 s per variant, 3 rounds interleaved
+  verification pass: 7593 GPU outputs compared byte for byte, 0 mismatches/failures
+  CPU buffers equal libjpeg-turbo reference: true
+  loads per round: { 6.91 8.98 18.73 } | { 7.04 8.82 18.39 } | { 7.91 8.80 18.05 }
+  GPU-only x2  861.01 img/s  (rounds 822.1, 865.1, 861.0)  GPU share 100%  CPU/wall 0.10
+  GPU-only x3  758.31 img/s  (rounds 758.3, 756.0, 761.1)  GPU share 100%  CPU/wall 0.09
+  hybrid GPU x2 + CPU x2 1239.32 img/s  (rounds 1238.0, 1242.4, 1239.3)  GPU share  71%  CPU/wall 2.10
+  hybrid GPU x2 + CPU x4 1565.84 img/s  (rounds 1565.1, 1565.8, 1566.4)  GPU share  56%  CPU/wall 4.10
+  hybrid GPU x2 + CPU x6 1930.89 img/s  (rounds 1931.2, 1930.1, 1930.9)  GPU share  46%  CPU/wall 6.09
+  hybrid GPU x2 + CPU x8 2190.48 img/s  (rounds 2202.1, 2185.9, 2190.5)  GPU share  37%  CPU/wall 8.24
+  hybrid GPU x3 + CPU x2 1137.69 img/s  (rounds 1138.1, 1137.7, 1136.7)  GPU share  69%  CPU/wall 2.10
+  hybrid GPU x3 + CPU x4 1458.00 img/s  (rounds 1458.0, 1458.4, 1454.8)  GPU share  52%  CPU/wall 4.08
+  hybrid GPU x3 + CPU x6 1826.79 img/s  (rounds 1825.6, 1828.0, 1826.8)  GPU share  43%  CPU/wall 6.08
+  hybrid GPU x3 + CPU x8 2159.42 img/s  (rounds 2156.3, 2159.4, 2159.5)  GPU share  36%  CPU/wall 8.24
+  CPU-only libjpeg-turbo x10 1526.14 img/s  (rounds 1525.2, 1527.1, 1526.1)  GPU share   0%  CPU/wall 9.83
+load at end: { 7.49 8.61 17.71 }
+all GPU outputs byte-identical to libjpeg-turbo
+rc=0 end 13:52:50 load { 7.49 8.61 17.71 }

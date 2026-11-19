@@ -1,0 +1,779 @@
+device profile: Apple M1 Max, apple7, 32 GPU cores, working set 53084 MB, 8 CPU performance cores, encoder fused, in flight 3, maxGPUBytes 26542 MB; routing (cache): sporadic (cold GPU) decode 6.677 ms + 1.895 ms/MP (ramp about 5.5 ms, then 0.354 ms/MP), encode 2.017 ms + 0.597 ms/MP (ramp about 0.7 ms, then 0.396 ms/MP), cold start 7.12 ms; sustained (estimate) decode 1.330 ms + 0.354 ms/MP, encode 0.290 ms + 0.396 ms/MP; measured idle (GPU 0%/0%, load 4.07 of 10 cores), measurement 4039 ms wall, 50.9 ms GPU; CPU cold model (default) ratio 4.00, ramp 18.0 ms
+reference: libjpeg-turbo 3.2.0; iters 15, warm-up 1.0 s, throughput 2.0 s; load at start 2.65 13.91 12.16
+
+== jpeg/420/fireworks: 3136x2352 (7.4 MP), 1106 KB, 0.154 B/px, 4:2:0
+  Metal decode: byte-identical to libjpeg-turbo; wall 2.54 ms, GPU 2.20 ms, sync passes 2
+    stages (GPU ms, one decode): unstuff 0.244, segments 0.029, chunks 0.005, sync0 0.843, sync1 0.118, sync2 0.007, sync3 0.007, sync4 0.010, sync5 0.010, sync6 0.007, sync7 0.007, first_blocks 0.042, decode_write 0.396, dc_scan 0.144, idct 0.175, colour 0.182
+  Metal 2 decoders in flight: 675.47 images/s
+  libjpeg-turbo decode: 15.60 ms (1 thread); 517.32 images/s on 10 threads
+  ImageIO decode (hardware key true): 18.31 ms; vs libjpeg-turbo: max 50, 2193126 values (9.911%) differ, PSNR 49.5 dB
+  ImageIO decode (hardware key false): 16.01 ms; vs libjpeg-turbo: max 27, 1852731 values (8.373%) differ, PSNR 54.8 dB
+  VideoToolbox hw decode (BGRA): 11.50 ms (1 thread); 4 threads 378.45 images/s (10.09 ms per call)
+    BGRA vs libjpeg-turbo (includes VideoToolbox's YCbCr to RGB conversion): max 35, 4218533 values (19.06%) differ, PSNR 49.0 dB; attachments ["pixel_format": "BGRA", "color_primaries": "SMPTE_C", "ycbcr_matrix": "ITU_R_601_4", "transfer_function": "ITU_R_709_2", "chroma_location": <null>]
+    YCbCr 420f Y plane vs libjpeg-turbo's Y: max 1, 76000 values (1.03%) differ, PSNR 68.0 dB; attachments ["transfer_function": "ITU_R_709_2", "color_primaries": "SMPTE_C", "pixel_format": "420f", "ycbcr_matrix": "ITU_R_601_4", "chroma_location": <null>]
+  encode q95 4:2:0: Metal 2.58 ms, byte-identical to libjpeg-turbo
+    libjpeg-turbo encode: 14.61 ms (1 thread)
+
+== jpeg/420/flower_foveon: 2268x1512 (3.4 MP), 527 KB, 0.158 B/px, 4:2:0
+  Metal decode: byte-identical to libjpeg-turbo; wall 1.81 ms, GPU 1.48 ms, sync passes 2
+    stages (GPU ms, one decode): unstuff 0.164, segments 0.036, chunks 0.006, sync0 0.603, sync1 0.092, sync2 0.007, sync3 0.007, sync4 0.008, sync5 0.010, sync6 0.011, sync7 0.012, first_blocks 0.043, decode_write 0.217, dc_scan 0.127, idct 0.091, colour 0.095
+  Metal 2 decoders in flight: 1014.30 images/s
+  libjpeg-turbo decode: 7.66 ms (1 thread); 1023.31 images/s on 10 threads
+  ImageIO decode (hardware key true): 7.35 ms; vs libjpeg-turbo: max 29, 1686228 values (16.39%) differ, PSNR 47.4 dB
+  ImageIO decode (hardware key false): 7.64 ms; vs libjpeg-turbo: max 23, 1649119 values (16.03%) differ, PSNR 52.4 dB
+  VideoToolbox hw decode (BGRA): 5.68 ms (1 thread); 4 threads 732.56 images/s (5.59 ms per call)
+    BGRA vs libjpeg-turbo (includes VideoToolbox's YCbCr to RGB conversion): max 26, 3962667 values (38.52%) differ, PSNR 46.3 dB; attachments ["color_primaries": "SMPTE_C", "chroma_location": <null>, "ycbcr_matrix": "ITU_R_601_4", "transfer_function": "ITU_R_709_2", "pixel_format": "BGRA"]
+    YCbCr 420f Y plane vs libjpeg-turbo's Y: max 1, 48312 values (1.409%) differ, PSNR 66.6 dB; attachments ["transfer_function": "ITU_R_709_2", "ycbcr_matrix": "ITU_R_601_4", "pixel_format": "420f", "color_primaries": "SMPTE_C", "chroma_location": <null>]
+  encode q95 4:2:0: Metal 1.09 ms, byte-identical to libjpeg-turbo
+    libjpeg-turbo encode: 7.34 ms (1 thread)
+
+== jpeg/420/artificial: 3072x2048 (6.3 MP), 976 KB, 0.159 B/px, 4:2:0
+  Metal decode: byte-identical to libjpeg-turbo; wall 3.88 ms, GPU 3.50 ms, sync passes 2
+    stages (GPU ms, one decode): unstuff 0.220, segments 0.032, chunks 0.005, sync0 1.959, sync1 0.350, sync2 0.007, sync3 0.007, sync4 0.010, sync5 0.012, sync6 0.007, sync7 0.011, first_blocks 0.043, decode_write 0.435, dc_scan 0.137, idct 0.148, colour 0.146
+  Metal 2 decoders in flight: 468.27 images/s
+  libjpeg-turbo decode: 12.53 ms (1 thread); 644.43 images/s on 10 threads
+  ImageIO decode (hardware key true): 12.90 ms; vs libjpeg-turbo: max 85, 3301478 values (17.49%) differ, PSNR 44.0 dB
+  ImageIO decode (hardware key false): 13.68 ms; vs libjpeg-turbo: max 48, 2110252 values (11.18%) differ, PSNR 51.5 dB
+  VideoToolbox hw decode (BGRA): 11.53 ms (1 thread); 4 threads 417.54 images/s (9.39 ms per call)
+    BGRA vs libjpeg-turbo (includes VideoToolbox's YCbCr to RGB conversion): max 77, 4985165 values (26.41%) differ, PSNR 44.3 dB; attachments ["pixel_format": "BGRA", "ycbcr_matrix": "ITU_R_601_4", "chroma_location": <null>, "color_primaries": "SMPTE_C", "transfer_function": "ITU_R_709_2"]
+    YCbCr 420f Y plane vs libjpeg-turbo's Y: max 1, 36824 values (0.5853%) differ, PSNR 70.5 dB; attachments ["pixel_format": "420f", "color_primaries": "SMPTE_C", "ycbcr_matrix": "ITU_R_601_4", "transfer_function": "ITU_R_709_2", "chroma_location": <null>]
+  encode q95 4:2:0: Metal 1.75 ms, byte-identical to libjpeg-turbo
+    libjpeg-turbo encode: 12.11 ms (1 thread)
+
+== jpeg/420/spider_web: 4256x2848 (12.1 MP), 1947 KB, 0.165 B/px, 4:2:0
+  Metal decode: byte-identical to libjpeg-turbo; wall 2.84 ms, GPU 2.46 ms, sync passes 2
+    stages (GPU ms, one decode): unstuff 0.305, segments 0.032, chunks 0.006, sync0 0.818, sync1 0.169, sync2 0.007, sync3 0.007, sync4 0.007, sync5 0.008, sync6 0.007, sync7 0.008, first_blocks 0.046, decode_write 0.308, dc_scan 0.169, idct 0.287, colour 0.285
+  Metal 2 decoders in flight: 562.88 images/s
+  libjpeg-turbo decode: 28.17 ms (1 thread); 288.83 images/s on 10 threads
+  ImageIO decode (hardware key true): 24.18 ms; vs libjpeg-turbo: max 23, 2899085 values (7.973%) differ, PSNR 55.3 dB
+  ImageIO decode (hardware key false): 27.29 ms; vs libjpeg-turbo: max 18, 4480229 values (12.32%) differ, PSNR 54.8 dB
+  VideoToolbox hw decode (BGRA): 15.64 ms (1 thread); 4 threads 275.13 images/s (13.86 ms per call)
+    BGRA vs libjpeg-turbo (includes VideoToolbox's YCbCr to RGB conversion): max 20, 11562406 values (31.8%) differ, PSNR 50.2 dB; attachments ["color_primaries": "SMPTE_C", "pixel_format": "BGRA", "ycbcr_matrix": "ITU_R_601_4", "transfer_function": "ITU_R_709_2", "chroma_location": <null>]
+    YCbCr 420f Y plane vs libjpeg-turbo's Y: max 1, 178926 values (1.476%) differ, PSNR 66.4 dB; attachments ["ycbcr_matrix": "ITU_R_601_4", "pixel_format": "420f", "color_primaries": "SMPTE_C", "transfer_function": "ITU_R_709_2", "chroma_location": <null>]
+  encode q95 4:2:0: Metal 2.79 ms, byte-identical to libjpeg-turbo
+    libjpeg-turbo encode: 25.58 ms (1 thread)
+
+== jpeg/420/hdr: 3072x2048 (6.3 MP), 1024 KB, 0.167 B/px, 4:2:0
+  Metal decode: byte-identical to libjpeg-turbo; wall 2.24 ms, GPU 1.88 ms, sync passes 2
+    stages (GPU ms, one decode): unstuff 0.228, segments 0.032, chunks 0.005, sync0 0.705, sync1 0.142, sync2 0.006, sync3 0.007, sync4 0.009, sync5 0.007, sync6 0.006, sync7 0.007, first_blocks 0.042, decode_write 0.254, dc_scan 0.142, idct 0.156, colour 0.147
+  Metal 2 decoders in flight: 785.26 images/s
+  libjpeg-turbo decode: 14.33 ms (1 thread); 560.06 images/s on 10 threads
+  ImageIO decode (hardware key true): 12.33 ms; vs libjpeg-turbo: max 48, 2419744 values (12.82%) differ, PSNR 50.1 dB
+  ImageIO decode (hardware key false): 14.37 ms; vs libjpeg-turbo: max 34, 2546440 values (13.49%) differ, PSNR 53.6 dB
+  VideoToolbox hw decode (BGRA): 9.09 ms (1 thread); 4 threads 426.55 images/s (9.06 ms per call)
+    BGRA vs libjpeg-turbo (includes VideoToolbox's YCbCr to RGB conversion): max 44, 6388994 values (33.85%) differ, PSNR 48.5 dB; attachments ["transfer_function": "ITU_R_709_2", "ycbcr_matrix": "ITU_R_601_4", "chroma_location": <null>, "color_primaries": "SMPTE_C", "pixel_format": "BGRA"]
+    YCbCr 420f Y plane vs libjpeg-turbo's Y: max 1, 88808 values (1.412%) differ, PSNR 66.6 dB; attachments ["color_primaries": "SMPTE_C", "pixel_format": "420f", "chroma_location": <null>, "transfer_function": "ITU_R_709_2", "ycbcr_matrix": "ITU_R_601_4"]
+  encode q95 4:2:0: Metal 1.70 ms, byte-identical to libjpeg-turbo
+    libjpeg-turbo encode: 13.42 ms (1 thread)
+
+== jpeg/420/vgl_6434_0018: 1240x960 (1.2 MP), 215 KB, 0.185 B/px, 4:2:0
+  Metal decode: byte-identical to libjpeg-turbo; wall 1.94 ms, GPU 1.62 ms, sync passes 2
+    stages (GPU ms, one decode): unstuff 0.118, segments 0.034, chunks 0.005, sync0 0.796, sync1 0.207, sync2 0.007, sync3 0.007, sync4 0.007, sync5 0.010, sync6 0.007, sync7 0.007, first_blocks 0.042, decode_write 0.195, dc_scan 0.110, idct 0.040, colour 0.044
+  Metal 2 decoders in flight: 983.98 images/s
+  libjpeg-turbo decode: 2.51 ms (1 thread); 3268.38 images/s on 10 threads
+  ImageIO decode (hardware key true): 4.02 ms; vs libjpeg-turbo: max 110, 641429 values (17.96%) differ, PSNR 37.3 dB
+  ImageIO decode (hardware key false): 2.72 ms; vs libjpeg-turbo: max 83, 393822 values (11.03%) differ, PSNR 46.5 dB
+  VideoToolbox hw decode (BGRA): 5.90 ms (1 thread); 4 threads 945.60 images/s (4.12 ms per call)
+    BGRA vs libjpeg-turbo (includes VideoToolbox's YCbCr to RGB conversion): max 110, 1190569 values (33.34%) differ, PSNR 38.2 dB; attachments ["chroma_location": <null>, "color_primaries": "SMPTE_C", "transfer_function": "ITU_R_709_2", "pixel_format": "BGRA", "ycbcr_matrix": "ITU_R_601_4"]
+    YCbCr 420f Y plane vs libjpeg-turbo's Y: max 1, 5142 values (0.432%) differ, PSNR 71.8 dB; attachments ["ycbcr_matrix": "ITU_R_601_4", "transfer_function": "ITU_R_709_2", "chroma_location": <null>, "color_primaries": "SMPTE_C", "pixel_format": "420f"]
+  encode q95 4:2:0: Metal 0.70 ms, byte-identical to libjpeg-turbo
+    libjpeg-turbo encode: 2.30 ms (1 thread)
+
+== jpeg/420/nightshot_iso_100: 3136x2352 (7.4 MP), 1365 KB, 0.190 B/px, 4:2:0
+  Metal decode: byte-identical to libjpeg-turbo; wall 2.34 ms, GPU 2.00 ms, sync passes 2
+    stages (GPU ms, one decode): unstuff 0.260, segments 0.035, chunks 0.005, sync0 0.654, sync1 0.214, sync2 0.007, sync3 0.007, sync4 0.007, sync5 0.010, sync6 0.011, sync7 0.007, first_blocks 0.042, decode_write 0.266, dc_scan 0.146, idct 0.182, colour 0.183
+  Metal 2 decoders in flight: 722.04 images/s
+  libjpeg-turbo decode: 18.11 ms (1 thread); 450.25 images/s on 10 threads
+  ImageIO decode (hardware key true): 17.77 ms; vs libjpeg-turbo: max 59, 3777592 values (17.07%) differ, PSNR 46.6 dB
+  ImageIO decode (hardware key false): 18.18 ms; vs libjpeg-turbo: max 36, 3175886 values (14.35%) differ, PSNR 52.1 dB
+  VideoToolbox hw decode (BGRA): 11.98 ms (1 thread); 4 threads 367.49 images/s (10.54 ms per call)
+    BGRA vs libjpeg-turbo (includes VideoToolbox's YCbCr to RGB conversion): max 47, 7326657 values (33.11%) differ, PSNR 45.2 dB; attachments ["ycbcr_matrix": "ITU_R_601_4", "chroma_location": <null>, "color_primaries": "SMPTE_C", "transfer_function": "ITU_R_709_2", "pixel_format": "BGRA"]
+    YCbCr 420f Y plane vs libjpeg-turbo's Y: max 1, 109460 values (1.484%) differ, PSNR 66.4 dB; attachments ["chroma_location": <null>, "transfer_function": "ITU_R_709_2", "color_primaries": "SMPTE_C", "ycbcr_matrix": "ITU_R_601_4", "pixel_format": "420f"]
+  encode q95 4:2:0: Metal 1.97 ms, byte-identical to libjpeg-turbo
+    libjpeg-turbo encode: 16.05 ms (1 thread)
+
+== jpeg/444/artificial: 3072x2048 (6.3 MP), 1282 KB, 0.209 B/px, 4:4:4
+  Metal decode: byte-identical to libjpeg-turbo; wall 2.53 ms, GPU 2.19 ms, sync passes 2
+    stages (GPU ms, one decode): unstuff 0.256, segments 0.033, chunks 0.005, sync0 0.634, sync1 0.068, sync2 0.006, sync3 0.007, sync4 0.007, sync5 0.007, sync6 0.007, sync7 0.010, first_blocks 0.041, decode_write 0.592, dc_scan 0.153, idct 0.276, colour 0.101
+  Metal 2 decoders in flight: 676.03 images/s
+  libjpeg-turbo decode: 17.38 ms (1 thread); 456.91 images/s on 10 threads
+  ImageIO decode (hardware key true): 16.29 ms; vs libjpeg-turbo: max 3, 545452 values (2.89%) differ, PSNR 62.9 dB
+  ImageIO decode (hardware key false): 18.66 ms; vs libjpeg-turbo: max 3, 1170970 values (6.204%) differ, PSNR 59.3 dB
+  VideoToolbox hw decode (BGRA): 12.50 ms (1 thread); 4 threads 298.97 images/s (13.00 ms per call)
+    BGRA vs libjpeg-turbo (includes VideoToolbox's YCbCr to RGB conversion): max 141, 4486644 values (23.77%) differ, PSNR 41.1 dB; attachments ["pixel_format": "BGRA", "transfer_function": "ITU_R_709_2", "chroma_location": <null>, "ycbcr_matrix": "ITU_R_601_4", "color_primaries": "SMPTE_C"]
+    YCbCr 444f Y plane vs libjpeg-turbo's Y: max 1, 36824 values (0.5853%) differ, PSNR 70.5 dB; attachments ["ycbcr_matrix": "ITU_R_601_4", "pixel_format": "444f", "chroma_location": <null>, "color_primaries": "SMPTE_C", "transfer_function": "ITU_R_709_2"]
+  encode q95 4:4:4: Metal 2.06 ms, byte-identical to libjpeg-turbo
+    libjpeg-turbo encode: 20.39 ms (1 thread)
+
+== jpeg/444/fireworks: 3136x2352 (7.4 MP), 1537 KB, 0.214 B/px, 4:4:4
+  Metal decode: byte-identical to libjpeg-turbo; wall 2.45 ms, GPU 2.09 ms, sync passes 2
+    stages (GPU ms, one decode): unstuff 0.282, segments 0.032, chunks 0.005, sync0 0.556, sync1 0.058, sync2 0.007, sync3 0.007, sync4 0.010, sync5 0.007, sync6 0.007, sync7 0.007, first_blocks 0.038, decode_write 0.487, dc_scan 0.144, idct 0.335, colour 0.125
+  Metal 2 decoders in flight: 683.78 images/s
+  libjpeg-turbo decode: 22.83 ms (1 thread); 351.49 images/s on 10 threads
+  ImageIO decode (hardware key true): 16.17 ms; vs libjpeg-turbo: max 3, 373560 values (1.688%) differ, PSNR 64.7 dB
+  ImageIO decode (hardware key false): 23.04 ms; vs libjpeg-turbo: max 3, 1158102 values (5.234%) differ, PSNR 59.6 dB
+  VideoToolbox hw decode (BGRA): 15.70 ms (1 thread); 4 threads 267.99 images/s (14.62 ms per call)
+    BGRA vs libjpeg-turbo (includes VideoToolbox's YCbCr to RGB conversion): max 101, 5378533 values (24.31%) differ, PSNR 45.0 dB; attachments ["pixel_format": "BGRA", "chroma_location": <null>, "color_primaries": "SMPTE_C", "ycbcr_matrix": "ITU_R_601_4", "transfer_function": "ITU_R_709_2"]
+    YCbCr 444f Y plane vs libjpeg-turbo's Y: max 1, 76000 values (1.03%) differ, PSNR 68.0 dB; attachments ["pixel_format": "444f", "chroma_location": <null>, "ycbcr_matrix": "ITU_R_601_4", "color_primaries": "SMPTE_C", "transfer_function": "ITU_R_709_2"]
+  encode q95 4:4:4: Metal 2.23 ms, byte-identical to libjpeg-turbo
+    libjpeg-turbo encode: 25.03 ms (1 thread)
+
+== jpeg/444/flower_foveon: 2268x1512 (3.4 MP), 716 KB, 0.214 B/px, 4:4:4
+  Metal decode: byte-identical to libjpeg-turbo; wall 1.72 ms, GPU 1.40 ms, sync passes 2
+    stages (GPU ms, one decode): unstuff 0.177, segments 0.035, chunks 0.006, sync0 0.435, sync1 0.043, sync2 0.007, sync3 0.007, sync4 0.009, sync5 0.007, sync6 0.007, sync7 0.010, first_blocks 0.039, decode_write 0.274, dc_scan 0.145, idct 0.168, colour 0.067
+  Metal 2 decoders in flight: 1016.86 images/s
+  libjpeg-turbo decode: 11.13 ms (1 thread); 711.30 images/s on 10 threads
+  ImageIO decode (hardware key true): 8.16 ms; vs libjpeg-turbo: max 3, 324091 values (3.15%) differ, PSNR 62.1 dB
+  ImageIO decode (hardware key false): 11.06 ms; vs libjpeg-turbo: max 3, 1198259 values (11.65%) differ, PSNR 56.5 dB
+  VideoToolbox hw decode (BGRA): 8.74 ms (1 thread); 4 threads 469.62 images/s (8.27 ms per call)
+    BGRA vs libjpeg-turbo (includes VideoToolbox's YCbCr to RGB conversion): max 46, 4076004 values (39.62%) differ, PSNR 44.9 dB; attachments ["chroma_location": <null>, "color_primaries": "SMPTE_C", "pixel_format": "BGRA", "transfer_function": "ITU_R_709_2", "ycbcr_matrix": "ITU_R_601_4"]
+    YCbCr 444f Y plane vs libjpeg-turbo's Y: max 1, 48312 values (1.409%) differ, PSNR 66.6 dB; attachments ["ycbcr_matrix": "ITU_R_601_4", "chroma_location": <null>, "color_primaries": "SMPTE_C", "transfer_function": "ITU_R_709_2", "pixel_format": "444f"]
+  encode q95 4:4:4: Metal 1.22 ms, byte-identical to libjpeg-turbo
+    libjpeg-turbo encode: 12.46 ms (1 thread)
+
+== jpeg/444/hdr: 3072x2048 (6.3 MP), 1372 KB, 0.223 B/px, 4:4:4
+  Metal decode: byte-identical to libjpeg-turbo; wall 2.14 ms, GPU 1.78 ms, sync passes 2
+    stages (GPU ms, one decode): unstuff 0.263, segments 0.032, chunks 0.005, sync0 0.430, sync1 0.044, sync2 0.007, sync3 0.007, sync4 0.006, sync5 0.009, sync6 0.006, sync7 0.007, first_blocks 0.043, decode_write 0.379, dc_scan 0.146, idct 0.298, colour 0.103
+  Metal 2 decoders in flight: 789.78 images/s
+  libjpeg-turbo decode: 20.96 ms (1 thread); 375.88 images/s on 10 threads
+  ImageIO decode (hardware key true): 13.19 ms; vs libjpeg-turbo: max 3, 661663 values (3.506%) differ, PSNR 61.7 dB
+  ImageIO decode (hardware key false): 20.47 ms; vs libjpeg-turbo: max 3, 1740403 values (9.221%) differ, PSNR 57.2 dB
+  VideoToolbox hw decode (BGRA): 15.34 ms (1 thread); 4 threads 304.12 images/s (12.47 ms per call)
+    BGRA vs libjpeg-turbo (includes VideoToolbox's YCbCr to RGB conversion): max 100, 7108557 values (37.66%) differ, PSNR 45.7 dB; attachments ["color_primaries": "SMPTE_C", "pixel_format": "BGRA", "chroma_location": <null>, "transfer_function": "ITU_R_709_2", "ycbcr_matrix": "ITU_R_601_4"]
+    YCbCr 444f Y plane vs libjpeg-turbo's Y: max 1, 88808 values (1.412%) differ, PSNR 66.6 dB; attachments ["color_primaries": "SMPTE_C", "pixel_format": "444f", "transfer_function": "ITU_R_709_2", "chroma_location": <null>, "ycbcr_matrix": "ITU_R_601_4"]
+  encode q95 4:4:4: Metal 1.99 ms, byte-identical to libjpeg-turbo
+    libjpeg-turbo encode: 22.70 ms (1 thread)
+
+== jpeg/444/spider_web: 4256x2848 (12.1 MP), 2678 KB, 0.226 B/px, 4:4:4
+  Metal decode: byte-identical to libjpeg-turbo; wall 2.88 ms, GPU 2.48 ms, sync passes 2
+    stages (GPU ms, one decode): unstuff 0.330, segments 0.032, chunks 0.008, sync0 0.461, sync1 0.043, sync2 0.007, sync3 0.007, sync4 0.007, sync5 0.007, sync6 0.007, sync7 0.007, first_blocks 0.041, decode_write 0.565, dc_scan 0.206, idct 0.563, colour 0.210
+  Metal 2 decoders in flight: 537.61 images/s
+  libjpeg-turbo decode: 40.82 ms (1 thread); 198.46 images/s on 10 threads
+  ImageIO decode (hardware key true): 24.11 ms; vs libjpeg-turbo: max 3, 1399249 values (3.848%) differ, PSNR 61.1 dB
+  ImageIO decode (hardware key false): 39.28 ms; vs libjpeg-turbo: max 3, 3496872 values (9.616%) differ, PSNR 56.8 dB
+  VideoToolbox hw decode (BGRA): 21.10 ms (1 thread); 4 threads 172.57 images/s (23.02 ms per call)
+    BGRA vs libjpeg-turbo (includes VideoToolbox's YCbCr to RGB conversion): max 48, 13601931 values (37.41%) differ, PSNR 48.9 dB; attachments ["ycbcr_matrix": "ITU_R_601_4", "transfer_function": "ITU_R_709_2", "chroma_location": <null>, "color_primaries": "SMPTE_C", "pixel_format": "BGRA"]
+    YCbCr 444f Y plane vs libjpeg-turbo's Y: max 1, 178926 values (1.476%) differ, PSNR 66.4 dB; attachments ["pixel_format": "444f", "chroma_location": <null>, "transfer_function": "ITU_R_709_2", "ycbcr_matrix": "ITU_R_601_4", "color_primaries": "SMPTE_C"]
+  encode q95 4:4:4: Metal 3.27 ms, byte-identical to libjpeg-turbo
+    libjpeg-turbo encode: 43.98 ms (1 thread)
+
+== jpeg/444/nightshot_iso_100: 3136x2352 (7.4 MP), 1966 KB, 0.273 B/px, 4:4:4
+  Metal decode: byte-identical to libjpeg-turbo; wall 2.33 ms, GPU 1.94 ms, sync passes 2
+    stages (GPU ms, one decode): unstuff 0.311, segments 0.032, chunks 0.005, sync0 0.468, sync1 0.048, sync2 0.007, sync3 0.007, sync4 0.007, sync5 0.010, sync6 0.006, sync7 0.007, first_blocks 0.042, decode_write 0.380, dc_scan 0.144, idct 0.352, colour 0.126
+  Metal 2 decoders in flight: 691.87 images/s
+  libjpeg-turbo decode: 27.09 ms (1 thread); 295.40 images/s on 10 threads
+  ImageIO decode (hardware key true): 15.98 ms; vs libjpeg-turbo: max 3, 786844 values (3.556%) differ, PSNR 61.4 dB
+  ImageIO decode (hardware key false): 26.83 ms; vs libjpeg-turbo: max 3, 2022516 values (9.14%) differ, PSNR 57.0 dB
+  VideoToolbox hw decode (BGRA): 15.87 ms (1 thread); 4 threads 256.35 images/s (14.87 ms per call)
+    BGRA vs libjpeg-turbo (includes VideoToolbox's YCbCr to RGB conversion): max 117, 8862986 values (40.05%) differ, PSNR 42.6 dB; attachments ["transfer_function": "ITU_R_709_2", "pixel_format": "BGRA", "ycbcr_matrix": "ITU_R_601_4", "chroma_location": <null>, "color_primaries": "SMPTE_C"]
+    YCbCr 444f Y plane vs libjpeg-turbo's Y: max 1, 109460 values (1.484%) differ, PSNR 66.4 dB; attachments ["ycbcr_matrix": "ITU_R_601_4", "chroma_location": <null>, "color_primaries": "SMPTE_C", "pixel_format": "444f", "transfer_function": "ITU_R_709_2"]
+  encode q95 4:4:4: Metal 2.34 ms, byte-identical to libjpeg-turbo
+    libjpeg-turbo encode: 28.22 ms (1 thread)
+
+== jpeg/420/vgl_6548_0026: 1240x960 (1.2 MP), 320 KB, 0.276 B/px, 4:2:0
+  Metal decode: byte-identical to libjpeg-turbo; wall 4.64 ms, GPU 4.24 ms, sync passes 2
+    stages (GPU ms, one decode): unstuff 0.138, segments 0.032, chunks 0.005, sync0 3.133, sync1 0.275, sync2 0.007, sync3 0.007, sync4 0.007, sync5 0.008, sync6 0.010, sync7 0.011, first_blocks 0.039, decode_write 0.321, dc_scan 0.111, idct 0.037, colour 0.044
+  Metal 2 decoders in flight: 407.37 images/s
+  libjpeg-turbo decode: 2.92 ms (1 thread); 2819.89 images/s on 10 threads
+  ImageIO decode (hardware key true): 4.58 ms; vs libjpeg-turbo: max 60, 32140 values (0.9%) differ, PSNR 56.3 dB
+  ImageIO decode (hardware key false): 3.50 ms; vs libjpeg-turbo: max 36, 71631 values (2.006%) differ, PSNR 62.3 dB
+  VideoToolbox hw decode (BGRA): 4.70 ms (1 thread); 4 threads 949.07 images/s (4.08 ms per call)
+    BGRA vs libjpeg-turbo (includes VideoToolbox's YCbCr to RGB conversion): max 58, 33037 values (0.9251%) differ, PSNR 56.9 dB; attachments ["ycbcr_matrix": "ITU_R_601_4", "chroma_location": <null>, "pixel_format": "BGRA", "color_primaries": "SMPTE_C", "transfer_function": "ITU_R_709_2"]
+    YCbCr 420f Y plane vs libjpeg-turbo's Y: max 1, 7707 values (0.6474%) differ, PSNR 70.0 dB; attachments ["chroma_location": <null>, "color_primaries": "SMPTE_C", "ycbcr_matrix": "ITU_R_601_4", "pixel_format": "420f", "transfer_function": "ITU_R_709_2"]
+  encode q95 4:2:0: Metal 0.74 ms, byte-identical to libjpeg-turbo
+    libjpeg-turbo encode: 2.48 ms (1 thread)
+
+== jpeg/444/vgl_6434_0018: 1240x960 (1.2 MP), 333 KB, 0.287 B/px, 4:4:4
+  Metal decode: byte-identical to libjpeg-turbo; wall 2.03 ms, GPU 1.70 ms, sync passes 2
+    stages (GPU ms, one decode): unstuff 0.134, segments 0.032, chunks 0.005, sync0 0.767, sync1 0.088, sync2 0.007, sync3 0.007, sync4 0.007, sync5 0.008, sync6 0.007, sync7 0.007, first_blocks 0.042, decode_write 0.394, dc_scan 0.116, idct 0.067, colour 0.033
+  Metal 2 decoders in flight: 929.50 images/s
+  libjpeg-turbo decode: 3.82 ms (1 thread); 2125.26 images/s on 10 threads
+  ImageIO decode (hardware key true): 4.80 ms; vs libjpeg-turbo: max 3, 93721 values (2.624%) differ, PSNR 62.9 dB
+  ImageIO decode (hardware key false): 4.05 ms; vs libjpeg-turbo: max 3, 253644 values (7.102%) differ, PSNR 58.7 dB
+  VideoToolbox hw decode (BGRA): 7.53 ms (1 thread); 4 threads 852.78 images/s (4.43 ms per call)
+    BGRA vs libjpeg-turbo (includes VideoToolbox's YCbCr to RGB conversion): max 251, 1157484 values (32.41%) differ, PSNR 31.4 dB; attachments ["color_primaries": "SMPTE_C", "chroma_location": <null>, "pixel_format": "BGRA", "ycbcr_matrix": "ITU_R_601_4", "transfer_function": "ITU_R_709_2"]
+    YCbCr 444f Y plane vs libjpeg-turbo's Y: max 1, 5142 values (0.432%) differ, PSNR 71.8 dB; attachments ["pixel_format": "444f", "chroma_location": <null>, "color_primaries": "SMPTE_C", "ycbcr_matrix": "ITU_R_601_4", "transfer_function": "ITU_R_709_2"]
+  encode q95 4:4:4: Metal 0.76 ms, byte-identical to libjpeg-turbo
+    libjpeg-turbo encode: 4.06 ms (1 thread)
+
+== jpeg/444/vgl_6548_0026: 1240x960 (1.2 MP), 334 KB, 0.288 B/px, 4:4:4
+  Metal decode: byte-identical to libjpeg-turbo; wall 2.39 ms, GPU 2.07 ms, sync passes 2
+    stages (GPU ms, one decode): unstuff 0.141, segments 0.038, chunks 0.005, sync0 1.114, sync1 0.175, sync2 0.007, sync3 0.007, sync4 0.007, sync5 0.007, sync6 0.007, sync7 0.007, first_blocks 0.039, decode_write 0.317, dc_scan 0.115, idct 0.063, colour 0.033
+  Metal 2 decoders in flight: 778.14 images/s
+  libjpeg-turbo decode: 3.37 ms (1 thread); 2421.98 images/s on 10 threads
+  ImageIO decode (hardware key true): 4.59 ms; vs libjpeg-turbo: max 3, 23371 values (0.6544%) differ, PSNR 69.9 dB
+  ImageIO decode (hardware key false): 4.13 ms; vs libjpeg-turbo: max 3, 69198 values (1.938%) differ, PSNR 65.2 dB
+  VideoToolbox hw decode (BGRA): 6.16 ms (1 thread); 4 threads 917.85 images/s (3.95 ms per call)
+    BGRA vs libjpeg-turbo (includes VideoToolbox's YCbCr to RGB conversion): max 153, 30058 values (0.8417%) differ, PSNR 50.8 dB; attachments ["transfer_function": "ITU_R_709_2", "pixel_format": "BGRA", "color_primaries": "SMPTE_C", "ycbcr_matrix": "ITU_R_601_4", "chroma_location": <null>]
+    YCbCr 444f Y plane vs libjpeg-turbo's Y: max 1, 7707 values (0.6474%) differ, PSNR 70.0 dB; attachments ["color_primaries": "SMPTE_C", "ycbcr_matrix": "ITU_R_601_4", "pixel_format": "444f", "chroma_location": <null>, "transfer_function": "ITU_R_709_2"]
+  encode q95 4:4:4: Metal 0.79 ms, byte-identical to libjpeg-turbo
+    libjpeg-turbo encode: 3.74 ms (1 thread)
+
+== jpeg/420/cathedral: 2000x3008 (6.0 MP), 1976 KB, 0.336 B/px, 4:2:0
+  Metal decode: byte-identical to libjpeg-turbo; wall 2.35 ms, GPU 2.00 ms, sync passes 2
+    stages (GPU ms, one decode): unstuff 0.316, segments 0.032, chunks 0.005, sync0 0.647, sync1 0.199, sync2 0.007, sync3 0.007, sync4 0.007, sync5 0.008, sync6 0.008, sync7 0.007, first_blocks 0.046, decode_write 0.309, dc_scan 0.132, idct 0.155, colour 0.142
+  Metal 2 decoders in flight: 714.11 images/s
+  libjpeg-turbo decode: 21.18 ms (1 thread); 388.59 images/s on 10 threads
+  ImageIO decode (hardware key true): 11.69 ms; vs libjpeg-turbo: max 47, 6915201 values (38.32%) differ, PSNR 45.9 dB
+  ImageIO decode (hardware key false): 21.44 ms; vs libjpeg-turbo: max 45, 4311990 values (23.89%) differ, PSNR 50.3 dB
+  VideoToolbox hw decode (BGRA): 11.82 ms (1 thread); 4 threads 352.48 images/s (11.11 ms per call)
+    BGRA vs libjpeg-turbo (includes VideoToolbox's YCbCr to RGB conversion): max 46, 9364049 values (51.88%) differ, PSNR 45.4 dB; attachments ["color_primaries": "SMPTE_C", "pixel_format": "BGRA", "transfer_function": "ITU_R_709_2", "chroma_location": <null>, "ycbcr_matrix": "ITU_R_601_4"]
+    YCbCr 420f Y plane vs libjpeg-turbo's Y: max 1, 104671 values (1.74%) differ, PSNR 65.7 dB; attachments ["chroma_location": <null>, "ycbcr_matrix": "ITU_R_601_4", "color_primaries": "SMPTE_C", "pixel_format": "420f", "transfer_function": "ITU_R_709_2"]
+  encode q95 4:2:0: Metal 1.98 ms, byte-identical to libjpeg-turbo
+    libjpeg-turbo encode: 15.50 ms (1 thread)
+
+== jpeg/420/big_building: 7216x5412 (39.1 MP), 13231 KB, 0.347 B/px, 4:2:0
+  Metal decode: byte-identical to libjpeg-turbo; wall 7.13 ms, GPU 6.33 ms, sync passes 2
+    stages (GPU ms, one decode): unstuff 0.927, segments 0.036, chunks 0.006, sync0 1.362, sync1 0.199, sync2 0.007, sync3 0.007, sync4 0.007, sync5 0.007, sync6 0.007, sync7 0.007, first_blocks 0.043, decode_write 1.601, dc_scan 0.285, idct 0.928, colour 0.885
+  Metal 2 decoders in flight: 166.05 images/s
+  libjpeg-turbo decode: 135.29 ms (1 thread); 58.98 images/s on 10 threads
+  ImageIO decode (hardware key true): 69.12 ms; vs libjpeg-turbo: max 44, 42365906 values (36.16%) differ, PSNR 45.4 dB
+  ImageIO decode (hardware key false): 142.49 ms; vs libjpeg-turbo: max 38, 28733777 values (24.53%) differ, PSNR 50.1 dB
+  VideoToolbox hw decode (BGRA): 49.15 ms (1 thread); 4 threads 74.91 images/s (52.13 ms per call)
+    BGRA vs libjpeg-turbo (includes VideoToolbox's YCbCr to RGB conversion): max 44, 60243808 values (51.42%) differ, PSNR 44.9 dB; attachments ["transfer_function": "ITU_R_709_2", "chroma_location": <null>, "ycbcr_matrix": "ITU_R_601_4", "pixel_format": "BGRA", "color_primaries": "SMPTE_C"]
+    YCbCr 420f Y plane vs libjpeg-turbo's Y: max 1, 680473 values (1.742%) differ, PSNR 65.7 dB; attachments ["transfer_function": "ITU_R_709_2", "chroma_location": <null>, "color_primaries": "SMPTE_C", "pixel_format": "420f", "ycbcr_matrix": "ITU_R_601_4"]
+  encode q95 4:2:0: Metal 9.73 ms, byte-identical to libjpeg-turbo
+    libjpeg-turbo encode: 101.66 ms (1 thread)
+
+== jpeg/420/big_tree: 6088x4550 (27.7 MP), 10439 KB, 0.386 B/px, 4:2:0
+  Metal decode: byte-identical to libjpeg-turbo; wall 5.65 ms, GPU 4.98 ms, sync passes 2
+    stages (GPU ms, one decode): unstuff 0.792, segments 0.037, chunks 0.006, sync0 1.185, sync1 0.146, sync2 0.007, sync3 0.007, sync4 0.009, sync5 0.007, sync6 0.007, sync7 0.007, first_blocks 0.045, decode_write 1.221, dc_scan 0.209, idct 0.684, colour 0.625
+  Metal 2 decoders in flight: 216.94 images/s
+  libjpeg-turbo decode: 109.46 ms (1 thread); 73.47 images/s on 10 threads
+  ImageIO decode (hardware key true): 49.41 ms; vs libjpeg-turbo: max 72, 55533158 values (66.83%) differ, PSNR 38.8 dB
+  ImageIO decode (hardware key false): 110.01 ms; vs libjpeg-turbo: max 68, 23583490 values (28.38%) differ, PSNR 46.9 dB
+  VideoToolbox hw decode (BGRA): 39.49 ms (1 thread); 4 threads 90.16 images/s (44.03 ms per call)
+    BGRA vs libjpeg-turbo (includes VideoToolbox's YCbCr to RGB conversion): max 67, 59211447 values (71.25%) differ, PSNR 39.4 dB; attachments ["transfer_function": "ITU_R_709_2", "pixel_format": "BGRA", "color_primaries": "SMPTE_C", "chroma_location": <null>, "ycbcr_matrix": "ITU_R_601_4"]
+    YCbCr 420f Y plane vs libjpeg-turbo's Y: max 1, 496991 values (1.794%) differ, PSNR 65.6 dB; attachments ["pixel_format": "420f", "color_primaries": "SMPTE_C", "ycbcr_matrix": "ITU_R_601_4", "transfer_function": "ITU_R_709_2", "chroma_location": <null>]
+  encode q95 4:2:0: Metal 7.21 ms, byte-identical to libjpeg-turbo
+    libjpeg-turbo encode: 75.68 ms (1 thread)
+
+== jpeg/420/nightshot_iso_1600: 3136x2352 (7.4 MP), 2851 KB, 0.396 B/px, 4:2:0
+  Metal decode: byte-identical to libjpeg-turbo; wall 2.57 ms, GPU 2.18 ms, sync passes 2
+    stages (GPU ms, one decode): unstuff 0.369, segments 0.033, chunks 0.005, sync0 0.618, sync1 0.168, sync2 0.007, sync3 0.007, sync4 0.009, sync5 0.008, sync6 0.011, sync7 0.008, first_blocks 0.044, decode_write 0.413, dc_scan 0.143, idct 0.198, colour 0.182
+  Metal 2 decoders in flight: 630.33 images/s
+  libjpeg-turbo decode: 30.53 ms (1 thread); 273.59 images/s on 10 threads
+  ImageIO decode (hardware key true): 14.66 ms; vs libjpeg-turbo: max 62, 13271192 values (59.98%) differ, PSNR 41.1 dB
+  ImageIO decode (hardware key false): 29.87 ms; vs libjpeg-turbo: max 34, 5895757 values (26.64%) differ, PSNR 48.3 dB
+  VideoToolbox hw decode (BGRA): 14.76 ms (1 thread); 4 threads 281.56 images/s (13.52 ms per call)
+    BGRA vs libjpeg-turbo (includes VideoToolbox's YCbCr to RGB conversion): max 53, 14556779 values (65.79%) differ, PSNR 41.2 dB; attachments ["ycbcr_matrix": "ITU_R_601_4", "transfer_function": "ITU_R_709_2", "color_primaries": "SMPTE_C", "pixel_format": "BGRA", "chroma_location": <null>]
+    YCbCr 420f Y plane vs libjpeg-turbo's Y: max 1, 136234 values (1.847%) differ, PSNR 65.5 dB; attachments ["chroma_location": <null>, "ycbcr_matrix": "ITU_R_601_4", "transfer_function": "ITU_R_709_2", "color_primaries": "SMPTE_C", "pixel_format": "420f"]
+  encode q95 4:2:0: Metal 2.31 ms, byte-identical to libjpeg-turbo
+    libjpeg-turbo encode: 20.56 ms (1 thread)
+
+== jpeg/420/vgl_5674_0098: 1240x960 (1.2 MP), 489 KB, 0.421 B/px, 4:2:0
+  Metal decode: byte-identical to libjpeg-turbo; wall 4.42 ms, GPU 4.01 ms, sync passes 2
+    stages (GPU ms, one decode): unstuff 0.167, segments 0.034, chunks 0.005, sync0 2.778, sync1 0.369, sync2 0.007, sync3 0.007, sync4 0.007, sync5 0.009, sync6 0.007, sync7 0.007, first_blocks 0.040, decode_write 0.373, dc_scan 0.108, idct 0.040, colour 0.044
+  Metal 2 decoders in flight: 429.15 images/s
+  libjpeg-turbo decode: 4.40 ms (1 thread); 1886.65 images/s on 10 threads
+  ImageIO decode (hardware key true): 4.79 ms; vs libjpeg-turbo: max 97, 1165014 values (32.62%) differ, PSNR 38.3 dB
+  ImageIO decode (hardware key false): 4.97 ms; vs libjpeg-turbo: max 62, 588923 values (16.49%) differ, PSNR 47.8 dB
+  VideoToolbox hw decode (BGRA): 5.30 ms (1 thread); 4 threads 979.60 images/s (3.81 ms per call)
+    BGRA vs libjpeg-turbo (includes VideoToolbox's YCbCr to RGB conversion): max 88, 1673413 values (46.86%) differ, PSNR 39.4 dB; attachments ["ycbcr_matrix": "ITU_R_601_4", "chroma_location": <null>, "color_primaries": "SMPTE_C", "transfer_function": "ITU_R_709_2", "pixel_format": "BGRA"]
+    YCbCr 420f Y plane vs libjpeg-turbo's Y: max 1, 15149 values (1.273%) differ, PSNR 67.1 dB; attachments ["color_primaries": "SMPTE_C", "pixel_format": "420f", "transfer_function": "ITU_R_709_2", "ycbcr_matrix": "ITU_R_601_4", "chroma_location": <null>]
+  encode q95 4:2:0: Metal 0.80 ms, byte-identical to libjpeg-turbo
+    libjpeg-turbo encode: 3.19 ms (1 thread)
+
+== jpeg/420/bridge: 2749x4049 (11.1 MP), 4649 KB, 0.428 B/px, 4:2:0
+  Metal decode: byte-identical to libjpeg-turbo; wall 3.26 ms, GPU 2.79 ms, sync passes 2
+    stages (GPU ms, one decode): unstuff 0.455, segments 0.036, chunks 0.005, sync0 0.738, sync1 0.157, sync2 0.007, sync3 0.007, sync4 0.007, sync5 0.008, sync6 0.010, sync7 0.008, first_blocks 0.042, decode_write 0.588, dc_scan 0.161, idct 0.293, colour 0.295
+  Metal 2 decoders in flight: 410.86 images/s
+  libjpeg-turbo decode: 47.68 ms (1 thread); 171.70 images/s on 10 threads
+  ImageIO decode (hardware key true): 23.02 ms; vs libjpeg-turbo: max 29, 22164514 values (66.38%) differ, PSNR 40.9 dB
+  ImageIO decode (hardware key false): 48.19 ms; vs libjpeg-turbo: max 22, 9561695 values (28.63%) differ, PSNR 48.3 dB
+  VideoToolbox hw decode (BGRA): 21.86 ms (1 thread); 4 threads 203.08 images/s (19.05 ms per call)
+    BGRA vs libjpeg-turbo (includes VideoToolbox's YCbCr to RGB conversion): max 80, 29309097 values (87.77%) differ, PSNR 31.9 dB; attachments ["pixel_format": "BGRA", "transfer_function": "ITU_R_709_2", "chroma_location": <null>, "color_primaries": "SMPTE_C", "ycbcr_matrix": "ITU_R_601_4"]
+    YCbCr 420f Y plane vs libjpeg-turbo's Y: max 1, 204816 values (1.84%) differ, PSNR 65.5 dB; attachments ["pixel_format": "420f", "chroma_location": <null>, "transfer_function": "ITU_R_709_2", "ycbcr_matrix": "ITU_R_601_4", "color_primaries": "SMPTE_C"]
+  encode q95 4:2:0: Metal 3.28 ms, byte-identical to libjpeg-turbo
+    libjpeg-turbo encode: 31.80 ms (1 thread)
+
+== jpeg/420/leaves_iso_200: 3008x2000 (6.0 MP), 2517 KB, 0.428 B/px, 4:2:0
+  Metal decode: byte-identical to libjpeg-turbo; wall 2.54 ms, GPU 2.15 ms, sync passes 2
+    stages (GPU ms, one decode): unstuff 0.342, segments 0.034, chunks 0.006, sync0 0.692, sync1 0.133, sync2 0.007, sync3 0.008, sync4 0.007, sync5 0.011, sync6 0.011, sync7 0.008, first_blocks 0.045, decode_write 0.442, dc_scan 0.141, idct 0.160, colour 0.140
+  Metal 2 decoders in flight: 644.95 images/s
+  libjpeg-turbo decode: 23.84 ms (1 thread); 349.13 images/s on 10 threads
+  ImageIO decode (hardware key true): 13.24 ms; vs libjpeg-turbo: max 32, 7755329 values (42.97%) differ, PSNR 41.8 dB
+  ImageIO decode (hardware key false): 25.65 ms; vs libjpeg-turbo: max 29, 4200849 values (23.28%) differ, PSNR 48.7 dB
+  VideoToolbox hw decode (BGRA): 12.30 ms (1 thread); 4 threads 344.06 images/s (10.95 ms per call)
+    BGRA vs libjpeg-turbo (includes VideoToolbox's YCbCr to RGB conversion): max 29, 9552085 values (52.93%) differ, PSNR 42.0 dB; attachments ["color_primaries": "SMPTE_C", "ycbcr_matrix": "ITU_R_601_4", "transfer_function": "ITU_R_709_2", "chroma_location": <null>, "pixel_format": "BGRA"]
+    YCbCr 420f Y plane vs libjpeg-turbo's Y: max 1, 106872 values (1.776%) differ, PSNR 65.6 dB; attachments ["ycbcr_matrix": "ITU_R_601_4", "pixel_format": "420f", "transfer_function": "ITU_R_709_2", "chroma_location": <null>, "color_primaries": "SMPTE_C"]
+  encode q95 4:2:0: Metal 2.07 ms, byte-identical to libjpeg-turbo
+    libjpeg-turbo encode: 16.75 ms (1 thread)
+
+== jpeg/420/deer: 4043x2641 (10.7 MP), 4730 KB, 0.454 B/px, 4:2:0
+  Metal decode: byte-identical to libjpeg-turbo; wall 3.37 ms, GPU 2.89 ms, sync passes 2
+    stages (GPU ms, one decode): unstuff 0.454, segments 0.033, chunks 0.006, sync0 0.819, sync1 0.159, sync2 0.007, sync3 0.008, sync4 0.007, sync5 0.008, sync6 0.008, sync7 0.008, first_blocks 0.046, decode_write 0.624, dc_scan 0.159, idct 0.287, colour 0.278
+  Metal 2 decoders in flight: 412.89 images/s
+  libjpeg-turbo decode: 50.74 ms (1 thread); 162.63 images/s on 10 threads
+  ImageIO decode (hardware key true): 22.54 ms; vs libjpeg-turbo: max 72, 22086649 values (68.95%) differ, PSNR 39.8 dB
+  ImageIO decode (hardware key false): 49.17 ms; vs libjpeg-turbo: max 62, 8832753 values (27.57%) differ, PSNR 48.3 dB
+  VideoToolbox hw decode (BGRA): 20.55 ms (1 thread); 4 threads 179.13 images/s (21.99 ms per call)
+    BGRA vs libjpeg-turbo (includes VideoToolbox's YCbCr to RGB conversion): max 138, 28994805 values (90.52%) differ, PSNR 32.7 dB; attachments ["chroma_location": <null>, "pixel_format": "BGRA", "color_primaries": "SMPTE_C", "ycbcr_matrix": "ITU_R_601_4", "transfer_function": "ITU_R_709_2"]
+    YCbCr 420f Y plane vs libjpeg-turbo's Y: max 1, 214512 values (2.009%) differ, PSNR 65.1 dB; attachments ["ycbcr_matrix": "ITU_R_601_4", "transfer_function": "ITU_R_709_2", "color_primaries": "SMPTE_C", "chroma_location": <null>, "pixel_format": "420f"]
+  encode q95 4:2:0: Metal 3.35 ms, byte-identical to libjpeg-turbo
+    libjpeg-turbo encode: 32.97 ms (1 thread)
+
+== jpeg/444/cathedral: 2000x3008 (6.0 MP), 2852 KB, 0.486 B/px, 4:4:4
+  Metal decode: byte-identical to libjpeg-turbo; wall 2.42 ms, GPU 2.02 ms, sync passes 2
+    stages (GPU ms, one decode): unstuff 0.366, segments 0.033, chunks 0.006, sync0 0.434, sync1 0.055, sync2 0.007, sync3 0.007, sync4 0.007, sync5 0.009, sync6 0.006, sync7 0.007, first_blocks 0.039, decode_write 0.523, dc_scan 0.142, idct 0.291, colour 0.102
+  Metal 2 decoders in flight: 562.07 images/s
+  libjpeg-turbo decode: 32.25 ms (1 thread); 257.44 images/s on 10 threads
+  ImageIO decode (hardware key true): 12.71 ms; vs libjpeg-turbo: max 3, 672347 values (3.725%) differ, PSNR 60.9 dB
+  ImageIO decode (hardware key false): 32.09 ms; vs libjpeg-turbo: max 3, 2012107 values (11.15%) differ, PSNR 56.0 dB
+  VideoToolbox hw decode (BGRA): 14.33 ms (1 thread); 4 threads 285.09 images/s (13.41 ms per call)
+    BGRA vs libjpeg-turbo (includes VideoToolbox's YCbCr to RGB conversion): max 107, 11870663 values (65.77%) differ, PSNR 40.8 dB; attachments ["color_primaries": "SMPTE_C", "transfer_function": "ITU_R_709_2", "pixel_format": "BGRA", "ycbcr_matrix": "ITU_R_601_4", "chroma_location": <null>]
+    YCbCr 444f Y plane vs libjpeg-turbo's Y: max 1, 104671 values (1.74%) differ, PSNR 65.7 dB; attachments ["color_primaries": "SMPTE_C", "transfer_function": "ITU_R_709_2", "chroma_location": <null>, "pixel_format": "444f", "ycbcr_matrix": "ITU_R_601_4"]
+  encode q95 4:4:4: Metal 2.43 ms, byte-identical to libjpeg-turbo
+    libjpeg-turbo encode: 27.87 ms (1 thread)
+
+== jpeg/444/big_building: 7216x5412 (39.1 MP), 18599 KB, 0.488 B/px, 4:4:4
+  Metal decode: byte-identical to libjpeg-turbo; wall 8.82 ms, GPU 7.86 ms, sync passes 2
+    stages (GPU ms, one decode): unstuff 1.174, segments 0.034, chunks 0.007, sync0 0.999, sync1 0.078, sync2 0.007, sync3 0.007, sync4 0.007, sync5 0.008, sync6 0.007, sync7 0.007, first_blocks 0.051, decode_write 2.567, dc_scan 0.432, idct 1.806, colour 0.653
+  Metal 2 decoders in flight: 124.12 images/s
+  libjpeg-turbo decode: 204.58 ms (1 thread); 38.61 images/s on 10 threads
+  ImageIO decode (hardware key true): 76.15 ms; vs libjpeg-turbo: max 3, 5985128 values (5.109%) differ, PSNR 59.9 dB
+  ImageIO decode (hardware key false): 208.20 ms; vs libjpeg-turbo: max 3, 14315145 values (12.22%) differ, PSNR 55.6 dB
+  VideoToolbox hw decode (BGRA): 67.33 ms (1 thread); 4 threads 46.68 images/s (84.51 ms per call)
+    BGRA vs libjpeg-turbo (includes VideoToolbox's YCbCr to RGB conversion): max 144, 75263182 values (64.24%) differ, PSNR 40.4 dB; attachments ["color_primaries": "SMPTE_C", "transfer_function": "ITU_R_709_2", "pixel_format": "BGRA", "ycbcr_matrix": "ITU_R_601_4", "chroma_location": <null>]
+    YCbCr 444f Y plane vs libjpeg-turbo's Y: max 1, 680473 values (1.742%) differ, PSNR 65.7 dB; attachments ["ycbcr_matrix": "ITU_R_601_4", "pixel_format": "444f", "color_primaries": "SMPTE_C", "chroma_location": <null>, "transfer_function": "ITU_R_709_2"]
+  encode q95 4:4:4: Metal 12.67 ms, byte-identical to libjpeg-turbo
+    libjpeg-turbo encode: 176.30 ms (1 thread)
+
+== jpeg/420/leaves_iso_1600: 3008x2000 (6.0 MP), 3001 KB, 0.511 B/px, 4:2:0
+  Metal decode: byte-identical to libjpeg-turbo; wall 2.70 ms, GPU 2.30 ms, sync passes 2
+    stages (GPU ms, one decode): unstuff 0.380, segments 0.029, chunks 0.005, sync0 0.721, sync1 0.179, sync2 0.007, sync3 0.007, sync4 0.009, sync5 0.008, sync6 0.007, sync7 0.008, first_blocks 0.044, decode_write 0.457, dc_scan 0.142, idct 0.164, colour 0.140
+  Metal 2 decoders in flight: 615.41 images/s
+  libjpeg-turbo decode: 27.85 ms (1 thread); 298.82 images/s on 10 threads
+  ImageIO decode (hardware key true): 13.23 ms; vs libjpeg-turbo: max 33, 11718343 values (64.93%) differ, PSNR 40.1 dB
+  ImageIO decode (hardware key false): 29.70 ms; vs libjpeg-turbo: max 28, 5016026 values (27.79%) differ, PSNR 47.6 dB
+  VideoToolbox hw decode (BGRA): 13.66 ms (1 thread); 4 threads 305.67 images/s (12.13 ms per call)
+    BGRA vs libjpeg-turbo (includes VideoToolbox's YCbCr to RGB conversion): max 32, 12345432 values (68.4%) differ, PSNR 40.6 dB; attachments ["transfer_function": "ITU_R_709_2", "pixel_format": "BGRA", "ycbcr_matrix": "ITU_R_601_4", "color_primaries": "SMPTE_C", "chroma_location": <null>]
+    YCbCr 420f Y plane vs libjpeg-turbo's Y: max 1, 114760 values (1.908%) differ, PSNR 65.3 dB; attachments ["chroma_location": <null>, "color_primaries": "SMPTE_C", "transfer_function": "ITU_R_709_2", "pixel_format": "420f", "ycbcr_matrix": "ITU_R_601_4"]
+  encode q95 4:2:0: Metal 2.18 ms, byte-identical to libjpeg-turbo
+    libjpeg-turbo encode: 18.08 ms (1 thread)
+
+== jpeg/444/leaves_iso_200: 3008x2000 (6.0 MP), 3354 KB, 0.571 B/px, 4:4:4
+  Metal decode: byte-identical to libjpeg-turbo; wall 2.60 ms, GPU 2.18 ms, sync passes 2
+    stages (GPU ms, one decode): unstuff 0.383, segments 0.032, chunks 0.006, sync0 0.454, sync1 0.066, sync2 0.009, sync3 0.007, sync4 0.007, sync5 0.010, sync6 0.007, sync7 0.007, first_blocks 0.043, decode_write 0.641, dc_scan 0.145, idct 0.294, colour 0.103
+  Metal 2 decoders in flight: 508.13 images/s
+  libjpeg-turbo decode: 33.90 ms (1 thread); 242.87 images/s on 10 threads
+  ImageIO decode (hardware key true): 14.04 ms; vs libjpeg-turbo: max 3, 849425 values (4.706%) differ, PSNR 60.2 dB
+  ImageIO decode (hardware key false): 35.45 ms; vs libjpeg-turbo: max 3, 2127503 values (11.79%) differ, PSNR 55.8 dB
+  VideoToolbox hw decode (BGRA): 15.41 ms (1 thread); 4 threads 271.73 images/s (14.12 ms per call)
+    BGRA vs libjpeg-turbo (includes VideoToolbox's YCbCr to RGB conversion): max 68, 11029319 values (61.11%) differ, PSNR 38.2 dB; attachments ["color_primaries": "SMPTE_C", "transfer_function": "ITU_R_709_2", "pixel_format": "BGRA", "chroma_location": <null>, "ycbcr_matrix": "ITU_R_601_4"]
+    YCbCr 444f Y plane vs libjpeg-turbo's Y: max 1, 106872 values (1.776%) differ, PSNR 65.6 dB; attachments ["pixel_format": "444f", "color_primaries": "SMPTE_C", "transfer_function": "ITU_R_709_2", "chroma_location": <null>, "ycbcr_matrix": "ITU_R_601_4"]
+  encode q95 4:4:4: Metal 2.65 ms, byte-identical to libjpeg-turbo
+    libjpeg-turbo encode: 28.26 ms (1 thread)
+
+== jpeg/444/nightshot_iso_1600: 3136x2352 (7.4 MP), 4482 KB, 0.622 B/px, 4:4:4
+  Metal decode: byte-identical to libjpeg-turbo; wall 2.80 ms, GPU 2.34 ms, sync passes 2
+    stages (GPU ms, one decode): unstuff 0.450, segments 0.032, chunks 0.006, sync0 0.460, sync1 0.056, sync2 0.007, sync3 0.007, sync4 0.007, sync5 0.007, sync6 0.007, sync7 0.007, first_blocks 0.044, decode_write 0.644, dc_scan 0.145, idct 0.367, colour 0.128
+  Metal 2 decoders in flight: 458.70 images/s
+  libjpeg-turbo decode: 48.84 ms (1 thread); 169.13 images/s on 10 threads
+  ImageIO decode (hardware key true): 18.57 ms; vs libjpeg-turbo: max 3, 951060 values (4.298%) differ, PSNR 60.4 dB
+  ImageIO decode (hardware key false): 46.48 ms; vs libjpeg-turbo: max 3, 2608334 values (11.79%) differ, PSNR 55.7 dB
+  VideoToolbox hw decode (BGRA): 18.90 ms (1 thread); 4 threads 196.32 images/s (20.03 ms per call)
+    BGRA vs libjpeg-turbo (includes VideoToolbox's YCbCr to RGB conversion): max 112, 17007420 values (76.86%) differ, PSNR 35.8 dB; attachments ["ycbcr_matrix": "ITU_R_601_4", "color_primaries": "SMPTE_C", "pixel_format": "BGRA", "chroma_location": <null>, "transfer_function": "ITU_R_709_2"]
+    YCbCr 444f Y plane vs libjpeg-turbo's Y: max 1, 136234 values (1.847%) differ, PSNR 65.5 dB; attachments ["ycbcr_matrix": "ITU_R_601_4", "transfer_function": "ITU_R_709_2", "chroma_location": <null>, "color_primaries": "SMPTE_C", "pixel_format": "444f"]
+  encode q95 4:4:4: Metal 3.12 ms, byte-identical to libjpeg-turbo
+    libjpeg-turbo encode: 36.86 ms (1 thread)
+
+== jpeg/444/big_tree: 6088x4550 (27.7 MP), 16898 KB, 0.625 B/px, 4:4:4
+  Metal decode: byte-identical to libjpeg-turbo; wall 7.40 ms, GPU 6.51 ms, sync passes 2
+    stages (GPU ms, one decode): unstuff 1.135, segments 0.035, chunks 0.006, sync0 0.977, sync1 0.096, sync2 0.007, sync3 0.007, sync4 0.009, sync5 0.008, sync6 0.007, sync7 0.007, first_blocks 0.057, decode_write 2.044, dc_scan 0.346, idct 1.307, colour 0.466
+  Metal 2 decoders in flight: 148.21 images/s
+  libjpeg-turbo decode: 181.40 ms (1 thread); 45.77 images/s on 10 threads
+  ImageIO decode (hardware key true): 60.10 ms; vs libjpeg-turbo: max 3, 3924101 values (4.722%) differ, PSNR 59.9 dB
+  ImageIO decode (hardware key false): 175.52 ms; vs libjpeg-turbo: max 3, 10479227 values (12.61%) differ, PSNR 55.3 dB
+  VideoToolbox hw decode (BGRA): 55.88 ms (1 thread); 4 threads 54.82 images/s (72.18 ms per call)
+    BGRA vs libjpeg-turbo (includes VideoToolbox's YCbCr to RGB conversion): max 163, 67659695 values (81.42%) differ, PSNR 34.4 dB; attachments ["color_primaries": "SMPTE_C", "chroma_location": <null>, "ycbcr_matrix": "ITU_R_601_4", "pixel_format": "BGRA", "transfer_function": "ITU_R_709_2"]
+    YCbCr 444f Y plane vs libjpeg-turbo's Y: max 1, 496991 values (1.794%) differ, PSNR 65.6 dB; attachments ["pixel_format": "444f", "ycbcr_matrix": "ITU_R_601_4", "color_primaries": "SMPTE_C", "transfer_function": "ITU_R_709_2", "chroma_location": <null>]
+  encode q95 4:4:4: Metal 10.03 ms, byte-identical to libjpeg-turbo
+    libjpeg-turbo encode: 139.97 ms (1 thread)
+
+== jpeg/444/vgl_5674_0098: 1240x960 (1.2 MP), 727 KB, 0.626 B/px, 4:4:4
+  Metal decode: byte-identical to libjpeg-turbo; wall 2.61 ms, GPU 2.28 ms, sync passes 2
+    stages (GPU ms, one decode): unstuff 0.186, segments 0.035, chunks 0.006, sync0 1.087, sync1 0.262, sync2 0.007, sync3 0.007, sync4 0.008, sync5 0.010, sync6 0.007, sync7 0.007, first_blocks 0.042, decode_write 0.424, dc_scan 0.115, idct 0.065, colour 0.033
+  Metal 2 decoders in flight: 705.58 images/s
+  libjpeg-turbo decode: 6.97 ms (1 thread); 1209.37 images/s on 10 threads
+  ImageIO decode (hardware key true): 5.46 ms; vs libjpeg-turbo: max 3, 122578 values (3.432%) differ, PSNR 61.5 dB
+  ImageIO decode (hardware key false): 7.51 ms; vs libjpeg-turbo: max 3, 299175 values (8.377%) differ, PSNR 57.2 dB
+  VideoToolbox hw decode (BGRA): 6.88 ms (1 thread); 4 threads 719.27 images/s (5.30 ms per call)
+    BGRA vs libjpeg-turbo (includes VideoToolbox's YCbCr to RGB conversion): max 255, 1929339 values (54.02%) differ, PSNR 29.6 dB; attachments ["pixel_format": "BGRA", "ycbcr_matrix": "ITU_R_601_4", "chroma_location": <null>, "color_primaries": "SMPTE_C", "transfer_function": "ITU_R_709_2"]
+    YCbCr 444f Y plane vs libjpeg-turbo's Y: max 1, 15149 values (1.273%) differ, PSNR 67.1 dB; attachments ["transfer_function": "ITU_R_709_2", "chroma_location": <null>, "pixel_format": "444f", "color_primaries": "SMPTE_C", "ycbcr_matrix": "ITU_R_601_4"]
+  encode q95 4:4:4: Metal 0.90 ms, byte-identical to libjpeg-turbo
+    libjpeg-turbo encode: 5.56 ms (1 thread)
+
+== jpeg/444/bridge: 2749x4049 (11.1 MP), 7290 KB, 0.671 B/px, 4:4:4
+  Metal decode: byte-identical to libjpeg-turbo; wall 3.69 ms, GPU 3.14 ms, sync passes 2
+    stages (GPU ms, one decode): unstuff 0.602, segments 0.033, chunks 0.006, sync0 0.499, sync1 0.059, sync2 0.007, sync3 0.010, sync4 0.006, sync5 0.007, sync6 0.007, sync7 0.011, first_blocks 0.044, decode_write 0.906, dc_scan 0.204, idct 0.545, colour 0.223
+  Metal 2 decoders in flight: 337.61 images/s
+  libjpeg-turbo decode: 77.57 ms (1 thread); 105.72 images/s on 10 threads
+  ImageIO decode (hardware key true): 27.30 ms; vs libjpeg-turbo: max 3, 1804378 values (5.404%) differ, PSNR 59.5 dB
+  ImageIO decode (hardware key false): 74.54 ms; vs libjpeg-turbo: max 3, 4472049 values (13.39%) differ, PSNR 55.1 dB
+  VideoToolbox hw decode (BGRA): 27.15 ms (1 thread); 4 threads 127.39 images/s (31.15 ms per call)
+    BGRA vs libjpeg-turbo (includes VideoToolbox's YCbCr to RGB conversion): max 83, 30238350 values (90.56%) differ, PSNR 30.8 dB; attachments ["transfer_function": "ITU_R_709_2", "ycbcr_matrix": "ITU_R_601_4", "chroma_location": <null>, "pixel_format": "BGRA", "color_primaries": "SMPTE_C"]
+    YCbCr 444f Y plane vs libjpeg-turbo's Y: max 75, 9612714 values (86.36%) differ, PSNR 32.1 dB; attachments ["color_primaries": "SMPTE_C", "chroma_location": <null>, "ycbcr_matrix": "ITU_R_601_4", "pixel_format": "444f", "transfer_function": "ITU_R_709_2"]
+  encode q95 4:4:4: Metal 4.44 ms, byte-identical to libjpeg-turbo
+    libjpeg-turbo encode: 56.48 ms (1 thread)
+
+== jpeg/444/leaves_iso_1600: 3008x2000 (6.0 MP), 4253 KB, 0.724 B/px, 4:4:4
+  Metal decode: byte-identical to libjpeg-turbo; wall 2.78 ms, GPU 2.34 ms, sync passes 2
+    stages (GPU ms, one decode): unstuff 0.446, segments 0.033, chunks 0.006, sync0 0.458, sync1 0.055, sync2 0.007, sync3 0.007, sync4 0.007, sync5 0.007, sync6 0.007, sync7 0.007, first_blocks 0.042, decode_write 0.738, dc_scan 0.143, idct 0.296, colour 0.102
+  Metal 2 decoders in flight: 555.08 images/s
+  libjpeg-turbo decode: 42.14 ms (1 thread); 196.35 images/s on 10 threads
+  ImageIO decode (hardware key true): 18.81 ms; vs libjpeg-turbo: max 3, 893911 values (4.953%) differ, PSNR 59.9 dB
+  ImageIO decode (hardware key false): 42.59 ms; vs libjpeg-turbo: max 3, 2248802 values (12.46%) differ, PSNR 55.5 dB
+  VideoToolbox hw decode (BGRA): 16.37 ms (1 thread); 4 threads 232.89 images/s (16.88 ms per call)
+    BGRA vs libjpeg-turbo (includes VideoToolbox's YCbCr to RGB conversion): max 74, 14223452 values (78.81%) differ, PSNR 35.9 dB; attachments ["transfer_function": "ITU_R_709_2", "chroma_location": <null>, "ycbcr_matrix": "ITU_R_601_4", "color_primaries": "SMPTE_C", "pixel_format": "BGRA"]
+    YCbCr 444f Y plane vs libjpeg-turbo's Y: max 1, 114760 values (1.908%) differ, PSNR 65.3 dB; attachments ["chroma_location": <null>, "color_primaries": "SMPTE_C", "transfer_function": "ITU_R_709_2", "ycbcr_matrix": "ITU_R_601_4", "pixel_format": "444f"]
+  encode q95 4:4:4: Metal 2.85 ms, byte-identical to libjpeg-turbo
+    libjpeg-turbo encode: 31.37 ms (1 thread)
+
+== jpeg/444/deer: 4043x2641 (10.7 MP), 9265 KB, 0.889 B/px, 4:4:4
+  Metal decode: byte-identical to libjpeg-turbo; wall 4.22 ms, GPU 3.62 ms, sync passes 2
+    stages (GPU ms, one decode): unstuff 0.698, segments 0.036, chunks 0.006, sync0 0.747, sync1 0.077, sync2 0.007, sync3 0.007, sync4 0.007, sync5 0.007, sync6 0.007, sync7 0.007, first_blocks 0.045, decode_write 1.011, dc_scan 0.210, idct 0.568, colour 0.209
+  Metal 2 decoders in flight: 284.08 images/s
+  libjpeg-turbo decode: 95.05 ms (1 thread); 86.45 images/s on 10 threads
+  ImageIO decode (hardware key true): 35.20 ms; vs libjpeg-turbo: max 3, 1686335 values (5.264%) differ, PSNR 59.3 dB
+  ImageIO decode (hardware key false): 89.16 ms; vs libjpeg-turbo: max 3, 4338312 values (13.54%) differ, PSNR 54.9 dB
+  VideoToolbox hw decode (BGRA): 35.12 ms (1 thread); 4 threads 89.57 images/s (44.37 ms per call)
+    BGRA vs libjpeg-turbo (includes VideoToolbox's YCbCr to RGB conversion): max 168, 30169307 values (94.18%) differ, PSNR 29.2 dB; attachments ["pixel_format": "BGRA", "ycbcr_matrix": "ITU_R_601_4", "transfer_function": "ITU_R_709_2", "chroma_location": <null>, "color_primaries": "SMPTE_C"]
+    YCbCr 444f Y plane vs libjpeg-turbo's Y: max 133, 9470279 values (88.69%) differ, PSNR 32.9 dB; attachments ["pixel_format": "444f", "ycbcr_matrix": "ITU_R_601_4", "transfer_function": "ITU_R_709_2", "chroma_location": <null>, "color_primaries": "SMPTE_C"]
+  encode q95 4:4:4: Metal 4.89 ms, byte-identical to libjpeg-turbo
+    libjpeg-turbo encode: 64.21 ms (1 thread)
+
+== zune-jpeg/speed_bench_hv_subsampling: 7680x4320 (33.2 MP), 1000 KB, 0.031 B/px, 4:2:0
+  Metal decode: byte-identical to libjpeg-turbo; wall 3.78 ms, GPU 3.41 ms, sync passes 2
+    stages (GPU ms, one decode): unstuff 0.211, segments 0.036, chunks 0.005, sync0 0.896, sync1 0.114, sync2 0.007, sync3 0.007, sync4 0.007, sync5 0.008, sync6 0.008, sync7 0.008, first_blocks 0.039, decode_write 0.395, dc_scan 0.224, idct 0.734, colour 0.744
+  Metal 2 decoders in flight: 406.59 images/s
+  libjpeg-turbo decode: 40.17 ms (1 thread); 201.04 images/s on 10 threads
+  ImageIO decode (hardware key true): 63.66 ms; vs libjpeg-turbo: max 22, 2371728 values (2.383%) differ, PSNR 61.5 dB
+  ImageIO decode (hardware key false): 41.57 ms; vs libjpeg-turbo: max 22, 4477036 values (4.498%) differ, PSNR 60.7 dB
+  VideoToolbox hw decode (BGRA): 33.07 ms (1 thread); 4 threads 118.00 images/s (32.02 ms per call)
+    BGRA vs libjpeg-turbo (includes VideoToolbox's YCbCr to RGB conversion): max 22, 21530240 values (21.63%) differ, PSNR 53.8 dB; attachments ["pixel_format": "BGRA", "chroma_location": <null>, "color_primaries": "SMPTE_C", "ycbcr_matrix": "ITU_R_601_4", "transfer_function": "ITU_R_709_2"]
+    YCbCr 420f Y plane vs libjpeg-turbo's Y: max 1, 166118 values (0.5007%) differ, PSNR 71.1 dB; attachments ["transfer_function": "ITU_R_709_2", "pixel_format": "420f", "chroma_location": <null>, "ycbcr_matrix": "ITU_R_601_4", "color_primaries": "SMPTE_C"]
+  encode q95 4:2:0: Metal 6.26 ms, byte-identical to libjpeg-turbo
+    libjpeg-turbo encode: 55.44 ms (1 thread)
+
+== zune-jpeg/speed_bench_vertical_subsampling: 7680x4320 (33.2 MP), 1091 KB, 0.034 B/px, 4:4:0
+  Metal decode: byte-identical to libjpeg-turbo; wall 4.05 ms, GPU 3.63 ms, sync passes 2
+    stages (GPU ms, one decode): unstuff 0.238, segments 0.036, chunks 0.005, sync0 0.812, sync1 0.081, sync2 0.007, sync3 0.007, sync4 0.010, sync5 0.008, sync6 0.011, sync7 0.012, first_blocks 0.044, decode_write 0.501, dc_scan 0.287, idct 0.960, colour 0.651
+  Metal 2 decoders in flight: 379.76 images/s
+  libjpeg-turbo decode: 45.31 ms (1 thread); 178.79 images/s on 10 threads
+  ImageIO decode (hardware key true): 59.68 ms; vs libjpeg-turbo: max 16, 4408891 values (4.43%) differ, PSNR 60.9 dB
+  ImageIO decode (hardware key false): 46.75 ms; vs libjpeg-turbo: max 16, 4408891 values (4.43%) differ, PSNR 60.9 dB
+  VideoToolbox hw decode (BGRA): unavailable (decode failed, status -12910)
+  encode: Metal skipped (4:4:0 not supported by the Encoder)
+    libjpeg-turbo encode: 118.05 ms (1 thread)
+
+== zune-jpeg/speed_bench_horizontal_subsampling: 7680x4320 (33.2 MP), 1097 KB, 0.034 B/px, 4:2:2
+  Metal decode: byte-identical to libjpeg-turbo; wall 3.89 ms, GPU 3.50 ms, sync passes 2
+    stages (GPU ms, one decode): unstuff 0.240, segments 0.032, chunks 0.005, sync0 0.765, sync1 0.093, sync2 0.007, sync3 0.007, sync4 0.006, sync5 0.010, sync6 0.006, sync7 0.006, first_blocks 0.043, decode_write 0.483, dc_scan 0.278, idct 0.958, colour 0.581
+  Metal 2 decoders in flight: 388.86 images/s
+  libjpeg-turbo decode: 45.97 ms (1 thread); 177.14 images/s on 10 threads
+  ImageIO decode (hardware key true): 63.57 ms; vs libjpeg-turbo: max 15, 2027090 values (2.037%) differ, PSNR 63.4 dB
+  ImageIO decode (hardware key false): 48.25 ms; vs libjpeg-turbo: max 5, 4343968 values (4.364%) differ, PSNR 61.2 dB
+  VideoToolbox hw decode (BGRA): 37.97 ms (1 thread); 4 threads 94.00 images/s (41.74 ms per call)
+    BGRA vs libjpeg-turbo (includes VideoToolbox's YCbCr to RGB conversion): max 27, 21494952 values (21.6%) differ, PSNR 53.8 dB; attachments ["ycbcr_matrix": "ITU_R_601_4", "chroma_location": <null>, "color_primaries": "SMPTE_C", "pixel_format": "BGRA", "transfer_function": "ITU_R_709_2"]
+    YCbCr 422f Y plane vs libjpeg-turbo's Y: max 1, 166126 values (0.5007%) differ, PSNR 71.1 dB; attachments ["ycbcr_matrix": "ITU_R_601_4", "chroma_location": <null>, "color_primaries": "SMPTE_C", "pixel_format": "422f", "transfer_function": "ITU_R_709_2"]
+  encode q95 4:2:2: Metal 6.22 ms, byte-identical to libjpeg-turbo
+    libjpeg-turbo encode: 68.18 ms (1 thread)
+
+== zune-jpeg/speed_bench_prog_hv_sampling: 7680x4320 (33.2 MP), 1173 KB, 0.036 B/px, 4:4:0, progressive
+  Metal decode: declined: progressive (progressive JPEG)
+  libjpeg-turbo decode: 142.73 ms (1 thread); 56.43 images/s on 10 threads
+  ImageIO decode (hardware key true): 157.42 ms; vs libjpeg-turbo: max 16, 4408891 values (4.43%) differ, PSNR 60.9 dB
+  ImageIO decode (hardware key false): 144.51 ms; vs libjpeg-turbo: max 16, 4408891 values (4.43%) differ, PSNR 60.9 dB
+  VideoToolbox hw decode (BGRA): unavailable (decode failed, status -12910)
+  encode: Metal skipped (4:4:0 not supported by the Encoder)
+    libjpeg-turbo encode: 118.03 ms (1 thread)
+
+== zune-jpeg/speed_bench_prog_v_sampling: 7680x4320 (33.2 MP), 1173 KB, 0.036 B/px, 4:4:0, progressive
+  Metal decode: declined: progressive (progressive JPEG)
+  libjpeg-turbo decode: 141.79 ms (1 thread); 56.89 images/s on 10 threads
+  ImageIO decode (hardware key true): 157.46 ms; vs libjpeg-turbo: max 16, 4408891 values (4.43%) differ, PSNR 60.9 dB
+  ImageIO decode (hardware key false): 144.35 ms; vs libjpeg-turbo: max 16, 4408891 values (4.43%) differ, PSNR 60.9 dB
+  VideoToolbox hw decode (BGRA): unavailable (decode failed, status -12910)
+  encode: Metal skipped (4:4:0 not supported by the Encoder)
+    libjpeg-turbo encode: 118.01 ms (1 thread)
+
+== zune-jpeg/speed_bench_prog_h_sampling: 7680x4320 (33.2 MP), 1184 KB, 0.037 B/px, 4:2:2, progressive
+  Metal decode: declined: progressive (progressive JPEG)
+  libjpeg-turbo decode: 143.73 ms (1 thread); 56.21 images/s on 10 threads
+  ImageIO decode (hardware key true): 163.60 ms; vs libjpeg-turbo: max 5, 4343968 values (4.364%) differ, PSNR 61.2 dB
+  ImageIO decode (hardware key false): 150.04 ms; vs libjpeg-turbo: max 5, 4343968 values (4.364%) differ, PSNR 61.2 dB
+  VideoToolbox hw decode (BGRA): unavailable (decode failed, status -12910)
+    YCbCr 422f control: unavailable (decode failed, status -12910)
+  encode q95 4:2:2: Metal 6.24 ms, byte-identical to libjpeg-turbo
+    libjpeg-turbo encode: 68.09 ms (1 thread)
+
+== zune-jpeg/speed_bench: 7680x4320 (33.2 MP), 1244 KB, 0.038 B/px, 4:4:4
+  Metal decode: byte-identical to libjpeg-turbo; wall 4.73 ms, GPU 4.27 ms, sync passes 2
+    stages (GPU ms, one decode): unstuff 0.251, segments 0.037, chunks 0.005, sync0 0.873, sync1 0.064, sync2 0.007, sync3 0.007, sync4 0.007, sync5 0.008, sync6 0.007, sync7 0.007, first_blocks 0.040, decode_write 0.720, dc_scan 0.353, idct 1.399, colour 0.563
+  Metal 2 decoders in flight: 281.74 images/s
+  libjpeg-turbo decode: 53.16 ms (1 thread); 154.39 images/s on 10 threads
+  ImageIO decode (hardware key true): 63.71 ms; vs libjpeg-turbo: max 3, 1754849 values (1.763%) differ, PSNR 65.4 dB
+  ImageIO decode (hardware key false): 56.72 ms; vs libjpeg-turbo: max 3, 4240716 values (4.261%) differ, PSNR 61.6 dB
+  VideoToolbox hw decode (BGRA): 48.66 ms (1 thread); 4 threads 63.37 images/s (62.63 ms per call)
+    BGRA vs libjpeg-turbo (includes VideoToolbox's YCbCr to RGB conversion): max 29, 21575580 values (21.68%) differ, PSNR 53.7 dB; attachments ["pixel_format": "BGRA", "transfer_function": "ITU_R_709_2", "ycbcr_matrix": "ITU_R_601_4", "color_primaries": "SMPTE_C", "chroma_location": <null>]
+    YCbCr 444f Y plane vs libjpeg-turbo's Y: max 1, 176722 values (0.5327%) differ, PSNR 70.9 dB; attachments ["pixel_format": "444f", "ycbcr_matrix": "ITU_R_601_4", "color_primaries": "SMPTE_C", "transfer_function": "ITU_R_709_2", "chroma_location": <null>]
+  encode q95 4:4:4: Metal 6.07 ms, byte-identical to libjpeg-turbo
+    libjpeg-turbo encode: 93.17 ms (1 thread)
+
+== zune-jpeg/speed_bench_prog: 7680x4320 (33.2 MP), 1355 KB, 0.042 B/px, 4:4:4, progressive
+  Metal decode: declined: progressive (progressive JPEG)
+  libjpeg-turbo decode: 181.80 ms (1 thread); 44.34 images/s on 10 threads
+  ImageIO decode (hardware key true): 201.58 ms; vs libjpeg-turbo: max 3, 4081308 values (4.1%) differ, PSNR 61.8 dB
+  ImageIO decode (hardware key false): 188.02 ms; vs libjpeg-turbo: max 3, 4081308 values (4.1%) differ, PSNR 61.8 dB
+  VideoToolbox hw decode (BGRA): unavailable (decode failed, status -12910)
+    YCbCr 444f control: unavailable (decode failed, status -12910)
+  encode q95 4:4:4: Metal 6.09 ms, byte-identical to libjpeg-turbo
+    libjpeg-turbo encode: 92.97 ms (1 thread)
+
+== google-venice/venice-2000x3000: 2000x3000 (6.0 MP), 1766 KB, 0.302 B/px, 4:2:0, progressive
+  Metal decode: declined: progressive (progressive JPEG)
+  libjpeg-turbo decode: 56.50 ms (1 thread); 146.64 images/s on 10 threads
+  ImageIO decode (hardware key true): 68.96 ms; vs libjpeg-turbo: max 42, 3734069 values (20.74%) differ, PSNR 50.5 dB
+  ImageIO decode (hardware key false): 66.85 ms; vs libjpeg-turbo: max 42, 3734069 values (20.74%) differ, PSNR 50.5 dB
+  VideoToolbox hw decode (BGRA): unavailable (decode failed, status -12910)
+    YCbCr 420f control: unavailable (decode failed, status -12910)
+  encode q95 4:2:0: Metal 2.04 ms, byte-identical to libjpeg-turbo
+    libjpeg-turbo encode: 16.73 ms (1 thread)
+
+== google-venice/venice-1500x2250: 1500x2250 (3.4 MP), 1053 KB, 0.320 B/px, 4:2:0, progressive
+  Metal decode: declined: progressive (progressive JPEG)
+  libjpeg-turbo decode: 33.16 ms (1 thread); 250.76 images/s on 10 threads
+  ImageIO decode (hardware key true): 40.68 ms; vs libjpeg-turbo: max 34, 2133626 values (21.07%) differ, PSNR 50.6 dB
+  ImageIO decode (hardware key false): 39.47 ms; vs libjpeg-turbo: max 34, 2133626 values (21.07%) differ, PSNR 50.6 dB
+  VideoToolbox hw decode (BGRA): unavailable (decode failed, status -12910)
+    YCbCr 420f control: unavailable (decode failed, status -12910)
+  encode q95 4:2:0: Metal 1.42 ms, byte-identical to libjpeg-turbo
+    libjpeg-turbo encode: 9.60 ms (1 thread)
+
+== google-venice/venice-1000x1500: 1000x1500 (1.5 MP), 496 KB, 0.339 B/px, 4:2:0, progressive
+  Metal decode: declined: progressive (progressive JPEG)
+  libjpeg-turbo decode: 15.41 ms (1 thread); 544.32 images/s on 10 threads
+  ImageIO decode (hardware key true): 19.05 ms; vs libjpeg-turbo: max 44, 996797 values (22.15%) differ, PSNR 49.8 dB
+  ImageIO decode (hardware key false): 18.37 ms; vs libjpeg-turbo: max 44, 996797 values (22.15%) differ, PSNR 49.8 dB
+  VideoToolbox hw decode (BGRA): unavailable (decode failed, status -12910)
+    YCbCr 420f control: unavailable (decode failed, status -12910)
+  encode q95 4:2:0: Metal 0.90 ms, byte-identical to libjpeg-turbo
+    libjpeg-turbo encode: 4.37 ms (1 thread)
+
+== google-venice/venice-500x750: 500x750 (0.4 MP), 134 KB, 0.367 B/px, 4:2:0, progressive
+  Metal decode: declined: progressive (progressive JPEG)
+  libjpeg-turbo decode: 4.08 ms (1 thread); 2057.55 images/s on 10 threads
+  ImageIO decode (hardware key true): 5.15 ms; vs libjpeg-turbo: max 28, 267804 values (23.8%) differ, PSNR 48.8 dB
+  ImageIO decode (hardware key false): 5.04 ms; vs libjpeg-turbo: max 28, 267804 values (23.8%) differ, PSNR 48.8 dB
+  VideoToolbox hw decode (BGRA): unavailable (decode failed, status -12910)
+    YCbCr 420f control: unavailable (decode failed, status -12910)
+  encode q95 4:2:0: Metal 0.57 ms, byte-identical to libjpeg-turbo
+    libjpeg-turbo encode: 1.14 ms (1 thread)
+
+== google-venice/venice-200x300: 200x300 (0.1 MP), 24 KB, 0.414 B/px, 4:2:0, progressive
+  Metal decode: declined: progressive (progressive JPEG)
+  libjpeg-turbo decode: 0.68 ms (1 thread); 12293.87 images/s on 10 threads
+  ImageIO decode (hardware key true): 0.98 ms; vs libjpeg-turbo: max 28, 46085 values (25.6%) differ, PSNR 48.2 dB
+  ImageIO decode (hardware key false): 0.89 ms; vs libjpeg-turbo: max 28, 46085 values (25.6%) differ, PSNR 48.2 dB
+  VideoToolbox hw decode (BGRA): unavailable (decode failed, status -12910)
+    YCbCr 420f control: unavailable (decode failed, status -12910)
+  encode q95 4:2:0: Metal 0.46 ms, byte-identical to libjpeg-turbo
+    libjpeg-turbo encode: 0.18 ms (1 thread)
+
+== google-venice/venice-100x150: 100x150 (0.0 MP), 7 KB, 0.536 B/px, 4:2:0, progressive
+  Metal decode: declined: progressive (progressive JPEG)
+  libjpeg-turbo decode: 0.19 ms (1 thread); 45651.81 images/s on 10 threads
+  ImageIO decode (hardware key true): 0.40 ms; vs libjpeg-turbo: max 24, 12352 values (27.45%) differ, PSNR 47.0 dB
+  ImageIO decode (hardware key false): 0.31 ms; vs libjpeg-turbo: max 24, 12352 values (27.45%) differ, PSNR 47.0 dB
+  VideoToolbox hw decode (BGRA): unavailable (decode failed, status -12910)
+    YCbCr 420f control: unavailable (decode failed, status -12910)
+  encode q95 4:2:0: Metal 0.45 ms, byte-identical to libjpeg-turbo
+    libjpeg-turbo encode: 0.05 ms (1 thread)
+
+== google-venice/venice-50x75: 50x75 (0.0 MP), 3 KB, 0.824 B/px, 4:2:0, progressive
+  Metal decode: declined: progressive (progressive JPEG)
+  libjpeg-turbo decode: 0.04 ms (1 thread); 187919.97 images/s on 10 threads
+  ImageIO decode (hardware key true): 0.22 ms; vs libjpeg-turbo: max 11, 3178 values (28.25%) differ, PSNR 46.7 dB
+  ImageIO decode (hardware key false): 0.12 ms; vs libjpeg-turbo: max 11, 3178 values (28.25%) differ, PSNR 46.7 dB
+  VideoToolbox hw decode (BGRA): unavailable (decode failed, status -12910)
+    YCbCr 420f control: unavailable (decode failed, status -12910)
+  encode q95 4:2:0: Metal 0.44 ms, byte-identical to libjpeg-turbo
+    libjpeg-turbo encode: 0.02 ms (1 thread)
+
+== google-venice/venice-20x30: 20x30 (0.0 MP), 1 KB, 2.348 B/px, 4:2:0, progressive
+  Metal decode: declined: progressive (progressive JPEG)
+  libjpeg-turbo decode: 0.01 ms (1 thread); 633608.85 images/s on 10 threads
+  ImageIO decode (hardware key true): 0.15 ms; vs libjpeg-turbo: max 7, 509 values (28.28%) differ, PSNR 48.1 dB
+  ImageIO decode (hardware key false): 0.07 ms; vs libjpeg-turbo: max 7, 509 values (28.28%) differ, PSNR 48.1 dB
+  VideoToolbox hw decode (BGRA): unavailable (session failed, status -12910)
+    YCbCr 420f control: unavailable (session failed, status -12910)
+  encode q95 4:2:0: Metal 0.45 ms, byte-identical to libjpeg-turbo
+    libjpeg-turbo encode: 0.01 ms (1 thread)
+
+== google-venice/venice-10x15: 10x15 (0.0 MP), 1 KB, 7.493 B/px, 4:2:0, progressive
+  Metal decode: declined: progressive (progressive JPEG)
+  libjpeg-turbo decode: 0.01 ms (1 thread); 871190.97 images/s on 10 threads
+  ImageIO decode (hardware key true): 0.14 ms; vs libjpeg-turbo: max 3, 90 values (20%) differ, PSNR 52.7 dB
+  ImageIO decode (hardware key false): 0.07 ms; vs libjpeg-turbo: max 3, 90 values (20%) differ, PSNR 52.7 dB
+  VideoToolbox hw decode (BGRA): unavailable (session failed, status -12910)
+    YCbCr 420f control: unavailable (session failed, status -12910)
+  encode q95 4:2:0: Metal 0.43 ms, byte-identical to libjpeg-turbo
+    libjpeg-turbo encode: 0.01 ms (1 thread)
+
+== public-bench <public-sets>/jpeg: 34 files
+IIO: ImageIO, hardware key true; IIOsw: key false. VT: VideoToolbox hardware, BGRA (identity includes VT's YCbCr to RGB conversion); VT Y: Y plane of the bi-planar YCbCr control. inv: invalid (a call failed); prog / arith: declined by design (progressive / arithmetic-coded)
+file                                        WxH     MP     KB   B/px samp  exact  Metal ms   GPU ms  ps x2 img/s turbo ms    all/s speedup   IIO ms IIO id  IIOsw ms IIOsw id    VT ms   VTx4/s VT id   VT Y id  enc ms enc   tenc ms
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+420/fireworks                         3136x2352  7.376   1106 0.1536 4:2:0 yes       2.543    2.201   2   675.47   15.602   517.32   6.14x   18.308 max 50    16.009 max 27    11.502   378.45 max 35  max 1     2.577 yes     14.61
+420/flower_foveon                     2268x1512  3.429    527 0.1575 4:2:0 yes       1.805    1.479   2   1014.3    7.661  1023.31   4.24x    7.349 max 29     7.639 max 23     5.676   732.56 max 26  max 1     1.092 yes     7.343
+420/artificial                        3072x2048  6.291    976  0.159 4:2:0 yes       3.876    3.504   2   468.27   12.532   644.43   3.23x   12.904 max 85    13.684 max 48     11.53   417.54 max 77  max 1      1.75 yes    12.106
+420/spider_web                        4256x2848 12.121   1947 0.1645 4:2:0 yes       2.843    2.462   2   562.88   28.168   288.83   9.91x   24.184 max 23    27.289 max 18    15.642   275.13 max 20  max 1     2.793 yes    25.581
+420/hdr                               3072x2048  6.291   1024 0.1668 4:2:0 yes       2.239    1.882   2   785.26   14.327   560.06   6.40x   12.329 max 48    14.368 max 34     9.092   426.55 max 44  max 1       1.7 yes    13.417
+420/vgl_6434_0018                      1240x960   1.19    215 0.1853 4:2:0 yes       1.936    1.625   2   983.98    2.515  3268.38   1.30x    4.016 max 110    2.718 max 83     5.899    945.6 max 110 max 1       0.7 yes     2.303
+420/nightshot_iso_100                 3136x2352  7.376   1365 0.1896 4:2:0 yes        2.34    2.001   2   722.04    18.11   450.25   7.74x   17.766 max 59    18.183 max 36    11.976   367.49 max 47  max 1     1.974 yes    16.051
+444/artificial                        3072x2048  6.291   1282 0.2088 4:4:4 yes       2.529    2.191   2   676.03   17.379   456.91   6.87x   16.285 max 3     18.664 max 3     12.505   298.97 max 141 max 1     2.061 yes    20.391
+444/fireworks                         3136x2352  7.376   1537 0.2135 4:4:4 yes       2.454    2.091   2   683.78   22.831   351.49   9.30x   16.169 max 3     23.036 max 3     15.705   267.99 max 101 max 1     2.233 yes    25.026
+444/flower_foveon                     2268x1512  3.429    716 0.2141 4:4:4 yes       1.723    1.402   2  1016.86   11.132    711.3   6.46x    8.164 max 3     11.063 max 3       8.74   469.62 max 46  max 1     1.219 yes    12.456
+444/hdr                               3072x2048  6.291   1372 0.2235 4:4:4 yes       2.137    1.776   2   789.78   20.962   375.88   9.81x   13.189 max 3     20.469 max 3      15.34   304.12 max 100 max 1     1.991 yes      22.7
+444/spider_web                        4256x2848 12.121   2678 0.2262 4:4:4 yes       2.884     2.48   2   537.61   40.817   198.46  14.15x   24.111 max 3     39.278 max 3     21.103   172.57 max 48  max 1     3.267 yes    43.982
+444/nightshot_iso_100                 3136x2352  7.376   1966 0.2731 4:4:4 yes       2.329    1.935   2   691.87   27.093    295.4  11.63x   15.982 max 3     26.831 max 3     15.866   256.35 max 117 max 1     2.341 yes    28.221
+420/vgl_6548_0026                      1240x960   1.19    320 0.2761 4:2:0 yes       4.636    4.237   2   407.37    2.924  2819.89   0.63x    4.576 max 60     3.502 max 36     4.696   949.07 max 58  max 1     0.743 yes     2.477
+444/vgl_6434_0018                      1240x960   1.19    333 0.2866 4:4:4 yes       2.029    1.702   2    929.5    3.816  2125.26   1.88x    4.798 max 3      4.049 max 3      7.532   852.78 max 251 max 1     0.764 yes     4.056
+444/vgl_6548_0026                      1240x960   1.19    334 0.2881 4:4:4 yes       2.385    2.065   2   778.14    3.372  2421.98   1.41x    4.588 max 3      4.134 max 3      6.159   917.85 max 153 max 1     0.794 yes      3.74
+420/cathedral                         2000x3008  6.016   1976 0.3365 4:2:0 yes       2.352    2.003   2   714.11    21.18   388.59   9.01x   11.686 max 47     21.44 max 45     11.82   352.48 max 46  max 1     1.982 yes    15.504
+420/big_building                      7216x5412 39.053  13231 0.3469 4:2:0 yes       7.135    6.333   2   166.05  135.287    58.98  18.96x   69.115 max 44   142.487 max 38     49.15    74.91 max 44  max 1     9.734 yes   101.661
+420/big_tree                          6088x4550   27.7  10439 0.3859 4:2:0 yes       5.646    4.982   2   216.94  109.463    73.47  19.39x   49.408 max 72   110.011 max 68    39.492    90.16 max 67  max 1     7.212 yes    75.678
+420/nightshot_iso_1600                3136x2352  7.376   2851 0.3959 4:2:0 yes        2.57    2.179   2   630.33   30.531   273.59  11.88x   14.665 max 62    29.874 max 34    14.757   281.56 max 53  max 1     2.315 yes    20.561
+420/vgl_5674_0098                      1240x960   1.19    489 0.4209 4:2:0 yes       4.422    4.007   2   429.15    4.404  1886.65   1.00x     4.79 max 97     4.966 max 62     5.297    979.6 max 88  max 1     0.804 yes     3.192
+420/bridge                            2749x4049 11.131   4649 0.4277 4:2:0 yes       3.256    2.792   2   410.86   47.676    171.7  14.64x   23.022 max 29    48.187 max 22    21.863   203.08 max 80  max 1     3.284 yes    31.798
+420/leaves_iso_200                    3008x2000  6.016   2517 0.4285 4:2:0 yes       2.537    2.149   2   644.95   23.839   349.13   9.40x   13.241 max 32    25.647 max 29    12.299   344.06 max 29  max 1      2.07 yes    16.749
+420/deer                              4043x2641 10.678   4730 0.4537 4:2:0 yes       3.366    2.892   2   412.89   50.736   162.63  15.07x   22.539 max 72    49.171 max 62    20.552   179.13 max 138 max 1     3.354 yes    32.965
+444/cathedral                         2000x3008  6.016   2852 0.4856 4:4:4 yes       2.423     2.02   2   562.07   32.247   257.44  13.31x   12.714 max 3     32.092 max 3     14.333   285.09 max 107 max 1     2.431 yes    27.868
+444/big_building                      7216x5412 39.053  18599 0.4877 4:4:4 yes       8.823    7.856   2   124.12  204.577    38.61  23.19x   76.155 max 3    208.205 max 3     67.335    46.68 max 144 max 1    12.673 yes   176.295
+420/leaves_iso_1600                   3008x2000  6.016   3001 0.5109 4:2:0 yes       2.704    2.298   2   615.41   27.848   298.82  10.30x   13.234 max 33    29.701 max 28    13.657   305.67 max 32  max 1     2.177 yes    18.082
+444/leaves_iso_200                    3008x2000  6.016   3354  0.571 4:4:4 yes       2.603    2.185   2   508.13   33.901   242.87  13.02x   14.036 max 3     35.454 max 3     15.415   271.73 max 68  max 1     2.654 yes    28.255
+444/nightshot_iso_1600                3136x2352  7.376   4482 0.6224 4:4:4 yes       2.796    2.343   2    458.7   48.844   169.13  17.47x   18.567 max 3     46.482 max 3     18.898   196.32 max 112 max 1     3.116 yes    36.865
+444/big_tree                          6088x4550   27.7  16898 0.6247 4:4:4 yes       7.401    6.508   2   148.21  181.401    45.77  24.51x   60.096 max 3    175.518 max 3     55.879    54.82 max 163 max 1    10.028 yes   139.965
+444/vgl_5674_0098                      1240x960   1.19    727 0.6256 4:4:4 yes       2.613    2.281   2   705.58    6.974  1209.37   2.67x    5.456 max 3      7.512 max 3      6.876   719.27 max 255 max 1     0.895 yes     5.558
+444/bridge                            2749x4049 11.131   7290 0.6707 4:4:4 yes       3.692    3.143   2   337.61   77.568   105.72  21.01x   27.303 max 3      74.54 max 3     27.145   127.39 max 83  max 75    4.441 yes    56.478
+444/leaves_iso_1600                   3008x2000  6.016   4253 0.7241 4:4:4 yes       2.785    2.337   2   555.08    42.14   196.35  15.13x    18.81 max 3     42.585 max 3     16.372   232.89 max 74  max 1     2.854 yes    31.367
+444/deer                              4043x2641 10.678   9265 0.8885 4:4:4 yes       4.223    3.621   2   284.08    95.05    86.45  22.51x   35.203 max 3     89.156 max 3     35.115    89.57 max 168 max 133    4.89 yes    64.214
+libjpeg-turbo-published images:
+  420/artificial: Metal 3.876 ms (GPU 3.504), libjpeg-turbo 12.532 ms, sync passes 2, identical true
+  420/nightshot_iso_100: Metal 2.34 ms (GPU 2.001), libjpeg-turbo 18.11 ms, sync passes 2, identical true
+  420/vgl_5674_0098: Metal 4.422 ms (GPU 4.007), libjpeg-turbo 4.404 ms, sync passes 2, identical true
+  420/vgl_6434_0018: Metal 1.936 ms (GPU 1.625), libjpeg-turbo 2.515 ms, sync passes 2, identical true
+  420/vgl_6548_0026: Metal 4.636 ms (GPU 4.237), libjpeg-turbo 2.924 ms, sync passes 2, identical true
+  444/artificial: Metal 2.529 ms (GPU 2.191), libjpeg-turbo 17.379 ms, sync passes 2, identical true
+  444/nightshot_iso_100: Metal 2.329 ms (GPU 1.935), libjpeg-turbo 27.093 ms, sync passes 2, identical true
+  444/vgl_5674_0098: Metal 2.613 ms (GPU 2.281), libjpeg-turbo 6.974 ms, sync passes 2, identical true
+  444/vgl_6434_0018: Metal 2.029 ms (GPU 1.702), libjpeg-turbo 3.816 ms, sync passes 2, identical true
+  444/vgl_6548_0026: Metal 2.385 ms (GPU 2.065), libjpeg-turbo 3.372 ms, sync passes 2, identical true
+Metal decode wall ms = 2.082 + 0.312 x MB coded (n 34, R^2 0.7944)
+Metal decode GPU ms = 1.769 + 0.278 x MB coded (n 34, R^2 0.7653)
+identity imageio_hardware_key: 0/34 identical, 0 errors, max diff 110, PSNR 37.28...69.94 dB over the files that differ
+identity imageio_software_key: 0/34 identical, 0 errors, max diff 83, PSNR 46.45...65.21 dB over the files that differ
+identity metal_decode: 34/34 identical, 0 errors, max diff 0, PSNR n/a (none differ)
+identity metal_encode: 34/34 identical, 0 errors, max diff 0, PSNR n/a (none differ)
+identity videotoolbox_bgra_includes_vt_colour_conversion: 0/34 identical, 0 errors, max diff 255, PSNR 29.22...56.92 dB over the files that differ
+identity videotoolbox_bgra_includes_vt_colour_conversion 4:2:0: 0/17 identical, 0 errors, max diff 138, PSNR 31.93...56.92 dB over the files that differ
+identity videotoolbox_bgra_includes_vt_colour_conversion 4:4:4: 0/17 identical, 0 errors, max diff 255, PSNR 29.22...50.78 dB over the files that differ
+identity videotoolbox_y_plane: 0/34 identical, 0 errors, max diff 133, PSNR 32.06...71.78 dB over the files that differ
+identity videotoolbox_y_plane 4:2:0: 0/17 identical, 0 errors, max diff 1, PSNR 65.1...71.78 dB over the files that differ
+identity videotoolbox_y_plane 4:4:4: 0/17 identical, 0 errors, max diff 133, PSNR 32.06...71.78 dB over the files that differ
+
+== public-bench <public-sets>/zune-jpeg: 8 files
+IIO: ImageIO, hardware key true; IIOsw: key false. VT: VideoToolbox hardware, BGRA (identity includes VT's YCbCr to RGB conversion); VT Y: Y plane of the bi-planar YCbCr control. inv: invalid (a call failed); prog / arith: declined by design (progressive / arithmetic-coded)
+file                                        WxH     MP     KB   B/px samp  exact  Metal ms   GPU ms  ps x2 img/s turbo ms    all/s speedup   IIO ms IIO id  IIOsw ms IIOsw id    VT ms   VTx4/s VT id   VT Y id  enc ms enc   tenc ms
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+speed_bench_hv_subsampling            7680x4320 33.178   1000 0.0309 4:2:0 yes       3.784    3.413   2   406.59    40.17   201.04  10.62x   63.655 max 22    41.572 max 22    33.073    118.0 max 22  max 1     6.262 yes    55.444
+speed_bench_vertical_subsampling      7680x4320 33.178   1091 0.0337 4:4:0 yes       4.052    3.629   2   379.76   45.306   178.79  11.18x   59.677 max 16    46.753 max 16         -        - n/a     n/a           - skip  118.046
+speed_bench_horizontal_subsampling    7680x4320 33.178   1097 0.0339 4:2:2 yes        3.89    3.504   2   388.86   45.972   177.14  11.82x   63.568 max 15    48.252 max 5      37.97     94.0 max 27  max 1     6.216 yes    68.176
+speed_bench_prog_hv_sampling          7680x4320 33.178   1173 0.0362 4:4:0 prog          -        -   -        -  142.734    56.43       -  157.416 max 16   144.509 max 16         -        - n/a     n/a           - skip  118.028
+speed_bench_prog_v_sampling           7680x4320 33.178   1173 0.0362 4:4:0 prog          -        -   -        -  141.793    56.89       -  157.457 max 16   144.352 max 16         -        - n/a     n/a           - skip  118.015
+speed_bench_prog_h_sampling           7680x4320 33.178   1184 0.0365 4:2:2 prog          -        -   -        -  143.732    56.21       -  163.597 max 5    150.038 max 5          -        - n/a     n/a       6.235 yes    68.093
+speed_bench                           7680x4320 33.178   1244 0.0384 4:4:4 yes       4.733    4.273   2   281.74   53.155   154.39  11.23x   63.709 max 3     56.721 max 3     48.664    63.37 max 29  max 1     6.066 yes    93.174
+speed_bench_prog                      7680x4320 33.178   1355 0.0418 4:4:4 prog          -        -   -        -  181.805    44.34       -  201.579 max 3    188.023 max 3          -        - n/a     n/a       6.086 yes    92.968
+Metal decode wall ms = -0.365 + 3.947 x MB coded (n 4, R^2 0.9125)
+Metal decode GPU ms = -0.374 + 3.593 x MB coded (n 4, R^2 0.9094)
+identity imageio_hardware_key: 0/8 identical, 0 errors, max diff 22, PSNR 60.94...65.42 dB over the files that differ
+identity imageio_software_key: 0/8 identical, 0 errors, max diff 22, PSNR 60.72...61.8 dB over the files that differ
+identity metal_decode: 4/4 identical, 0 errors, max diff 0, PSNR n/a (none differ)
+identity metal_encode: 5/5 identical, 0 errors, max diff 0, PSNR n/a (none differ)
+identity videotoolbox_bgra_includes_vt_colour_conversion: 0/3 identical, 0 errors, max diff 29, PSNR 53.71...53.82 dB over the files that differ
+identity videotoolbox_bgra_includes_vt_colour_conversion 4:2:0: 0/1 identical, 0 errors, max diff 22, PSNR 53.82...53.82 dB over the files that differ
+identity videotoolbox_bgra_includes_vt_colour_conversion 4:2:2: 0/1 identical, 0 errors, max diff 27, PSNR 53.76...53.76 dB over the files that differ
+identity videotoolbox_bgra_includes_vt_colour_conversion 4:4:0: 0/0 identical, 0 errors, max diff 0, PSNR n/a (none differ)
+identity videotoolbox_bgra_includes_vt_colour_conversion 4:4:4: 0/1 identical, 0 errors, max diff 29, PSNR 53.71...53.71 dB over the files that differ
+identity videotoolbox_y_plane: 0/3 identical, 0 errors, max diff 1, PSNR 70.87...71.14 dB over the files that differ
+identity videotoolbox_y_plane 4:2:0: 0/1 identical, 0 errors, max diff 1, PSNR 71.14...71.14 dB over the files that differ
+identity videotoolbox_y_plane 4:2:2: 0/1 identical, 0 errors, max diff 1, PSNR 71.13...71.13 dB over the files that differ
+identity videotoolbox_y_plane 4:4:0: 0/0 identical, 0 errors, max diff 0, PSNR n/a (none differ)
+identity videotoolbox_y_plane 4:4:4: 0/1 identical, 0 errors, max diff 1, PSNR 70.87...70.87 dB over the files that differ
+Metal declined by design (progressive or arithmetic): 4
+
+== public-bench <public-sets>/google-venice: 9 files
+IIO: ImageIO, hardware key true; IIOsw: key false. VT: VideoToolbox hardware, BGRA (identity includes VT's YCbCr to RGB conversion); VT Y: Y plane of the bi-planar YCbCr control. inv: invalid (a call failed); prog / arith: declined by design (progressive / arithmetic-coded)
+file                                        WxH     MP     KB   B/px samp  exact  Metal ms   GPU ms  ps x2 img/s turbo ms    all/s speedup   IIO ms IIO id  IIOsw ms IIOsw id    VT ms   VTx4/s VT id   VT Y id  enc ms enc   tenc ms
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+venice-2000x3000                      2000x3000    6.0   1766 0.3015 4:2:0 prog          -        -   -        -   56.504   146.64       -   68.961 max 42    66.854 max 42         -        - n/a     n/a       2.038 yes    16.732
+venice-1500x2250                      1500x2250  3.375   1053 0.3198 4:2:0 prog          -        -   -        -   33.163   250.76       -   40.676 max 34    39.472 max 34         -        - n/a     n/a       1.416 yes     9.603
+venice-1000x1500                      1000x1500    1.5    496  0.339 4:2:0 prog          -        -   -        -   15.406   544.32       -   19.053 max 44    18.366 max 44         -        - n/a     n/a       0.896 yes     4.369
+venice-500x750                          500x750  0.375    134 0.3675 4:2:0 prog          -        -   -        -    4.079  2057.55       -    5.152 max 28     5.035 max 28         -        - n/a     n/a       0.572 yes      1.14
+venice-200x300                          200x300   0.06     24 0.4141 4:2:0 prog          -        -   -        -    0.677 12293.87       -    0.983 max 28     0.887 max 28         -        - n/a     n/a       0.461 yes     0.181
+venice-100x150                          100x150  0.015      7 0.5362 4:2:0 prog          -        -   -        -    0.187 45651.81       -    0.396 max 24     0.311 max 24         -        - n/a     n/a       0.446 yes     0.053
+venice-50x75                              50x75  0.004      3 0.8243 4:2:0 prog          -        -   -        -    0.044 187919.97       -    0.216 max 11     0.122 max 11         -        - n/a     n/a       0.438 yes     0.018
+venice-20x30                              20x30  0.001      1 2.3483 4:2:0 prog          -        -   -        -    0.011 633608.85       -    0.148 max 7      0.074 max 7          -        - n/a     n/a       0.447 yes     0.007
+venice-10x15                              10x15    0.0      1 7.4933 4:2:0 prog          -        -   -        -    0.007 871190.97       -    0.141 max 3      0.066 max 3          -        - n/a     n/a       0.433 yes     0.005
+Metal decode wall ms = ? + ? x MB coded (n 0, R^2 ?)
+Metal decode GPU ms = ? + ? x MB coded (n 0, R^2 ?)
+identity imageio_hardware_key: 0/9 identical, 0 errors, max diff 44, PSNR 46.74...52.68 dB over the files that differ
+identity imageio_software_key: 0/9 identical, 0 errors, max diff 44, PSNR 46.74...52.68 dB over the files that differ
+identity metal_decode: 0/0 identical, 0 errors, max diff 0, PSNR n/a (none differ)
+identity metal_encode: 9/9 identical, 0 errors, max diff 0, PSNR n/a (none differ)
+identity videotoolbox_bgra_includes_vt_colour_conversion: 0/0 identical, 0 errors, max diff 0, PSNR n/a (none differ)
+identity videotoolbox_bgra_includes_vt_colour_conversion 4:2:0: 0/0 identical, 0 errors, max diff 0, PSNR n/a (none differ)
+identity videotoolbox_y_plane: 0/0 identical, 0 errors, max diff 0, PSNR n/a (none differ)
+identity videotoolbox_y_plane 4:2:0: 0/0 identical, 0 errors, max diff 0, PSNR n/a (none differ)
+Metal declined by design (progressive or arithmetic): 9
+
+== public-bench, all 3 directories: 51 files
+libjpeg-turbo-published images:
+  420/artificial: Metal 3.876 ms (GPU 3.504), libjpeg-turbo 12.532 ms, sync passes 2, identical true
+  420/nightshot_iso_100: Metal 2.34 ms (GPU 2.001), libjpeg-turbo 18.11 ms, sync passes 2, identical true
+  420/vgl_5674_0098: Metal 4.422 ms (GPU 4.007), libjpeg-turbo 4.404 ms, sync passes 2, identical true
+  420/vgl_6434_0018: Metal 1.936 ms (GPU 1.625), libjpeg-turbo 2.515 ms, sync passes 2, identical true
+  420/vgl_6548_0026: Metal 4.636 ms (GPU 4.237), libjpeg-turbo 2.924 ms, sync passes 2, identical true
+  444/artificial: Metal 2.529 ms (GPU 2.191), libjpeg-turbo 17.379 ms, sync passes 2, identical true
+  444/nightshot_iso_100: Metal 2.329 ms (GPU 1.935), libjpeg-turbo 27.093 ms, sync passes 2, identical true
+  444/vgl_5674_0098: Metal 2.613 ms (GPU 2.281), libjpeg-turbo 6.974 ms, sync passes 2, identical true
+  444/vgl_6434_0018: Metal 2.029 ms (GPU 1.702), libjpeg-turbo 3.816 ms, sync passes 2, identical true
+  444/vgl_6548_0026: Metal 2.385 ms (GPU 2.065), libjpeg-turbo 3.372 ms, sync passes 2, identical true
+Metal decode wall ms = 2.334 + 0.29 x MB coded (n 38, R^2 0.6933)
+Metal decode GPU ms = 2.013 + 0.258 x MB coded (n 38, R^2 0.655)
+identity imageio_hardware_key: 0/51 identical, 0 errors, max diff 110, PSNR 37.28...69.94 dB over the files that differ
+identity imageio_software_key: 0/51 identical, 0 errors, max diff 83, PSNR 46.45...65.21 dB over the files that differ
+identity metal_decode: 38/38 identical, 0 errors, max diff 0, PSNR n/a (none differ)
+identity metal_encode: 48/48 identical, 0 errors, max diff 0, PSNR n/a (none differ)
+identity videotoolbox_bgra_includes_vt_colour_conversion: 0/37 identical, 0 errors, max diff 255, PSNR 29.22...56.92 dB over the files that differ
+identity videotoolbox_bgra_includes_vt_colour_conversion 4:2:0: 0/18 identical, 0 errors, max diff 138, PSNR 31.93...56.92 dB over the files that differ
+identity videotoolbox_bgra_includes_vt_colour_conversion 4:2:2: 0/1 identical, 0 errors, max diff 27, PSNR 53.76...53.76 dB over the files that differ
+identity videotoolbox_bgra_includes_vt_colour_conversion 4:4:0: 0/0 identical, 0 errors, max diff 0, PSNR n/a (none differ)
+identity videotoolbox_bgra_includes_vt_colour_conversion 4:4:4: 0/18 identical, 0 errors, max diff 255, PSNR 29.22...53.71 dB over the files that differ
+identity videotoolbox_y_plane: 0/37 identical, 0 errors, max diff 133, PSNR 32.06...71.78 dB over the files that differ
+identity videotoolbox_y_plane 4:2:0: 0/18 identical, 0 errors, max diff 1, PSNR 65.1...71.78 dB over the files that differ
+identity videotoolbox_y_plane 4:2:2: 0/1 identical, 0 errors, max diff 1, PSNR 71.13...71.13 dB over the files that differ
+identity videotoolbox_y_plane 4:4:0: 0/0 identical, 0 errors, max diff 0, PSNR n/a (none differ)
+identity videotoolbox_y_plane 4:4:4: 0/18 identical, 0 errors, max diff 133, PSNR 32.06...71.78 dB over the files that differ
+Metal declined by design (progressive or arithmetic): 13
+
+VideoToolbox Y-plane outliers (max diff above 1):
+  jpeg/444/bridge 2749x4049 4:4:4 444f: max 75, 9612714 values (86.36%) differ; plane 0 ["height": 4049, "bytes_per_row": 2752, "width": 2749, "matches_image": true]
+  jpeg/444/deer 4043x2641 4:4:4 444f: max 133, 9470279 values (88.69%) differ; plane 0 ["matches_image": true, "bytes_per_row": 4096, "height": 2641, "width": 4043]
+
+load 2.65 13.91 12.16 -> 3.73 4.32 7.04
+invalid cases (a call failed): none
+skipped files: none
+Metal exactness: decode 38/38 byte-identical (13 declined by design: progressive or arithmetic), encode 48/48 byte-identical (3 skipped)
+wrote ../lunch-out/public.json (51 records)

@@ -1,0 +1,4 @@
+// Signing. DEVELOPMENT_TEAM is deliberately blank in the repo. Create Config/Signing.local.xcconfig (gitignored)
+// containing one line, so it survives `xcodegen generate`:  DEVELOPMENT_TEAM = <your team id>
+DEVELOPMENT_TEAM =
+#include? "Signing.local.xcconfig"

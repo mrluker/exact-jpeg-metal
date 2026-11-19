@@ -1,0 +1,132 @@
+load: { 9.57 10.16 12.44 }
+
+== engine use: AppleJPEGDriver frame counters (core0, core1) around 10 calls on 4032x3024
+  ImageIO default frames +100/+0  34.3 ms/call  CPU/wall 0.62
+  ImageIO kCGImageSourceUseHardwareAcceleration=true frames +100/+0  35.2 ms/call  CPU/wall 0.63
+  ImageIO kCGImageSourceUseHardwareAcceleration=false frames +0/+0  75.0 ms/call  CPU/wall 0.99
+  CoreImage CIImage(data:) render RGBA8 frames +60/+0  11.3 ms/call  CPU/wall 0.28
+  VT decoder requireHW=true BGRA: UsingHardwareAcceleratedVideoDecoder = n/a
+  VTDecompressionSession JPEG BGRA requireHW=true frames +60/+0  14.0 ms/call  CPU/wall 0.04
+  VT decoder requireHW=false BGRA: UsingHardwareAcceleratedVideoDecoder = n/a
+  VTDecompressionSession JPEG BGRA requireHW=false frames +0/+0  32.4 ms/call  CPU/wall 0.02
+  VT decoder requireHW=true 420f: UsingHardwareAcceleratedVideoDecoder = n/a
+  VTDecompressionSession JPEG 420f requireHW=true frames +60/+0  8.6 ms/call  CPU/wall 0.06
+  VT decoder requireHW=false 420f: UsingHardwareAcceleratedVideoDecoder = n/a
+  VTDecompressionSession JPEG 420f requireHW=false frames +0/+0  33.9 ms/call  CPU/wall 0.02
+  VT encoder list: com.apple.videotoolbox.videoencoder.jpeg, hardware ?
+  VT encoder list: com.apple.videotoolbox.videoencoder.jpeg.ajpeg, hardware 1
+  VT encoder requireHW=true: UsingHardwareAcceleratedVideoEncoder = n/a
+  VTCompressionSession JPEG encode 3840x2560 requireHW=true frames +60/+0  29.2 ms/call  CPU/wall 0.03
+  VT encoder requireHW=false: UsingHardwareAcceleratedVideoEncoder = n/a
+  VTCompressionSession JPEG encode 3840x2560 requireHW=false frames +0/+0  112.5 ms/call  CPU/wall 0.01
+  ImageIO encode 3840x2560 q0.9 frames +0/+0  57.0 ms/call  CPU/wall 0.99
+
+== decode exactness vs libjpeg-turbo libjpeg-turbo 3.2.0 (RGB; Y plane where noted)
+dec_64x64_q90_s2.jpg (baseline 2x2,1x1,1x1)
+  ImageIO (hw key)   RGB: max  14, p99.9  9, mean 0.269, differing bytes 17.48%, PSNR 49.91 dB   [bpp 32, alpha 5, order default, cs kCGColorSpaceSRGB]
+  ImageIO (hw false) RGB: max  14, p99.9  9, mean 0.269, differing bytes 17.48%, PSNR 49.91 dB
+  CoreImage          RGB: max   3, p99.9  2, mean 0.259, differing bytes 24.92%, PSNR 53.68 dB
+  VT BGRA hw=true    RGB: max  19, p99.9 14, mean 0.754, differing bytes 38.94%, PSNR 44.20 dB
+  VT 420f hw=true    Y:   max   1, p99.9  1, mean 0.016, differing bytes 1.61%, PSNR 66.06 dB
+  VT BGRA hw=false    RGB: max  14, p99.9  9, mean 0.269, differing bytes 17.48%, PSNR 49.91 dB
+  VT 420f hw=false    Y:   max   1, p99.9  1, mean 0.058, differing bytes 5.81%, PSNR 60.49 dB
+dec_256x256_q90_s2.jpg (baseline 2x2,1x1,1x1)
+  ImageIO (hw key)   RGB: max  48, p99.9 27, mean 2.099, differing bytes 60.37%, PSNR 36.08 dB   [bpp 32, alpha 5, order default, cs kCGColorSpaceSRGB]
+  ImageIO (hw false) RGB: max  41, p99.9 18, mean 0.557, differing bytes 28.13%, PSNR 44.04 dB
+  CoreImage          RGB: max   3, p99.9  2, mean 0.333, differing bytes 32.69%, PSNR 52.75 dB
+  VT BGRA hw=true    RGB: max  47, p99.9 27, mean 2.186, differing bytes 68.20%, PSNR 36.18 dB
+  VT 420f hw=true    Y:   max   1, p99.9  1, mean 0.017, differing bytes 1.68%, PSNR 65.89 dB
+  VT BGRA hw=false    RGB: max  41, p99.9 18, mean 0.557, differing bytes 28.13%, PSNR 44.04 dB
+  VT 420f hw=false    Y:   max   1, p99.9  1, mean 0.055, differing bytes 5.45%, PSNR 60.77 dB
+dec_488x480_q90_s2.jpg (baseline 2x2,1x1,1x1)
+  ImageIO (hw key)   RGB: max  52, p99.9 25, mean 1.858, differing bytes 56.13%, PSNR 36.81 dB   [bpp 32, alpha 5, order default, cs kCGColorSpaceSRGB]
+  ImageIO (hw false) RGB: max  52, p99.9 13, mean 0.514, differing bytes 29.34%, PSNR 45.64 dB
+  CoreImage          RGB: max   3, p99.9  2, mean 0.345, differing bytes 33.89%, PSNR 52.61 dB
+  VT BGRA hw=true    RGB: max  46, p99.9 25, mean 1.970, differing bytes 64.88%, PSNR 36.80 dB
+  VT 420f hw=true    Y:   max   1, p99.9  1, mean 0.016, differing bytes 1.59%, PSNR 66.13 dB
+  VT BGRA hw=false    RGB: max  52, p99.9 13, mean 0.514, differing bytes 29.34%, PSNR 45.64 dB
+  VT 420f hw=false    Y:   max   1, p99.9  1, mean 0.050, differing bytes 5.03%, PSNR 61.12 dB
+dec_640x480_q90_s2.jpg (baseline 2x2,1x1,1x1)
+  ImageIO (hw key)   RGB: max  42, p99.9 25, mean 1.722, differing bytes 52.97%, PSNR 37.29 dB   [bpp 32, alpha 5, order default, cs kCGColorSpaceSRGB]
+  ImageIO (hw false) RGB: max  42, p99.9 16, mean 0.483, differing bytes 28.24%, PSNR 45.81 dB
+  CoreImage          RGB: max   3, p99.9  2, mean 0.340, differing bytes 33.38%, PSNR 52.67 dB
+  VT BGRA hw=true    RGB: max  40, p99.9 25, mean 1.839, differing bytes 62.39%, PSNR 37.27 dB
+  VT 420f hw=true    Y:   max   1, p99.9  1, mean 0.016, differing bytes 1.65%, PSNR 65.96 dB
+  VT BGRA hw=false    RGB: max  42, p99.9 16, mean 0.483, differing bytes 28.24%, PSNR 45.81 dB
+  VT 420f hw=false    Y:   max   1, p99.9  1, mean 0.052, differing bytes 5.22%, PSNR 60.95 dB
+dec_1024x768_q90_s2.jpg (baseline 2x2,1x1,1x1)
+  ImageIO (hw key)   RGB: max  51, p99.9 25, mean 1.368, differing bytes 43.05%, PSNR 38.13 dB   [bpp 32, alpha 5, order default, cs kCGColorSpaceSRGB]
+  ImageIO (hw false) RGB: max  46, p99.9 16, mean 0.459, differing bytes 27.04%, PSNR 45.85 dB
+  CoreImage          RGB: max   3, p99.9  2, mean 0.323, differing bytes 31.76%, PSNR 52.88 dB
+  VT BGRA hw=true    RGB: max  51, p99.9 25, mean 1.513, differing bytes 54.99%, PSNR 38.08 dB
+  VT 420f hw=true    Y:   max   1, p99.9  1, mean 0.016, differing bytes 1.58%, PSNR 66.15 dB
+  VT BGRA hw=false    RGB: max  46, p99.9 16, mean 0.459, differing bytes 27.04%, PSNR 45.85 dB
+  VT 420f hw=false    Y:   max   1, p99.9  1, mean 0.050, differing bytes 5.04%, PSNR 61.10 dB
+dec_1600x1200_q90_s2.jpg (baseline 2x2,1x1,1x1)
+  ImageIO (hw key)   RGB: max  49, p99.9 22, mean 1.005, differing bytes 34.87%, PSNR 39.87 dB   [bpp 32, alpha 5, order default, cs kCGColorSpaceSRGB]
+  ImageIO (hw false) RGB: max  48, p99.9 16, mean 0.385, differing bytes 23.82%, PSNR 46.70 dB
+  CoreImage          RGB: max   3, p99.9  2, mean 0.310, differing bytes 30.49%, PSNR 53.07 dB
+  VT BGRA hw=true    RGB: max  43, p99.9 22, mean 1.146, differing bytes 46.49%, PSNR 39.78 dB
+  VT 420f hw=true    Y:   max   1, p99.9  1, mean 0.016, differing bytes 1.55%, PSNR 66.21 dB
+  VT BGRA hw=false    RGB: max  48, p99.9 16, mean 0.385, differing bytes 23.82%, PSNR 46.70 dB
+  VT 420f hw=false    Y:   max   1, p99.9  1, mean 0.050, differing bytes 4.99%, PSNR 61.15 dB
+dec_2048x1536_q90_s2.jpg (baseline 2x2,1x1,1x1)
+  ImageIO (hw key)   RGB: max  47, p99.9 21, mean 0.802, differing bytes 28.74%, PSNR 40.84 dB   [bpp 32, alpha 5, order default, cs kCGColorSpaceSRGB]
+  ImageIO (hw false) RGB: max  44, p99.9 11, mean 0.327, differing bytes 22.42%, PSNR 48.35 dB
+  CoreImage          RGB: max   4, p99.9  2, mean 0.310, differing bytes 30.48%, PSNR 53.09 dB
+  VT BGRA hw=true    RGB: max  43, p99.9 21, mean 0.942, differing bytes 40.78%, PSNR 40.74 dB
+  VT 420f hw=true    Y:   max   1, p99.9  1, mean 0.015, differing bytes 1.54%, PSNR 66.25 dB
+  VT BGRA hw=false    RGB: max  44, p99.9 11, mean 0.327, differing bytes 22.42%, PSNR 48.35 dB
+  VT 420f hw=false    Y:   max   1, p99.9  1, mean 0.049, differing bytes 4.95%, PSNR 61.19 dB
+dec_3264x2448_q90_s2.jpg (baseline 2x2,1x1,1x1)
+  ImageIO (hw key)   RGB: max  50, p99.9 20, mean 0.546, differing bytes 21.42%, PSNR 42.83 dB   [bpp 32, alpha 5, order default, cs kCGColorSpaceSRGB]
+  ImageIO (hw false) RGB: max  46, p99.9 10, mean 0.262, differing bytes 18.85%, PSNR 49.60 dB
+  CoreImage          RGB: max   4, p99.9  2, mean 0.293, differing bytes 28.90%, PSNR 53.34 dB
+  VT BGRA hw=true    RGB: max  46, p99.9 19, mean 0.694, differing bytes 34.35%, PSNR 42.63 dB
+  VT 420f hw=true    Y:   max   1, p99.9  1, mean 0.015, differing bytes 1.54%, PSNR 66.26 dB
+  VT BGRA hw=false    RGB: max  46, p99.9 10, mean 0.262, differing bytes 18.85%, PSNR 49.60 dB
+  VT 420f hw=false    Y:   max   1, p99.9  1, mean 0.049, differing bytes 4.88%, PSNR 61.24 dB
+dec_4032x3024_q90_s2.jpg (baseline 2x2,1x1,1x1)
+  ImageIO (hw key)   RGB: max  49, p99.9 20, mean 0.473, differing bytes 18.22%, PSNR 43.11 dB   [bpp 32, alpha 5, order default, cs kCGColorSpaceSRGB]
+  ImageIO (hw false) RGB: max  48, p99.9  9, mean 0.232, differing bytes 17.52%, PSNR 50.61 dB
+  CoreImage          RGB: max   4, p99.9  2, mean 0.277, differing bytes 27.34%, PSNR 53.59 dB
+  VT BGRA hw=true    RGB: max  49, p99.9 20, mean 0.627, differing bytes 32.14%, PSNR 42.89 dB
+  VT 420f hw=true    Y:   max   1, p99.9  1, mean 0.015, differing bytes 1.54%, PSNR 66.27 dB
+  VT BGRA hw=false    RGB: max  48, p99.9  9, mean 0.232, differing bytes 17.52%, PSNR 50.61 dB
+  VT 420f hw=false    Y:   max   1, p99.9  1, mean 0.049, differing bytes 4.87%, PSNR 61.25 dB
+dec_6720x4480_q90_s2.jpg (baseline 2x2,1x1,1x1)
+  ImageIO (hw key)   RGB: max  51, p99.9 16, mean 0.303, differing bytes 12.56%, PSNR 45.60 dB   [bpp 32, alpha 5, order default, cs kCGColorSpaceSRGB]
+  ImageIO (hw false) RGB: max  47, p99.9  7, mean 0.214, differing bytes 17.36%, PSNR 51.76 dB
+  CoreImage          RGB: max   4, p99.9  2, mean 0.216, differing bytes 21.35%, PSNR 54.70 dB
+  VT BGRA hw=true    RGB: max  48, p99.9 16, mean 0.498, differing bytes 30.90%, PSNR 45.13 dB
+  VT 420f hw=true    Y:   max   1, p99.9  1, mean 0.014, differing bytes 1.44%, PSNR 66.55 dB
+  VT BGRA hw=false    RGB: max  47, p99.9  7, mean 0.214, differing bytes 17.36%, PSNR 51.76 dB
+  VT 420f hw=false    Y:   max   1, p99.9  1, mean 0.045, differing bytes 4.51%, PSNR 61.59 dB
+dec_6720x4480_q95_s0.jpg (baseline 1x1,1x1,1x1)
+  ImageIO (hw key)   RGB: max   3, p99.9  1, mean 0.052, differing bytes 5.11%, PSNR 60.84 dB   [bpp 32, alpha 5, order default, cs kCGColorSpaceSRGB]
+  ImageIO (hw false) RGB: max   3, p99.9  2, mean 0.155, differing bytes 15.11%, PSNR 55.98 dB
+  CoreImage          RGB: max   4, p99.9  2, mean 0.180, differing bytes 17.83%, PSNR 55.48 dB
+  VT BGRA hw=true    RGB: max  80, p99.9 31, mean 0.589, differing bytes 30.37%, PSNR 40.98 dB
+  VT 420f hw=true    Y:   max   1, p99.9  1, mean 0.017, differing bytes 1.72%, PSNR 65.79 dB
+  VT BGRA hw=false    RGB: max   3, p99.9  2, mean 0.155, differing bytes 15.11%, PSNR 55.98 dB
+  VT 420f hw=false    Y:   max   1, p99.9  1, mean 0.057, differing bytes 5.67%, PSNR 60.60 dB
+dec_6720x4480_q95_s1.jpg (baseline 2x1,1x1,1x1)
+  ImageIO (hw key)   RGB: max  29, p99.9 12, mean 0.149, differing bytes 8.07%, PSNR 49.72 dB   [bpp 32, alpha 5, order default, cs kCGColorSpaceSRGB]
+  ImageIO (hw false) RGB: max   5, p99.9  2, mean 0.177, differing bytes 16.54%, PSNR 55.11 dB
+  CoreImage          RGB: max   4, p99.9  2, mean 0.201, differing bytes 19.89%, PSNR 55.00 dB
+  VT BGRA hw=true    RGB: max  75, p99.9 27, mean 0.542, differing bytes 30.13%, PSNR 42.25 dB
+  VT 420f hw=true    Y:   max   1, p99.9  1, mean 0.017, differing bytes 1.72%, PSNR 65.79 dB
+  VT BGRA hw=false    RGB: max   5, p99.9  2, mean 0.177, differing bytes 16.54%, PSNR 55.11 dB
+  VT 420f hw=false    Y:   max   1, p99.9  1, mean 0.057, differing bytes 5.67%, PSNR 60.60 dB
+
+== encode: VT JPEG vs libjpeg-turbo, 1600x1200 synthetic (seed 21)
+  VT q0.50 hw=true (UsingHW n/a): 189203 bytes, baseline 2x2,1x1,1x1, PSNR 27.53 dB, identical to any turbo q1-100 4:2:0/4:4:4: no; turbo q51 same sampling 188312 bytes PSNR 30.86 dB
+  VT q0.50 hw=false (UsingHW n/a): 306016 bytes, baseline 2x2,1x1,1x1, PSNR 33.46 dB, identical to any turbo q1-100 4:2:0/4:4:4: no; turbo q79 same sampling 308122 bytes PSNR 33.37 dB
+  VT q0.75 hw=true (UsingHW n/a): 440780 bytes, baseline 2x2,1x1,1x1, PSNR 28.86 dB, identical to any turbo q1-100 4:2:0/4:4:4: no; turbo q88 same sampling 434618 bytes PSNR 34.89 dB
+  VT q0.75 hw=false (UsingHW n/a): 580513 bytes, baseline 2x1,1x1,1x1, PSNR 37.79 dB, identical to any turbo q1-100 4:2:0/4:4:4: no; turbo q93 same sampling 578907 bytes PSNR 35.88 dB
+  VT q0.90 hw=true (UsingHW n/a): 760987 bytes, baseline 2x2,1x1,1x1, PSNR 29.17 dB, identical to any turbo q1-100 4:2:0/4:4:4: no; turbo q96 same sampling 791670 bytes PSNR 36.43 dB
+  VT q0.90 hw=false (UsingHW n/a): 745591 bytes, baseline 2x1,1x1,1x1, PSNR 38.60 dB, identical to any turbo q1-100 4:2:0/4:4:4: no; turbo q96 same sampling 791670 bytes PSNR 36.43 dB
+  VT q0.95 hw=true (UsingHW n/a): 760987 bytes, baseline 2x2,1x1,1x1, PSNR 29.17 dB, identical to any turbo q1-100 4:2:0/4:4:4: no; turbo q96 same sampling 791670 bytes PSNR 36.43 dB
+  VT q0.95 hw=false (UsingHW n/a): 810111 bytes, baseline 2x1,1x1,1x1, PSNR 38.80 dB, identical to any turbo q1-100 4:2:0/4:4:4: no; turbo q96 same sampling 791670 bytes PSNR 36.43 dB
+  ImageIO q0.9: 710298 bytes, baseline 2x2,1x1,1x1, PSNR 36.31 dB, identical to any turbo q: no; turbo q95 697818 bytes PSNR 36.23 dB
+load: { 9.04 10.00 12.33 }
