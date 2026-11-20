@@ -1,5 +1,24 @@
 # Changes
 
+## 2026-11-19: `ejm decode-split`
+
+New command `ejm decode-split [seconds] [rounds] [--quick] [--out <path>]` (CLI.md): decode throughput with 2 GPU
+decoder threads plus N libjpeg-turbo threads on one shared queue, against GPU only (2 in flight) and libjpeg-turbo
+on all cores, every bar from one run, as the sister PC library measured it (1.46x at 2 MP, 1.09x at 6 MP, 0.97x and
+0.95x at 12 and 24 MP, 1.06x on 30 MP photos there). Sizes 2, 6, 12, 24 and 30 MP at q90 4:2:0 plus 30 MP q95
+4:2:2, 16 distinct synthetic JPEGs per size, N = cores - 1 and cores - 2, medians over 3 interleaved rounds. Every
+decoded image is compared byte for byte with libjpeg-turbo's; a mismatch exits 1.
+
+Fairness fixes after review: the rate counts only decodes completed by the deadline, over the window length (no
+tail); the gain always uses the split declared in advance, 2 GPU threads + (cores - 1) libjpeg-turbo threads, with
+cores - 2 reported but never chosen; 16 JPEGs per size; `charts` refuses a record with `passed` not true or a
+missing variant, and picks the latest record per chip and GPU core count by its `measured` time. Writes
+`results/bench/<chip>-gpu<cores>-<date>-<HHmm>-decode-split.json`. `ejm charts` draws `docs/images/decode-split.svg`
+from the latest non-quick record per chip (skipped with a message when there is none yet) and no longer reads
+`*-decode-split.json` files as `bench-json` runs. A `--quick` smoke run on an M1 Max after the fairness fixes (not results):
+8260/8260 decodes identical, gains (2 GPU + 9 libjpeg-turbo threads) 1.27x, 1.52x, 1.38x, 1.08x, 1.08x and 1.10x
+from 2 MP to 30 MP 4:2:2. No full run is recorded yet.
+
 ## 2026-11-19: launch README
 
 The README is rewritten for the public repository, in the layout of exact-gpu-jpeg's: the identity claim, the

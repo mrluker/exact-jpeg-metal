@@ -20,6 +20,7 @@ import Metal
 //   ejm selfcheck              run the library's startup self-check: pass or fail, and the time taken
 //   ejm profile                the DeviceProfile: layer 1, then the routing measurement (DeviceProfileCmd.swift)
 //   ejm inflight [s] [r] [t,..] throughput against images in flight, 1-8 threads (InFlight.swift)
+//   ejm decode-split [s] [r] [--quick] [--out path]  2 GPU decoders plus libjpeg-turbo threads on one queue (DecodeSplit.swift)
 //   ejm mixed [prefix ...]     mixed-size sequences through one Decoder and one Encoder (Mixed.swift)
 //   ejm encode-retry           fresh encoders on images that need a second attempt (Mixed.swift)
 //   ejm packed-check [name ...] [trials]  the opt-in packed path: vectors, forged index words, corpus (PackedCheck.swift)
@@ -153,6 +154,7 @@ case "profile": runProfileCommand(args.count > 2 ? args[2] : "")
 case "profile-child": exit(runProfileChild(args.count > 2 ? args[2] : "") ? 0 : 1)
 case "inflight": runInFlight(seconds: args.count > 2 ? Double(args[2])! : 2, rounds: args.count > 3 ? Int(args[3])! : 3,
                              threads: args.count > 4 ? args[4].split(separator: ",").map { Int($0)! } : [1, 2, 3, 4, 6, 8])
+case "decode-split": exit(runDecodeSplit(Array(args.dropFirst(2))))
 case "quick": runQuick(iters: args.count > 2 ? Int(args[2])! : 30)
 case "decode": runDecodeBench(iters: args.count > 2 ? Int(args[2])! : 20)
 case "write-synth":

@@ -1,0 +1,957 @@
+{
+  "conditions" : {
+    "chip" : "Apple M1 Max",
+    "corpus" : "Synth.make camera-like images, seeds 300 + k, 16 per size, encoded by libjpeg-turbo",
+    "cpu_cores" : 10,
+    "cpu_efficiency_cores" : 2,
+    "cpu_performance_cores" : 8,
+    "date" : "2026-11-19",
+    "device_profile" : {
+      "cold_start_ms" : 7.1210861206054688,
+      "cpu_cold_measured" : false,
+      "cpu_cold_ratio" : 4,
+      "cpu_cores" : 8,
+      "cpu_cores_include_efficiency" : false,
+      "cpu_proxy_ms" : 0,
+      "cpu_ramp_ms" : 18,
+      "decode_fixed_ms" : 6.6766446448992474,
+      "decode_ms_per_mp" : 1.8954524240457549,
+      "decode_ramp_ms" : 5.4636574073265116,
+      "decode_warm_ms_per_mp" : 0.35355339059327379,
+      "deferred_busy" : "",
+      "encode_fixed_ms" : 2.0170102523943845,
+      "encode_ms_per_mp" : 0.59682214882481033,
+      "encode_ramp_ms" : 0.71167681988733378,
+      "encode_warm_ms_per_mp" : 0.39597979746446665,
+      "encoder_path" : "fused",
+      "family" : "apple7",
+      "gpu" : "Apple M1 Max",
+      "gpu_cores" : 32,
+      "gpu_cores_estimated" : false,
+      "idle_sample" : "GPU 0%\/0%, load 4.07 of 10 cores",
+      "max_gpu_bytes" : 27831394304,
+      "measured" : true,
+      "measurement_gpu_ms" : 50.946250008564675,
+      "measurement_ms" : 4039.4599437713623,
+      "routing_source" : "cache",
+      "suggested_in_flight" : 3,
+      "sustained_decode_fixed_ms" : 1.3300000000000001,
+      "sustained_decode_ms_per_mp" : 0.35355339059327379,
+      "sustained_encode_fixed_ms" : 0.28999999999999998,
+      "sustained_encode_ms_per_mp" : 0.39597979746446665,
+      "sustained_measured" : false,
+      "working_set_bytes" : 55662788608
+    },
+    "gpu" : "Apple M1 Max",
+    "gpu_cores" : 32,
+    "load_average" : "1.51 1.81 2.52",
+    "load_average_after" : "14.04 9.33 5.75",
+    "load_average_before" : "1.51 1.81 2.52",
+    "macos" : "27.2.0",
+    "memory_gb" : 64,
+    "model" : "MacBookPro18,2",
+    "model_name" : "MacBook Pro",
+    "power" : "AC Power",
+    "reference" : "libjpeg-turbo 3.2.0",
+    "thermal_state_after" : "nominal",
+    "thermal_state_before" : "nominal"
+  },
+  "cpu" : {
+    "cores" : 10,
+    "efficiency" : 2,
+    "performance" : 8
+  },
+  "elapsed_seconds" : 270.334,
+  "exact" : {
+    "failed" : 0,
+    "identical" : 111158,
+    "images" : 111158,
+    "mismatched" : 0
+  },
+  "gpu" : {
+    "chip" : "Apple M1 Max",
+    "cores" : 32
+  },
+  "kind" : "decode-split",
+  "measured" : "2026-11-19T18:22:00-06:00",
+  "method" : {
+    "exactness" : "every decoded image, warm-ups included, compared byte for byte with libjpeg-turbo's decode of that JPEG inside the timed loop",
+    "gain" : "split-(cores - 1), declared in advance, \/ max(gpu, cpu), from the medians of the same run; split-(cores - 2) is reported alongside and never used for the gain",
+    "gpu_threads" : 2,
+    "headline_split" : "split-9",
+    "pool_per_size" : 16,
+    "rate" : "decodes that completed by the deadline (a GPU decode when decode returned, a libjpeg-turbo decode when tr_decode returned) divided by the window length (deadline minus start); decodes finishing after the deadline are not counted and the wait for them is not in the denominator (they are still checked, and every thread is joined before the next variant); median over rounds, variant order rotated each round",
+    "reference" : "libjpeg-turbo TurboRef tr_decode (islow, fancy upsampling, RGB)",
+    "rounds" : 3,
+    "seconds_per_variant" : 2,
+    "variants" : "gpu: 2 GPU decoder threads; cpu: libjpeg-turbo on all 10 cores, one image per thread; split-N: 2 GPU decoder threads plus N libjpeg-turbo threads; all threads of a variant pull from one shared queue over the size's pool, round-robin",
+    "warmup_seconds" : 1
+  },
+  "passed" : true,
+  "quick" : false,
+  "sizes" : [
+    {
+      "best_single" : "cpu",
+      "exact" : {
+        "failed" : 0,
+        "identical" : 55193,
+        "images" : 55193,
+        "mismatched" : 0
+      },
+      "gain" : 1.2949999999999999,
+      "gain_split" : "split-9",
+      "height" : 1200,
+      "label" : "1600x1200 q90 4:2:0",
+      "mean_bytes" : 429879,
+      "megapixels" : 1.9199999999999999,
+      "pool" : 16,
+      "quality" : 90,
+      "subsampling" : "4:2:0",
+      "variants" : [
+        {
+          "cpu_threads" : 0,
+          "gpu_threads" : 2,
+          "images_per_s" : 719.5,
+          "name" : "gpu",
+          "rounds" : [
+            {
+              "cpu_images" : 0,
+              "gpu_images" : 1437,
+              "images_per_s" : 718.5,
+              "load_average" : "1.51 1.81 2.52",
+              "round" : 1
+            },
+            {
+              "cpu_images" : 0,
+              "gpu_images" : 1451,
+              "images_per_s" : 725.5,
+              "load_average" : "3.78 2.30 2.69",
+              "round" : 2
+            },
+            {
+              "cpu_images" : 0,
+              "gpu_images" : 1439,
+              "images_per_s" : 719.5,
+              "load_average" : "4.86 2.62 2.79",
+              "round" : 3
+            }
+          ]
+        },
+        {
+          "cpu_threads" : 10,
+          "gpu_threads" : 0,
+          "images_per_s" : 1547,
+          "name" : "cpu",
+          "rounds" : [
+            {
+              "cpu_images" : 3064,
+              "gpu_images" : 0,
+              "images_per_s" : 1532,
+              "load_average" : "1.51 1.81 2.52",
+              "round" : 1
+            },
+            {
+              "cpu_images" : 3095,
+              "gpu_images" : 0,
+              "images_per_s" : 1547.5,
+              "load_average" : "3.78 2.30 2.69",
+              "round" : 2
+            },
+            {
+              "cpu_images" : 3094,
+              "gpu_images" : 0,
+              "images_per_s" : 1547,
+              "load_average" : "4.86 2.62 2.79",
+              "round" : 3
+            }
+          ]
+        },
+        {
+          "cpu_images" : 2968,
+          "cpu_threads" : 9,
+          "gain_vs_best_single" : 1.2949999999999999,
+          "gpu_images" : 1038,
+          "gpu_threads" : 2,
+          "images_per_s" : 2003,
+          "name" : "split-9",
+          "rounds" : [
+            {
+              "cpu_images" : 2968,
+              "gpu_images" : 1038,
+              "images_per_s" : 2003,
+              "load_average" : "1.51 1.81 2.52",
+              "round" : 1
+            },
+            {
+              "cpu_images" : 2927,
+              "gpu_images" : 854,
+              "images_per_s" : 1890.5,
+              "load_average" : "3.78 2.30 2.69",
+              "round" : 2
+            },
+            {
+              "cpu_images" : 2979,
+              "gpu_images" : 1050,
+              "images_per_s" : 2014.5,
+              "load_average" : "4.86 2.62 2.79",
+              "round" : 3
+            }
+          ]
+        },
+        {
+          "cpu_images" : 2828,
+          "cpu_threads" : 8,
+          "gain_vs_best_single" : 1.286,
+          "gpu_images" : 1150,
+          "gpu_threads" : 2,
+          "images_per_s" : 1989,
+          "name" : "split-8",
+          "rounds" : [
+            {
+              "cpu_images" : 2578,
+              "gpu_images" : 675,
+              "images_per_s" : 1626.5,
+              "load_average" : "1.51 1.81 2.52",
+              "round" : 1
+            },
+            {
+              "cpu_images" : 2828,
+              "gpu_images" : 1150,
+              "images_per_s" : 1989,
+              "load_average" : "3.78 2.30 2.69",
+              "round" : 2
+            },
+            {
+              "cpu_images" : 2822,
+              "gpu_images" : 1165,
+              "images_per_s" : 1993.5,
+              "load_average" : "4.86 2.62 2.79",
+              "round" : 3
+            }
+          ]
+        }
+      ],
+      "width" : 1600
+    },
+    {
+      "best_single" : "cpu",
+      "exact" : {
+        "failed" : 0,
+        "identical" : 23347,
+        "images" : 23347,
+        "mismatched" : 0
+      },
+      "gain" : 1.748,
+      "gain_split" : "split-9",
+      "height" : 2000,
+      "label" : "3000x2000 q90 4:2:0",
+      "mean_bytes" : 1248895,
+      "megapixels" : 6,
+      "pool" : 16,
+      "quality" : 90,
+      "subsampling" : "4:2:0",
+      "variants" : [
+        {
+          "cpu_threads" : 0,
+          "gpu_threads" : 2,
+          "images_per_s" : 446.5,
+          "name" : "gpu",
+          "rounds" : [
+            {
+              "cpu_images" : 0,
+              "gpu_images" : 888,
+              "images_per_s" : 444,
+              "load_average" : "6.66 3.13 2.97",
+              "round" : 1
+            },
+            {
+              "cpu_images" : 0,
+              "gpu_images" : 893,
+              "images_per_s" : 446.5,
+              "load_average" : "8.28 3.60 3.14",
+              "round" : 2
+            },
+            {
+              "cpu_images" : 0,
+              "gpu_images" : 1027,
+              "images_per_s" : 513.5,
+              "load_average" : "10.85 4.32 3.40",
+              "round" : 3
+            }
+          ]
+        },
+        {
+          "cpu_threads" : 10,
+          "gpu_threads" : 0,
+          "images_per_s" : 466,
+          "name" : "cpu",
+          "rounds" : [
+            {
+              "cpu_images" : 1004,
+              "gpu_images" : 0,
+              "images_per_s" : 502,
+              "load_average" : "6.66 3.13 2.97",
+              "round" : 1
+            },
+            {
+              "cpu_images" : 932,
+              "gpu_images" : 0,
+              "images_per_s" : 466,
+              "load_average" : "8.28 3.60 3.14",
+              "round" : 2
+            },
+            {
+              "cpu_images" : 929,
+              "gpu_images" : 0,
+              "images_per_s" : 464.5,
+              "load_average" : "10.85 4.32 3.40",
+              "round" : 3
+            }
+          ]
+        },
+        {
+          "cpu_images" : 966,
+          "cpu_threads" : 9,
+          "gain_vs_best_single" : 1.748,
+          "gpu_images" : 663,
+          "gpu_threads" : 2,
+          "images_per_s" : 814.5,
+          "name" : "split-9",
+          "rounds" : [
+            {
+              "cpu_images" : 953,
+              "gpu_images" : 689,
+              "images_per_s" : 821,
+              "load_average" : "6.66 3.13 2.97",
+              "round" : 1
+            },
+            {
+              "cpu_images" : 966,
+              "gpu_images" : 663,
+              "images_per_s" : 814.5,
+              "load_average" : "8.28 3.60 3.14",
+              "round" : 2
+            },
+            {
+              "cpu_images" : 958,
+              "gpu_images" : 638,
+              "images_per_s" : 798,
+              "load_average" : "10.85 4.32 3.40",
+              "round" : 3
+            }
+          ]
+        },
+        {
+          "cpu_images" : 916,
+          "cpu_threads" : 8,
+          "gain_vs_best_single" : 1.754,
+          "gpu_images" : 719,
+          "gpu_threads" : 2,
+          "images_per_s" : 817.5,
+          "name" : "split-8",
+          "rounds" : [
+            {
+              "cpu_images" : 916,
+              "gpu_images" : 719,
+              "images_per_s" : 817.5,
+              "load_average" : "6.66 3.13 2.97",
+              "round" : 1
+            },
+            {
+              "cpu_images" : 913,
+              "gpu_images" : 740,
+              "images_per_s" : 826.5,
+              "load_average" : "8.28 3.60 3.14",
+              "round" : 2
+            },
+            {
+              "cpu_images" : 878,
+              "gpu_images" : 740,
+              "images_per_s" : 809,
+              "load_average" : "10.85 4.32 3.40",
+              "round" : 3
+            }
+          ]
+        }
+      ],
+      "width" : 3000
+    },
+    {
+      "best_single" : "gpu",
+      "exact" : {
+        "failed" : 0,
+        "identical" : 12981,
+        "images" : 12981,
+        "mismatched" : 0
+      },
+      "gain" : 1.256,
+      "gain_split" : "split-9",
+      "height" : 3024,
+      "label" : "4032x3024 q90 4:2:0",
+      "mean_bytes" : 2306218,
+      "megapixels" : 12.193,
+      "pool" : 16,
+      "quality" : 90,
+      "subsampling" : "4:2:0",
+      "variants" : [
+        {
+          "cpu_threads" : 0,
+          "gpu_threads" : 2,
+          "images_per_s" : 365.5,
+          "name" : "gpu",
+          "rounds" : [
+            {
+              "cpu_images" : 0,
+              "gpu_images" : 738,
+              "images_per_s" : 369,
+              "load_average" : "11.48 4.88 3.62",
+              "round" : 1
+            },
+            {
+              "cpu_images" : 0,
+              "gpu_images" : 731,
+              "images_per_s" : 365.5,
+              "load_average" : "11.38 5.06 3.70",
+              "round" : 2
+            },
+            {
+              "cpu_images" : 0,
+              "gpu_images" : 729,
+              "images_per_s" : 364.5,
+              "load_average" : "11.82 5.48 3.88",
+              "round" : 3
+            }
+          ]
+        },
+        {
+          "cpu_threads" : 10,
+          "gpu_threads" : 0,
+          "images_per_s" : 242.5,
+          "name" : "cpu",
+          "rounds" : [
+            {
+              "cpu_images" : 403,
+              "gpu_images" : 0,
+              "images_per_s" : 201.5,
+              "load_average" : "11.48 4.88 3.62",
+              "round" : 1
+            },
+            {
+              "cpu_images" : 489,
+              "gpu_images" : 0,
+              "images_per_s" : 244.5,
+              "load_average" : "11.38 5.06 3.70",
+              "round" : 2
+            },
+            {
+              "cpu_images" : 485,
+              "gpu_images" : 0,
+              "images_per_s" : 242.5,
+              "load_average" : "11.82 5.48 3.88",
+              "round" : 3
+            }
+          ]
+        },
+        {
+          "cpu_images" : 442,
+          "cpu_threads" : 9,
+          "gain_vs_best_single" : 1.256,
+          "gpu_images" : 476,
+          "gpu_threads" : 2,
+          "images_per_s" : 459,
+          "name" : "split-9",
+          "rounds" : [
+            {
+              "cpu_images" : 442,
+              "gpu_images" : 476,
+              "images_per_s" : 459,
+              "load_average" : "11.48 4.88 3.62",
+              "round" : 1
+            },
+            {
+              "cpu_images" : 441,
+              "gpu_images" : 480,
+              "images_per_s" : 460.5,
+              "load_average" : "11.38 5.06 3.70",
+              "round" : 2
+            },
+            {
+              "cpu_images" : 453,
+              "gpu_images" : 438,
+              "images_per_s" : 445.5,
+              "load_average" : "11.82 5.48 3.88",
+              "round" : 3
+            }
+          ]
+        },
+        {
+          "cpu_images" : 365,
+          "cpu_threads" : 8,
+          "gain_vs_best_single" : 0.93999999999999995,
+          "gpu_images" : 322,
+          "gpu_threads" : 2,
+          "images_per_s" : 343.5,
+          "name" : "split-8",
+          "rounds" : [
+            {
+              "cpu_images" : 365,
+              "gpu_images" : 322,
+              "images_per_s" : 343.5,
+              "load_average" : "11.48 4.88 3.62",
+              "round" : 1
+            },
+            {
+              "cpu_images" : 381,
+              "gpu_images" : 297,
+              "images_per_s" : 339,
+              "load_average" : "11.38 5.06 3.70",
+              "round" : 2
+            },
+            {
+              "cpu_images" : 413,
+              "gpu_images" : 383,
+              "images_per_s" : 398,
+              "load_average" : "11.82 5.48 3.88",
+              "round" : 3
+            }
+          ]
+        }
+      ],
+      "width" : 4032
+    },
+    {
+      "best_single" : "gpu",
+      "exact" : {
+        "failed" : 0,
+        "identical" : 7386,
+        "images" : 7386,
+        "mismatched" : 0
+      },
+      "gain" : 1.0329999999999999,
+      "gain_split" : "split-9",
+      "height" : 4000,
+      "label" : "6000x4000 q90 4:2:0",
+      "mean_bytes" : 4579328,
+      "megapixels" : 24,
+      "pool" : 16,
+      "quality" : 90,
+      "subsampling" : "4:2:0",
+      "variants" : [
+        {
+          "cpu_threads" : 0,
+          "gpu_threads" : 2,
+          "images_per_s" : 228.5,
+          "name" : "gpu",
+          "rounds" : [
+            {
+              "cpu_images" : 0,
+              "gpu_images" : 457,
+              "images_per_s" : 228.5,
+              "load_average" : "12.38 6.18 4.18",
+              "round" : 1
+            },
+            {
+              "cpu_images" : 0,
+              "gpu_images" : 473,
+              "images_per_s" : 236.5,
+              "load_average" : "12.68 6.45 4.30",
+              "round" : 2
+            },
+            {
+              "cpu_images" : 0,
+              "gpu_images" : 446,
+              "images_per_s" : 223,
+              "load_average" : "13.29 6.92 4.50",
+              "round" : 3
+            }
+          ]
+        },
+        {
+          "cpu_threads" : 10,
+          "gpu_threads" : 0,
+          "images_per_s" : 121,
+          "name" : "cpu",
+          "rounds" : [
+            {
+              "cpu_images" : 242,
+              "gpu_images" : 0,
+              "images_per_s" : 121,
+              "load_average" : "12.38 6.18 4.18",
+              "round" : 1
+            },
+            {
+              "cpu_images" : 242,
+              "gpu_images" : 0,
+              "images_per_s" : 121,
+              "load_average" : "12.68 6.45 4.30",
+              "round" : 2
+            },
+            {
+              "cpu_images" : 268,
+              "gpu_images" : 0,
+              "images_per_s" : 134,
+              "load_average" : "13.29 6.92 4.50",
+              "round" : 3
+            }
+          ]
+        },
+        {
+          "cpu_images" : 227,
+          "cpu_threads" : 9,
+          "gain_vs_best_single" : 1.0329999999999999,
+          "gpu_images" : 245,
+          "gpu_threads" : 2,
+          "images_per_s" : 236,
+          "name" : "split-9",
+          "rounds" : [
+            {
+              "cpu_images" : 227,
+              "gpu_images" : 245,
+              "images_per_s" : 236,
+              "load_average" : "12.38 6.18 4.18",
+              "round" : 1
+            },
+            {
+              "cpu_images" : 225,
+              "gpu_images" : 231,
+              "images_per_s" : 228,
+              "load_average" : "12.68 6.45 4.30",
+              "round" : 2
+            },
+            {
+              "cpu_images" : 224,
+              "gpu_images" : 273,
+              "images_per_s" : 248.5,
+              "load_average" : "13.29 6.92 4.50",
+              "round" : 3
+            }
+          ]
+        },
+        {
+          "cpu_images" : 222,
+          "cpu_threads" : 8,
+          "gain_vs_best_single" : 0.96899999999999997,
+          "gpu_images" : 221,
+          "gpu_threads" : 2,
+          "images_per_s" : 221.5,
+          "name" : "split-8",
+          "rounds" : [
+            {
+              "cpu_images" : 222,
+              "gpu_images" : 221,
+              "images_per_s" : 221.5,
+              "load_average" : "12.38 6.18 4.18",
+              "round" : 1
+            },
+            {
+              "cpu_images" : 223,
+              "gpu_images" : 235,
+              "images_per_s" : 229,
+              "load_average" : "12.68 6.45 4.30",
+              "round" : 2
+            },
+            {
+              "cpu_images" : 135,
+              "gpu_images" : 251,
+              "images_per_s" : 193,
+              "load_average" : "13.29 6.92 4.50",
+              "round" : 3
+            }
+          ]
+        }
+      ],
+      "width" : 6000
+    },
+    {
+      "best_single" : "gpu",
+      "exact" : {
+        "failed" : 0,
+        "identical" : 6567,
+        "images" : 6567,
+        "mismatched" : 0
+      },
+      "gain" : 0.97599999999999998,
+      "gain_split" : "split-9",
+      "height" : 4480,
+      "label" : "6720x4480 q90 4:2:0",
+      "mean_bytes" : 5686482,
+      "megapixels" : 30.106000000000002,
+      "pool" : 16,
+      "quality" : 90,
+      "subsampling" : "4:2:0",
+      "variants" : [
+        {
+          "cpu_threads" : 0,
+          "gpu_threads" : 2,
+          "images_per_s" : 209,
+          "name" : "gpu",
+          "rounds" : [
+            {
+              "cpu_images" : 0,
+              "gpu_images" : 414,
+              "images_per_s" : 207,
+              "load_average" : "13.28 7.47 4.77",
+              "round" : 1
+            },
+            {
+              "cpu_images" : 0,
+              "gpu_images" : 419,
+              "images_per_s" : 209.5,
+              "load_average" : "14.43 7.91 4.96",
+              "round" : 2
+            },
+            {
+              "cpu_images" : 0,
+              "gpu_images" : 418,
+              "images_per_s" : 209,
+              "load_average" : "13.28 8.00 5.04",
+              "round" : 3
+            }
+          ]
+        },
+        {
+          "cpu_threads" : 10,
+          "gpu_threads" : 0,
+          "images_per_s" : 105,
+          "name" : "cpu",
+          "rounds" : [
+            {
+              "cpu_images" : 199,
+              "gpu_images" : 0,
+              "images_per_s" : 99.5,
+              "load_average" : "13.28 7.47 4.77",
+              "round" : 1
+            },
+            {
+              "cpu_images" : 210,
+              "gpu_images" : 0,
+              "images_per_s" : 105,
+              "load_average" : "14.43 7.91 4.96",
+              "round" : 2
+            },
+            {
+              "cpu_images" : 214,
+              "gpu_images" : 0,
+              "images_per_s" : 107,
+              "load_average" : "13.28 8.00 5.04",
+              "round" : 3
+            }
+          ]
+        },
+        {
+          "cpu_images" : 204,
+          "cpu_threads" : 9,
+          "gain_vs_best_single" : 0.97599999999999998,
+          "gpu_images" : 204,
+          "gpu_threads" : 2,
+          "images_per_s" : 204,
+          "name" : "split-9",
+          "rounds" : [
+            {
+              "cpu_images" : 204,
+              "gpu_images" : 211,
+              "images_per_s" : 207.5,
+              "load_average" : "13.28 7.47 4.77",
+              "round" : 1
+            },
+            {
+              "cpu_images" : 204,
+              "gpu_images" : 204,
+              "images_per_s" : 204,
+              "load_average" : "14.43 7.91 4.96",
+              "round" : 2
+            },
+            {
+              "cpu_images" : 202,
+              "gpu_images" : 198,
+              "images_per_s" : 200,
+              "load_average" : "13.28 8.00 5.04",
+              "round" : 3
+            }
+          ]
+        },
+        {
+          "cpu_images" : 187,
+          "cpu_threads" : 8,
+          "gain_vs_best_single" : 0.97799999999999998,
+          "gpu_images" : 222,
+          "gpu_threads" : 2,
+          "images_per_s" : 204.5,
+          "name" : "split-8",
+          "rounds" : [
+            {
+              "cpu_images" : 187,
+              "gpu_images" : 222,
+              "images_per_s" : 204.5,
+              "load_average" : "13.28 7.47 4.77",
+              "round" : 1
+            },
+            {
+              "cpu_images" : 191,
+              "gpu_images" : 217,
+              "images_per_s" : 204,
+              "load_average" : "14.43 7.91 4.96",
+              "round" : 2
+            },
+            {
+              "cpu_images" : 189,
+              "gpu_images" : 227,
+              "images_per_s" : 208,
+              "load_average" : "13.28 8.00 5.04",
+              "round" : 3
+            }
+          ]
+        }
+      ],
+      "width" : 6720
+    },
+    {
+      "best_single" : "gpu",
+      "exact" : {
+        "failed" : 0,
+        "identical" : 5492,
+        "images" : 5492,
+        "mismatched" : 0
+      },
+      "gain" : 0.89200000000000002,
+      "gain_split" : "split-9",
+      "height" : 4480,
+      "label" : "6720x4480 q95 4:2:2",
+      "mean_bytes" : 8944073,
+      "megapixels" : 30.106000000000002,
+      "pool" : 16,
+      "quality" : 95,
+      "subsampling" : "4:2:2",
+      "variants" : [
+        {
+          "cpu_threads" : 0,
+          "gpu_threads" : 2,
+          "images_per_s" : 190,
+          "name" : "gpu",
+          "rounds" : [
+            {
+              "cpu_images" : 0,
+              "gpu_images" : 380,
+              "images_per_s" : 190,
+              "load_average" : "15.60 8.91 5.45",
+              "round" : 1
+            },
+            {
+              "cpu_images" : 0,
+              "gpu_images" : 384,
+              "images_per_s" : 192,
+              "load_average" : "15.28 9.06 5.55",
+              "round" : 2
+            },
+            {
+              "cpu_images" : 0,
+              "gpu_images" : 358,
+              "images_per_s" : 179,
+              "load_average" : "15.26 9.39 5.73",
+              "round" : 3
+            }
+          ]
+        },
+        {
+          "cpu_threads" : 10,
+          "gpu_threads" : 0,
+          "images_per_s" : 75.5,
+          "name" : "cpu",
+          "rounds" : [
+            {
+              "cpu_images" : 151,
+              "gpu_images" : 0,
+              "images_per_s" : 75.5,
+              "load_average" : "15.60 8.91 5.45",
+              "round" : 1
+            },
+            {
+              "cpu_images" : 152,
+              "gpu_images" : 0,
+              "images_per_s" : 76,
+              "load_average" : "15.28 9.06 5.55",
+              "round" : 2
+            },
+            {
+              "cpu_images" : 151,
+              "gpu_images" : 0,
+              "images_per_s" : 75.5,
+              "load_average" : "15.26 9.39 5.73",
+              "round" : 3
+            }
+          ]
+        },
+        {
+          "cpu_images" : 141,
+          "cpu_threads" : 9,
+          "gain_vs_best_single" : 0.89200000000000002,
+          "gpu_images" : 198,
+          "gpu_threads" : 2,
+          "images_per_s" : 169.5,
+          "name" : "split-9",
+          "rounds" : [
+            {
+              "cpu_images" : 144,
+              "gpu_images" : 203,
+              "images_per_s" : 173.5,
+              "load_average" : "15.60 8.91 5.45",
+              "round" : 1
+            },
+            {
+              "cpu_images" : 142,
+              "gpu_images" : 195,
+              "images_per_s" : 168.5,
+              "load_average" : "15.28 9.06 5.55",
+              "round" : 2
+            },
+            {
+              "cpu_images" : 141,
+              "gpu_images" : 198,
+              "images_per_s" : 169.5,
+              "load_average" : "15.26 9.39 5.73",
+              "round" : 3
+            }
+          ]
+        },
+        {
+          "cpu_images" : 123,
+          "cpu_threads" : 8,
+          "gain_vs_best_single" : 0.81299999999999994,
+          "gpu_images" : 186,
+          "gpu_threads" : 2,
+          "images_per_s" : 154.5,
+          "name" : "split-8",
+          "rounds" : [
+            {
+              "cpu_images" : 116,
+              "gpu_images" : 173,
+              "images_per_s" : 144.5,
+              "load_average" : "15.60 8.91 5.45",
+              "round" : 1
+            },
+            {
+              "cpu_images" : 123,
+              "gpu_images" : 186,
+              "images_per_s" : 154.5,
+              "load_average" : "15.28 9.06 5.55",
+              "round" : 2
+            },
+            {
+              "cpu_images" : 127,
+              "gpu_images" : 190,
+              "images_per_s" : 158.5,
+              "load_average" : "15.26 9.39 5.73",
+              "round" : 3
+            }
+          ]
+        }
+      ],
+      "width" : 6720
+    }
+  ],
+  "versions" : {
+    "ejm commit" : "8c3a24e",
+    "libjpeg-turbo headers" : "3.2.0",
+    "libjpeg-turbo runtime" : "3.2.0"
+  }
+}

@@ -43,8 +43,8 @@ about 88% of samples differing. On the iPhone 13, ImageIO was identical on 0 of 
 
 - JPEG work moves between libjpeg-turbo and the GPU, or from a Mac to an iPhone, without changing any result, so
   hashes, caches and regression tests keep matching;
-- a file the GPU declines (progressive, for example) goes to libjpeg-turbo instead, and nobody can tell which path
-  ran;
+- a file the GPU declines (progressive, for example) is one your program decodes with libjpeg-turbo instead, and
+  nobody can tell which path ran;
 - it is the same claim as [exact-gpu-jpeg](https://github.com/mrluker/exact-gpu-jpeg), the sister library for
   NVIDIA GPUs, on the same public set.
 
@@ -97,6 +97,36 @@ buffers are checked before every read, and when a check fails the decoder decode
 so a bad copy costs time, never pixels. Details: [docs/API.md](docs/API.md#decoding-the-same-photo-again-unhuff).
 <!-- numbers: results/packed/m1max-gpu32-2026-11-19-1157.txt (ejm packed-bench 5); summary.from_packed_identical in results/public/m1max-gpu32-2026-11-19-1333-pc-set.json and results/public/m4-gpu8-2026-11-19-1306-pc-set.json -->
 
+**4. It finds the fastest exact route and advises your program.**
+
+![How a JPEG is routed: exact-jpeg-metal measures the device and gives advice; your program picks the GPU, libjpeg-turbo on the CPU, or both at once. Every path gives the same bytes.](docs/images/routing.svg)
+
+By itself, `DeviceProfile` measures the GPU's cost per image once in the background (cached per GPU, OS build and
+library version), times a small CPU job to learn how much slower a cold CPU is, tracks whether the GPU and CPU are
+warm and how loaded, and corrects its predictions against its own GPU calls. What it gives your program is advice:
+`prefersCPU` (or `routingDecision`, with the predictions behind it) advises the CPU when your CPU codec is predicted
+at least 20% faster for that image now, and `suggestedInFlight` says how many images to keep in flight. Nothing
+switches path on its own: `Decoder` and `Encoder` always run on the GPU when called, and the library has no CPU
+codec. A JPEG the GPU declines comes back with its reason, for your program to decode with libjpeg-turbo. Running
+both at once, GPU batches plus libjpeg-turbo on the other cores, is also your program's choice; the hybrid bars in
+the [throughput chart](docs/images/throughput.svg) show it. Encoding 3840×2560, that mix reached 500 images a
+second on the M1 Max (GPU batches alone 321, libjpeg-turbo on all 10 cores 215) and 411 on the M4 (211 and 240).
+Decoding works the same way. Two GPU decoders plus libjpeg-turbo on 9 cores, all taking JPEGs from one shared
+queue, against the faster of the GPU alone and libjpeg-turbo on all 10 cores: 1.29× at 2 MP, 1.75× at 6 MP,
+1.26× at 12 MP, 1.03× at 24 MP, 0.98× at 30 MP 4:2:0 and 0.89× at 30 MP 4:2:2. So the mix pays below about 20 MP;
+above that the GPU alone is as fast or faster. Every decode was identical to libjpeg-turbo's (111,158 of 111,158).
+This is one M1 Max run on synthetic camera-like images (load 1.5 at the start, 14 at the end, mostly from its own
+11 threads); the M4 has not been measured yet.
+<!-- numbers: results/bench/m1max-gpu32-2026-11-19-1822-decode-split.json (sizes[].gain, split-9 against best_single; exact; conditions.load_average_before/after) -->
+
+![Decoding a batch on the GPU and the CPU at once on the M1 Max, images per second per size: 2 GPU decoders alone, libjpeg-turbo on all 10 cores, and both from one shared queue; every decode identical to libjpeg-turbo's.](docs/images/decode-split.svg)
+
+```swift
+let p = DeviceProfile.current
+if p.prefersCPU(width: 640, height: 480, operation: .decode) { /* libjpeg-turbo, then DeviceProfile.noteCPUWork() */ }
+```
+<!-- numbers: results/bench/m1max-gpu32-2026-11-18-1345.json; results/bench/m4-gpu8-2026-11-18-0744.json (throughput-encode 3840x2560: hybrid, metal-batch16, libjpeg-turbo all cores) -->
+
 **Where it loses, or is unproven.**
 
 - **One image at a time on the iPhone 13.** ImageIO was faster on 73 of the 102 public-set JPEGs, the small and
@@ -138,10 +168,11 @@ itself. "Median ratio" is the median over the 102 JPEGs of each one's time divid
 | identical to libjpeg-turbo, both Macs | **102 of 102** | (reference) | 0 of 102, up to 110 levels | 0 of 102, up to 255 levels |
 <!-- numbers: results/public/m1max-gpu32-2026-11-19-1333-pc-set.json; results/public/m4-gpu8-2026-11-19-1306-pc-set.json -->
 
-![Median decode time over the 102 public test JPEGs, one column per Mac: on the M1 Max 2.53 ms for exact-jpeg-metal, 21.3 ms for libjpeg-turbo on one core, 13.6 ms for ImageIO and 12.1 ms for VideoToolbox; on the M4 3.05, 15.1, 13.5 and 10.4 ms.](docs/images/public-set-devices.svg)
+![Median decode time over the 102 public test JPEGs, one panel per device: on the M1 Max 2.53 ms for exact-jpeg-metal, 21.3 ms for libjpeg-turbo on one core, 13.6 ms for ImageIO and 12.1 ms for VideoToolbox; on the M4 3.05, 15.1, 13.5 and 10.4 ms; on the iPhone 13 17.0 ms for exact-jpeg-metal and 12.5 ms for ImageIO, the only two timed there.](docs/images/public-set-devices.svg)
 
-The iPhone 13 run measures this library and ImageIO only (libjpeg-turbo and VideoToolbox are not timed on iOS):
-median 17.0 ms against 12.5 ms, big_building q95 4:2:0 42.2 ms against 72.1 ms.
+The chart's iPhone 13 panel times this library and ImageIO only (libjpeg-turbo and VideoToolbox are not timed on
+iOS): median 17.0 ms against 12.5 ms, so ImageIO is faster one call at a time on most of the set (see "Where it
+loses" above), while big_building q95 4:2:0 took 42.2 ms against 72.1 ms.
 <!-- numbers: results/ios/iphone13-2026-11-19-1307-pc-set.json -->
 
 Measured on 2026-11-19: the M1 Max at load 2.2 to 2.4, the M4 at 1.4 to 2.3, thermal state nominal. To repeat it

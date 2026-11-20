@@ -42,7 +42,9 @@ func contrastRatio(_ a: String, _ b: String) -> Double? {
 
 /// Estimated width of a label in px: per-character widths in em, wider than system-ui / Helvetica / Arial
 /// actually draw them (conservative, so a label that passes the overlap check has room in any of those fonts).
-func textWidth(_ s: String, size: Double, bold: Bool) -> Double {
+func textWidth(_ s: String, size: Double, bold: Bool) -> Double { textWidth(s, size: size, weight: bold ? 700 : 400) }
+/// the same for a font weight: 400 regular, 700 bold, 800 extra bold (each heavier weight counted wider)
+func textWidth(_ s: String, size: Double, weight: Int) -> Double {
     var em = 0.0
     for ch in s {
         switch ch {
@@ -54,7 +56,7 @@ func textWidth(_ s: String, size: Double, bold: Bool) -> Double {
         default: em += 0.6
         }
     }
-    return em * size * (bold ? 1.08 : 1.0)
+    return em * size * (weight >= 800 ? 1.13 : weight >= 600 ? 1.08 : 1.0)
 }
 
 /// greedy word wrap to an estimated width
@@ -101,6 +103,8 @@ final class SVGCanvas {
         body += "<rect x='\(n(x))' y='\(n(y))' width='\(n(w))' height='\(n(h))'\(rx > 0 ? " rx='\(n(rx))'" : "") fill='\(fill)'\(stroke.map { " stroke='\($0)' stroke-width='1.5'" } ?? "")/>"
         fills.append(Box(label: label, x0: x, y0: y, x1: x + w, y1: y + h, onFill: true))
     }
+    /// raw SVG with no text (arrowheads); not checked
+    func raw(_ svg: String) { body += svg }
     /// an outlined shape (no checks: text is meant to sit on it)
     func outline(_ x: Double, _ y: Double, _ w: Double, _ h: Double, rx: Double, stroke: String) {
         body += "<rect x='\(n(x))' y='\(n(y))' width='\(n(w))' height='\(n(h))' rx='\(n(rx))' fill='none' stroke='\(stroke)'/>"
@@ -127,6 +131,24 @@ final class SVGCanvas {
         } else { problems.append("colour not checkable for \"\(s)\" (\(fill) on \(bg))") }
         if let r = within, b.x0 < r.x0 || b.x1 > r.x1 || b.y0 < r.y0 || b.y1 > r.y1 { problems.append("\"\(s)\" does not fit inside its shape") }
         body += "<text x='\(n(x))' y='\(n(y))' font-size='\(n(size))'\(bold ? " font-weight='700'" : "") fill='\(fill)'\(anchor == "start" ? "" : " text-anchor='\(anchor)'")>\(boldPrefix.map { "<tspan font-weight='700'>\(esc($0))</tspan> " } ?? "")\(esc(s))</text>"
+    }
+    /// One label made of runs of different sizes and weights on one baseline (spaces belong inside the runs). Its box
+    /// is the sum of the runs' widths and the height of the largest run; checked like `text`.
+    func runs(_ rs: [TextRun], x: Double, y: Double, fill: String = Ink.text, anchor: String = "start", bg: String = Ink.bg,
+              within: (x0: Double, x1: Double, y0: Double, y1: Double)? = nil) {
+        let w = rs.reduce(0) { $0 + textWidth($1.s, size: $1.size, weight: $1.weight) }
+        let big = rs.map(\.size).max() ?? 12, label = rs.map(\.s).joined()
+        let x0 = anchor == "middle" ? x - w / 2 : anchor == "end" ? x - w : x
+        let b = Box(label: label, x0: x0, y0: y - big * 0.8, x1: x0 + w, y1: y + big * 0.25, onFill: within != nil)
+        boxes.append(b)
+        let need = bg.lowercased() == Ink.bg ? 4.5 : 5.0
+        if let cr = contrastRatio(fill, bg) {
+            if cr < need { problems.append(String(format: "contrast %.2f:1, below %.1f:1, for \"%@\" (%@ on %@)", cr, need, label, fill, bg)) }
+        } else { problems.append("colour not checkable for \"\(label)\" (\(fill) on \(bg))") }
+        if let r = within, b.x0 < r.x0 || b.x1 > r.x1 || b.y0 < r.y0 || b.y1 > r.y1 { problems.append("\"\(label)\" does not fit inside its shape") }
+        // xml:space keeps each run's leading space (a space between runs would otherwise depend on the renderer)
+        body += "<text x='\(n(x))' y='\(n(y))' xml:space='preserve' fill='\(fill)'\(anchor == "start" ? "" : " text-anchor='\(anchor)'")>" +
+            rs.map { "<tspan font-size='\(n($0.size))' font-weight='\($0.weight)'>\(esc($0.s))</tspan>" }.joined() + "</text>"
     }
     /// The SVG, or nil when a check failed (each problem printed with the chart's name).
     func finish(height: Double, aria: String) -> String? {
@@ -155,19 +177,27 @@ func badge(_ c: SVGCanvas, x: Double, y: Double, higherIsBetter: Bool) -> Double
 
 // ---- horizontal bars ----
 
+struct TextRun { let s: String; let size: Double; let weight: Int }
+
 struct Bar {
     let name: String; let value: Double; let valueText: String; var comparison: String? = nil; let fill: String
     var fullValue: String { valueText + (comparison.map { " \u{00B7} " + $0 } ?? "") }
+    /// the value (number and unit) at 1.35x the name's size, extra bold; the comparison at the name's size, bold
+    var valueRuns: [TextRun] {
+        [TextRun(s: valueText, size: barValueFont, weight: 800)] + (comparison.map { [TextRun(s: " \u{00B7} " + $0, size: barFont, weight: 700)] } ?? [])
+    }
+    var nameRun: TextRun { TextRun(s: name, size: barFont, weight: 700) }
 }
-private let barH = 22.0, barGap = 8.0, barPad = 8.0, barFont = 12.0
+private let barH = 26.0, barGap = 8.0, barPad = 8.0, barFont = 12.0, barValueFont = 12.0 * 1.35
+private func runsWidth(_ rs: [TextRun]) -> Double { rs.reduce(0) { $0 + textWidth($1.s, size: $1.size, weight: $1.weight) } }
 
 private struct BarLayout { let w: Double; let nameInside: Bool; let valueInside: Bool; let right: Double }
 private func layoutBar(_ b: Bar, left: Double, plotW: Double, top: Double) -> BarLayout {
     let w = max(b.value / top * plotW, 2)
-    let nw = textWidth(b.name, size: barFont, bold: true), vw = textWidth(b.fullValue, size: barFont, bold: false)
+    let nw = runsWidth([b.nameRun]), vw = runsWidth(b.valueRuns)
     let nameIn = w >= nw + 2 * barPad
     let valIn = nameIn && w >= barPad + nw + 16 + vw + barPad
-    let right = valIn ? left + w : nameIn ? left + w + 6 + vw : left + w + 6 + textWidth(b.name + " ", size: barFont, bold: true) + vw
+    let right = valIn ? left + w : nameIn ? left + w + 6 + vw : left + w + 6 + runsWidth([TextRun(s: b.name + " ", size: barFont, weight: 700)]) + vw
     return BarLayout(w: w, nameInside: nameIn, valueInside: valIn, right: right)
 }
 
@@ -191,7 +221,9 @@ func fitScale(_ bars: [Bar], plotW: Double) -> (top: Double, step: Double) {
 }
 
 func tickText(_ v: Double, _ step: Double) -> String {
-    step >= 1 || v == 0 ? String(format: "%.0f", v) : step >= 0.1 ? String(format: "%.1f", v) : String(format: "%.2f", v)
+    // as many decimals as the step needs (a 2.5 step shows 2.5 and 7.5, not rounded 2 and 8)
+    let d = (0...3).first { k in let m = pow(10, Double(k)) * step; return abs(m - m.rounded()) < 1e-6 } ?? 3
+    return v == 0 ? "0" : String(format: "%.\(d)f", v)
 }
 
 /// One block of bars (slots may be empty) with its gridlines, tick numbers and axis label; returns its bottom.
@@ -212,14 +244,14 @@ func drawBars(_ c: SVGCanvas, _ slots: [Bar?], left: Double, plotW: Double, y0: 
         guard let b else { continue }
         let by = y0 + Double(k) * (barH + barGap), L = layoutBar(b, left: left, plotW: plotW, top: top)
         c.bar(left, by, L.w, barH, fill: b.fill, title: "\(b.name): \(b.fullValue)")
-        let ty = by + barH / 2 + 4.3, inside = (x0: left, x1: left + L.w, y0: by, y1: by + barH)
+        let ty = by + barH / 2 + 5, inside = (x0: left, x1: left + L.w, y0: by, y1: by + barH)
         if L.nameInside {
             c.text(b.name, x: left + barPad, y: ty, size: barFont, bold: true, fill: Ink.white, bg: b.fill, within: inside)
             if L.valueInside {
-                c.text(b.fullValue, x: left + L.w - barPad, y: ty, size: barFont, fill: Ink.white, anchor: "end", bg: b.fill, within: inside)
-            } else { c.text(b.fullValue, x: left + L.w + 6, y: ty, size: barFont) }
+                c.runs(b.valueRuns, x: left + L.w - barPad, y: ty, fill: Ink.white, anchor: "end", bg: b.fill, within: inside)
+            } else { c.runs(b.valueRuns, x: left + L.w + 6, y: ty) }
         } else {
-            c.text(b.fullValue, x: left + L.w + 6, y: ty, size: barFont, boldPrefix: b.name)
+            c.runs([TextRun(s: b.name + " ", size: barFont, weight: 700)] + b.valueRuns, x: left + L.w + 6, y: ty)
         }
     }
     return y0 + height + 44
@@ -261,6 +293,39 @@ func gridChart(_ name: String, title: String, higherIsBetter: Bool, subtitle: [S
         hy = max(hy, yy)
     }
     y = hy
+    // Side by side, a label after a bar must fit in half the width, which can push a row's axis far past its
+    // largest value (short bars, crowded labels). Then each row stacks the machines one under the other, full
+    // width, on one shared axis.
+    func slotsOf(_ r: BarRow) -> [[Bar?]] {
+        let nSlots = r.cells.map(\.count).max() ?? 0
+        let shown = (0..<nSlots).filter { s in r.cells.contains { s < $0.count && $0[s] != nil } }
+        return r.cells.map { col in shown.map { $0 < col.count ? col[$0] : nil } }
+    }
+    let stacked = cols > 1 && rows.contains { r in
+        let bars = slotsOf(r).flatMap { $0.compactMap { $0 } }
+        return fitScale(bars, plotW: colW).top > 1.6 * (bars.map(\.value).max() ?? 1)
+    }
+    if stacked {
+        let fullW = W - 40
+        for r in rows {
+            y += 38
+            for (i, l) in wrapWidth(r.title, fullW, size: 15, bold: true).enumerated() { if i > 0 { y += 19 }; c.text(l, x: 20, y: y, size: 15, bold: true) }
+            let per = slotsOf(r)
+            let (top, step) = fitScale(per.flatMap { $0.compactMap { $0 } }, plotW: fullW)
+            for k in 0..<min(cols, per.count) {
+                y += 26
+                c.text(columns[k].name, x: 20, y: y, size: 13, bold: true)
+                if let notes = r.notes, k < notes.count, !notes[k].isEmpty {
+                    for l in wrapWidth(notes[k], fullW, size: 12) { y += 17; c.text(l, x: 20, y: y, size: 12, fill: Ink.text2) }
+                }
+                // each machine has its own block here, so a variant it lacks leaves no gap
+                y = drawBars(c, per[k].filter { $0 != nil }, left: 20, plotW: fullW, y0: y + 16, top: top, step: step, axisLabel: axisLabel, tick: { tickText($0, step) })
+            }
+        }
+        y += 4
+        for s in notes { for l in wrapWidth(s, W - 40, size: 12) { y += 17; c.text(l, x: 20, y: y, size: 12, fill: Ink.text2) } }
+        return c.finish(height: y + 18, aria: title)
+    }
     for r in rows {
         y += 38
         let tl = wrapWidth(r.title, colW, size: 14, bold: true)
@@ -287,6 +352,101 @@ func gridChart(_ name: String, title: String, higherIsBetter: Bool, subtitle: [S
     y += 4
     for s in notes { for l in wrapWidth(s, W - 40, size: 12) { y += 17; c.text(l, x: 20, y: y, size: 12, fill: Ink.text2) } }
     return c.finish(height: y + 18, aria: title)
+}
+
+/// The CPU/GPU routing diagram (not a measurement: no badge). What it says follows the library's code:
+/// DeviceProfile measures and tracks on its own; prefersCPU / routingDecision and suggestedInFlight are advice
+/// ("the library always uses the GPU when called. Routing is advice for the caller", DeviceProfile.swift); the
+/// library links no CPU codec, so the CPU path and the both-at-once mode are the program's (ejm throughput's
+/// hybrid runs exact-jpeg-metal batches plus libjpeg-turbo on the other cores).
+func routingDiagram() -> String? {
+    let W = 1200.0, c = SVGCanvas("routing", width: W)
+    c.text("How a JPEG is routed between the GPU and the CPU", x: 20, y: 34, size: 20, bold: true)
+    var y = 34.0
+    for l in wrapWidth("exact-jpeg-metal measures the device and gives advice; your program picks the path. Every path gives the same bytes.", W - 40, size: 12.5) {
+        y += 20; c.text(l, x: 20, y: y, size: 12.5, fill: Ink.text2)
+    }
+    let pad = 12.0, titleSize = 14.0, lineSize = 12.0, lineH = 16.0
+    // a box: title and wrapped lines; filled (white text) or outlined (dark text); returns nothing, draws at (x, y)
+    func lines(_ items: [String], _ w: Double) -> [[String]] { items.map { wrapWidth($0, w - 2 * pad, size: lineSize) } }
+    func boxHeight(_ title: String, _ items: [String], _ w: Double) -> Double {
+        let t = wrapWidth(title, w - 2 * pad, size: titleSize, bold: true).count
+        let ls = lines(items, w)
+        return pad + Double(t) * 18 + ls.reduce(0) { $0 + Double($1.count) * lineH + 6 } + pad - 2
+    }
+    func box(_ x: Double, _ y: Double, _ w: Double, _ h: Double, _ title: String, _ items: [String], fill: String?, bullets: Bool = false) {
+        let ink = fill == nil ? Ink.text : Ink.white, ink2 = fill == nil ? Ink.text2 : Ink.white, bg = fill ?? Ink.bg
+        if let fill { c.rect(x, y, w, h, rx: 8, fill: fill, label: "box " + title) } else { c.outline(x, y, w, h, rx: 8, stroke: Ink.base) }
+        let inside = (x0: x, x1: x + w, y0: y, y1: y + h)
+        var yy = y + pad + titleSize * 0.8
+        for (i, l) in wrapWidth(title, w - 2 * pad, size: titleSize, bold: true).enumerated() {
+            if i > 0 { yy += 18 }
+            c.text(l, x: x + pad, y: yy, size: titleSize, bold: true, fill: ink, bg: bg, within: inside)
+        }
+        yy += 4
+        for item in lines(items, w) {
+            yy += 6
+            for l in item { yy += lineH; c.text(l, x: x + pad, y: yy - 4, size: lineSize, fill: ink2, bg: bg, within: inside) }
+        }
+        _ = bullets
+    }
+    func arrow(_ x1: Double, _ y1: Double, _ x2: Double, _ y2: Double) {
+        c.line(x1, y1, x2 - 7, y2, stroke: Ink.text2)
+        c.raw("<path d='M\(x2),\(y2) l-9,-5 v10 z' fill='\(Ink.text2)'/>")
+    }
+    // columns
+    let x1 = 20.0, w1 = 120.0, x2 = 170.0, w2 = 330.0, x3 = 530.0, w3 = 220.0, x4 = 800.0, w4 = 255.0, x5 = 1080.0, w5 = 100.0
+    // group labels: what the library does by itself, what the program decides
+    let gy = y + 34
+    c.text("exact-jpeg-metal, by itself", x: x2, y: gy, size: 12, bold: true, fill: Ink.text2)
+    c.line(x2, gy + 7, x2 + w2, gy + 7, stroke: Ink.base)
+    c.text("advice to your program", x: x3, y: gy, size: 12, bold: true, fill: Ink.text2)
+    c.line(x3, gy + 7, x3 + w3, gy + 7, stroke: Ink.base)
+    c.text("your program decides", x: x4, y: gy, size: 12, bold: true, fill: Ink.text2)
+    c.line(x4, gy + 7, x4 + w4, gy + 7, stroke: Ink.base)
+    let top = gy + 22
+    // DeviceProfile
+    let dpTitle = "DeviceProfile measures and tracks"
+    let dpItems = ["GPU cost per image: fixed + per megapixel, for a cold and a warm GPU (timed once in the background, cached); a kept-fed GPU estimated from its core count",
+                   "CPU: how much slower your codec runs on a cold CPU (a small CPU job it times)",
+                   "Warmth now: its own GPU work in the last 250 ms, CPU work you report, this process's CPU time, other apps' GPU use (macOS)",
+                   "Load: each of its own GPU calls against the prediction, and your CPU jobs when you time them (beginCPUWork, end)"]
+    let h2 = boxHeight(dpTitle, dpItems, w2)
+    // advice
+    let adTitle = "The advice"
+    let adItems = ["prefersCPU / routingDecision: is your CPU codec predicted at least 20% faster for this image size, now?",
+                   "suggestedInFlight: how many images to keep in flight at once (2 or 3)",
+                   "Advice only: nothing switches path on its own."]
+    let h3 = boxHeight(adTitle, adItems, w3)
+    // the program's paths
+    let paths: [(String, [String], String)] = [
+        ("GPU: exact-jpeg-metal", ["Decoder or Encoder: always runs on the GPU when called"], Fill.ours),
+        ("CPU: libjpeg-turbo, your own", ["the library has no CPU codec; also for the JPEGs the GPU declines (progressive, arithmetic)"], Fill.turbo1),
+        ("Both at once", ["exact-jpeg-metal batches plus libjpeg-turbo on the other cores (ejm throughput: hybrid)"], Fill.turboAll)]
+    let hs = paths.map { boxHeight($0.0, $0.1, w4) }, gap4 = 14.0
+    let h4 = hs.reduce(0, +) + gap4 * Double(paths.count - 1)
+    let mainH = max(h2, h3, h4)
+    let mid = top + mainH / 2
+    let h1 = boxHeight("A JPEG", ["to decode, or pixels to encode"], w1)
+    box(x1, mid - h1 / 2, w1, h1, "A JPEG", ["to decode, or pixels to encode"], fill: nil)
+    box(x2, mid - h2 / 2, w2, h2, dpTitle, dpItems, fill: nil)
+    box(x3, mid - h3 / 2, w3, h3, adTitle, adItems, fill: nil)
+    var py = mid - h4 / 2
+    var centers: [Double] = []
+    for (k, p) in paths.enumerated() { box(x4, py, w4, hs[k], p.0, p.1, fill: p.2); centers.append(py + hs[k] / 2); py += hs[k] + gap4 }
+    let h5 = boxHeight("Same bytes", ["as libjpeg-turbo 3.2.0, on every path"], w5)
+    box(x5, mid - h5 / 2, w5, h5, "Same bytes", ["as libjpeg-turbo 3.2.0, on every path"], fill: nil)
+    arrow(x1 + w1 + 2, mid, x2 - 2, mid)
+    arrow(x2 + w2 + 2, mid, x3 - 2, mid)
+    for cy in centers {
+        arrow(x3 + w3 + 2, mid, x4 - 2, cy)
+        arrow(x4 + w4 + 2, cy, x5 - 2, mid)
+    }
+    y = top + mainH + 18
+    for s in ["From the code: DeviceProfile.swift says \"the library always uses the GPU when called. Routing is advice for the caller.\" Decoder and Encoder never call a CPU codec; a JPEG the GPU cannot decode is declined with its reason, and your program decodes it on the CPU."] {
+        for l in wrapWidth(s, W - 40, size: 12) { y += 17; c.text(l, x: 20, y: y, size: 12, fill: Ink.text2) }
+    }
+    return c.finish(height: y + 18, aria: "Routing: a JPEG goes to DeviceProfile, which measures GPU and CPU costs, warmth and load by itself; its advice (prefersCPU, routingDecision, suggestedInFlight) goes to your program, which chooses the GPU path (exact-jpeg-metal), the CPU path (its own libjpeg-turbo) or both at once; every path gives the same bytes.")
 }
 
 /// stat tiles (not a chart: the job is a few headline numbers)
@@ -355,7 +515,8 @@ func runCharts(results: String, out: String) -> Bool {
     let fm = FileManager.default
     try? fm.createDirectory(atPath: out, withIntermediateDirectories: true)
     let benchDir = results + "/bench"
-    let files = ((try? fm.contentsOfDirectory(atPath: benchDir)) ?? []).filter { $0.hasSuffix(".json") }.sorted()
+    // decode-split records (`ejm decode-split`) share the folder but have their own chart
+    let files = ((try? fm.contentsOfDirectory(atPath: benchDir)) ?? []).filter { $0.hasSuffix(".json") && !$0.hasSuffix("-decode-split.json") }.sorted()
     let runs = files.compactMap { f -> (String, [String: Any], [[String: Any]])? in
         guard let j = loadJSON(benchDir + "/" + f), let c = j["conditions"] as? [String: Any], let r = j["records"] as? [[String: Any]] else { return nil }
         return (f, c, r)
@@ -397,7 +558,7 @@ func runCharts(results: String, out: String) -> Bool {
             return BarRow(title: String(title), cells: cells)
         }
     }
-    let corpusLine = "Corpus: \(machines.first?.1["corpus"] ?? "?"); median of \(machines.first?.2.first?["iters"] ?? "?") runs; wall time of the whole call. Each column is one Mac against itself."
+    let corpusLine = "Corpus: \(machines.first?.1["corpus"] ?? "?"); median of \(machines.first?.2.first?["iters"] ?? "?") runs; wall time of the whole call. Each Mac is compared against itself."
     let msAxis = "wall time per call (ms)"
     if !machines.isEmpty {
         emit("decode-times", gridChart("decode-times", title: "Decoding a 6720x4480 (30 MP) JPEG, one image at a time", higherIsBetter: false,
@@ -422,7 +583,7 @@ func runCharts(results: String, out: String) -> Bool {
         }
         emit("small-image-overhead", gridChart("small-image-overhead", title: "Encoding a 1200x800 JPEG (q87 4:2:0): per-call overhead",
                                                higherIsBetter: false,
-                                               subtitle: ["Corpus: \(machines.first?.1["corpus"] ?? "?"); per image. Each column is one Mac against itself. Wall time is what the caller waits; GPU busy time is the part the GPU spends working."],
+                                               subtitle: ["Corpus: \(machines.first?.1["corpus"] ?? "?"); per image. Each Mac is compared against itself. Wall time is what the caller waits; GPU busy time is the part the GPU spends working."],
                                                columns: heads, rows: ovRows, axisLabel: msAxis,
                                                notes: ["The gap between wall and GPU busy time is submission and completion latency; after the GPU has idled, the first call also waits for it to clock up."]))
     }
@@ -474,16 +635,22 @@ func runCharts(results: String, out: String) -> Bool {
             return ColumnHead(name: h.name, spec: h.spec + "\nCPU: \(m.1["cpu_cores"] ?? "?") cores (\(m.1["cpu_performance_cores"] ?? "?") performance + \(m.1["cpu_efficiency_cores"] ?? "?") efficiency)")
         }
         emit("throughput", gridChart("throughput", title: "Batch throughput", higherIsBetter: true,
-                                     subtitle: ["Corpus: \(tref.1["corpus"] ?? "?"); each variant runs for at least 1.5 s with its workers warmed, the GPU warmed first. Each column is one Mac against itself."],
+                                     subtitle: ["Corpus: \(tref.1["corpus"] ?? "?"); each variant runs for at least 1.5 s with its workers warmed, the GPU warmed first. Each Mac is compared against itself."],
                                      columns: theads, rows: rows, axisLabel: "throughput (images/s)",
                                      notes: ["libjpeg-turbo cannot split one image across cores, so its all-core rate runs one image per core at a time; the single-image charts show the time for one image.",
                                              "\"In flight\": decoders or encoders working at once. The hybrid runs exact-jpeg-metal batches and libjpeg-turbo on the remaining CPU cores; both outputs are exact."]))
     }
+    // decode split between the GPU and the CPU (`ejm decode-split` records)
+    let splitRuns = loadDecodeSplitRuns(results)
+    if splitRuns.isEmpty { print("decode-split chart: no full (non --quick) decode-split record in \(results)/bench; skipped (run ejm decode-split)") }
+    else { emit("decode-split", decodeSplitChart(splitRuns)) }
     // the PC library's public set: the headline (the machine with the most GPU cores) and the per-Mac medians
     let pcRuns = loadPCSetRuns(results)
     if let top = pcRuns.first { emit("headline", headlineChart(top)) } else { print("headline: no full pc-set record in \(results)/public") }
-    if pcRuns.count > 1 { emit("public-set-devices", publicSetDevicesChart(pcRuns)) }
+    if pcRuns.count > 1 { emit("public-set-devices", publicSetDevicesChart(pcRuns, phone: loadPhoneSetRun(results))) }
     // exactness and fuzzing summary
+    // the CPU/GPU routing diagram (drawn from what the code does, not from results)
+    emit("routing", routingDiagram())
     if let e = loadJSON(results + "/exactness.json") {
         let d = e["decode"] as? [String: Any] ?? [:], en = e["encode"] as? [String: Any] ?? [:]
         let fz = e["fuzz"] as? [String: Any] ?? [:], sv = e["fuzz_shader_validation"] as? [String: Any] ?? [:]
@@ -511,6 +678,84 @@ func runCharts(results: String, out: String) -> Bool {
         print("README.md: generated sections updated from the same results")
     }
     return refused.isEmpty
+}
+
+// ---- decode split between the GPU and the CPU (`ejm decode-split` records: results/bench/*-decode-split.json) ----
+
+/// the latest full (not --quick) decode-split record per chip and GPU core count, by the date and time measured
+/// inside the record (not the file name), the machine with the most GPU cores first
+func loadDecodeSplitRuns(_ results: String) -> [(file: String, json: [String: Any])] {
+    let dir = results + "/bench"
+    let files = ((try? FileManager.default.contentsOfDirectory(atPath: dir)) ?? []).filter { $0.hasSuffix("-decode-split.json") }.sorted()
+    let runs = files.compactMap { f -> (file: String, json: [String: Any])? in
+        guard let j = loadJSON(dir + "/" + f), j["kind"] as? String == "decode-split", j["quick"] as? Bool == false,
+              j["conditions"] is [String: Any], j["sizes"] is [[String: Any]] else { return nil }
+        return (f, j)
+    }
+    func chip(_ j: [String: Any]) -> String { (j["conditions"] as? [String: Any])?["chip"] as? String ?? "?" }
+    func gpuCores(_ j: [String: Any]) -> Int { (j["conditions"] as? [String: Any])?["gpu_cores"] as? Int ?? 0 }
+    let iso = ISO8601DateFormatter()
+    func measured(_ j: [String: Any]) -> Date { (j["measured"] as? String).flatMap { iso.date(from: $0) } ?? .distantPast }
+    return Dictionary(grouping: runs, by: { "\(chip($0.json)) \(gpuCores($0.json))" })
+        .compactMap { $0.value.max { measured($0.json) < measured($1.json) } }
+        .sorted { gpuCores($0.json) > gpuCores($1.json) }
+}
+
+/// Images per second per size: GPU only (2 in flight), libjpeg-turbo on all cores, and the better split (2 GPU
+/// decoder threads plus N libjpeg-turbo threads on one queue) with its gain over the faster single path.
+func decodeSplitChart(_ runs: [(file: String, json: [String: Any])]) -> String? {
+    // a record that failed its exactness check, or lacks a variant the chart needs, is refused (charts exits 1)
+    var problems: [String] = []
+    for r in runs {
+        if r.json["passed"] as? Bool != true { problems.append("\(r.file): passed is not true") }
+        let cores = (r.json["conditions"] as? [String: Any])?["cpu_cores"] as? Int ?? 0
+        for s in r.json["sizes"] as? [[String: Any]] ?? [] {
+            let names = Set((s["variants"] as? [[String: Any]] ?? []).compactMap { v in v["images_per_s"] is Double ? v["name"] as? String : nil })
+            for need in ["gpu", "cpu", "split-\(cores - 1)"] where !names.contains(need) { problems.append("\(r.file): \(s["label"] ?? "?") has no \(need) variant") }
+            if s["gain"] as? Double == nil || s["gain_split"] as? String != "split-\(cores - 1)" { problems.append("\(r.file): \(s["label"] ?? "?") has no gain for split-\(cores - 1)") }
+        }
+    }
+    if !problems.isEmpty { problems.forEach { print("chart decode-split: \($0)") }; return nil }
+    let conds = runs.map { $0.json["conditions"] as? [String: Any] ?? [:] }
+    let heads = conds.map { c -> ColumnHead in
+        let h = machineHeader(c)
+        return ColumnHead(name: h.name, spec: h.spec + "\nCPU: \(c["cpu_cores"] ?? "?") cores (\(c["cpu_performance_cores"] ?? "?") performance + \(c["cpu_efficiency_cores"] ?? "?") efficiency)")
+    }
+    let sizesPer = runs.map { $0.json["sizes"] as? [[String: Any]] ?? [] }
+    var labels: [String] = []
+    for ss in sizesPer { for s in ss { if let l = s["label"] as? String, !labels.contains(l) { labels.append(l) } } }
+    func variant(_ s: [String: Any], _ name: String) -> [String: Any]? { (s["variants"] as? [[String: Any]])?.first { $0["name"] as? String == name } }
+    let rows = labels.map { label -> BarRow in
+        var title = "Decode \(label)"
+        var notes: [String] = []
+        let cells = zip(sizesPer, conds).map { (ss, c) -> [Bar?] in
+            guard let s = ss.first(where: { $0["label"] as? String == label }) else { notes.append(""); return [nil, nil, nil] }
+            if let mp = s["megapixels"] as? Double { title = "Decode \(label) (\(String(format: "%.0f", mp)) MP)" }
+            let cores = c["cpu_cores"] as? Int ?? 0
+            let gpu = variant(s, "gpu")?["images_per_s"] as? Double, cpu = variant(s, "cpu")?["images_per_s"] as? Double
+            let best = (s["gain_split"] as? String).flatMap { variant(s, $0) }
+            let sv = best?["images_per_s"] as? Double, n = best?["cpu_threads"] as? Int ?? 0
+            let gain = s["gain"] as? Double
+            if let best, let gi = best["gpu_images"] as? Int, let ci = best["cpu_images"] as? Int, gi + ci > 0 {
+                notes.append("Split: 2 GPU decoders + \(n) libjpeg-turbo threads; the GPU decoded \(Int((100 * Double(gi) / Double(gi + ci)).rounded()))% of the images")
+            } else { notes.append("") }
+            return [gpu.map { Bar(name: "exact-jpeg-metal, 2 in flight", value: $0, valueText: rateText($0) + " images/s", fill: Fill.ours) },
+                    cpu.map { Bar(name: "libjpeg-turbo, all \(cores) CPU cores", value: $0, valueText: rateText($0) + " images/s", fill: Fill.turboAll) },
+                    sv.map { Bar(name: "exact-jpeg-metal + libjpeg-turbo on \(n) cores", value: $0, valueText: rateText($0) + " images/s",
+                                 comparison: gain.map { String(format: "%.2fx the best single path", $0) }, fill: Fill.ours) }]
+        }
+        return BarRow(title: title, notes: notes, cells: cells)
+    }
+    let m = runs.first?.json["method"] as? [String: Any] ?? [:]
+    func num(_ v: Any?) -> String { (v as? Double).map { String(format: "%g", $0) } ?? "\(v ?? "?")" }
+    let allExact = runs.allSatisfy { r in r.json["passed"] as? Bool == true && ((r.json["exact"] as? [String: Any])?["identical"] as? Int).map { $0 > 0 &&
+        $0 == (r.json["exact"] as? [String: Any])?["images"] as? Int && (r.json["exact"] as? [String: Any])?["failed"] as? Int == 0 } == true }
+    let rounds = m["rounds"] as? Int ?? 0
+    return gridChart("decode-split", title: "Decoding a batch on the GPU and the CPU at once", higherIsBetter: true,
+                     subtitle: ["Synthetic camera-like JPEGs (Synth.make), \(m["pool_per_size"] ?? "?") distinct per size, taken in turn from one shared queue; every decoded image compared byte for byte with libjpeg-turbo's\(allExact ? " (all identical)" : " (NOT all identical: see the records)"). Median of \(rounds) interleaved round\(rounds == 1 ? "" : "s") of \(num(m["seconds_per_variant"])) s per variant (decodes completed within the window), every bar from the same run. Each Mac is compared against itself."],
+                     columns: heads, rows: rows, axisLabel: "throughput (images/s)",
+                     notes: ["The split runs 2 exact-jpeg-metal decoder threads and N libjpeg-turbo threads on the same queue; N = cores - 1, declared in advance (the record also has N = cores - 2, never used to pick the gain).",
+                             "Its gain is the split's rate over the faster of GPU only and CPU only (libjpeg-turbo on every core, one image per core) in the same run."])
 }
 
 // ---- the PC library's public set (`ejm pc-set` records: results/public/*-pc-set.json) ----
@@ -601,10 +846,13 @@ func headlineChart(_ run: PCSetRun) -> String? {
     for l in wrapWidth("exact-jpeg-metal's pixels are byte-identical to libjpeg-turbo's; Apple ImageIO's and VideoToolbox's are not (right panel).", pw, size: 11.5) {
         y1 += 16; c.text(l, x: px[0], y: y1, size: 11.5, fill: Ink.text2)
     }
+    // the value: "<i> of <n> identical" (large); the comparison: the max diff, when some files differ
+    func idBar(_ name: String, _ i: Int, _ n: Int, _ md: Int, _ fill: String) -> Bar {
+        Bar(name: name, value: Double(i) / Double(n) * 100, valueText: "\(i) of \(n) identical", comparison: i < n ? "max diff \(md)" : nil, fill: fill)
+    }
     func idText(_ i: Int, _ n: Int, _ md: Int?) -> String { "\(i) of \(n) files identical" + (i < n ? " (max diff \(md ?? 0))" : "") }
-    let right = [Bar(name: "exact-jpeg-metal", value: Double(ours) / Double(total) * 100, valueText: idText(ours, total, nil), fill: Fill.ours),
-                 Bar(name: "Apple ImageIO", value: Double(iio.identical) / Double(iio.compared) * 100, valueText: idText(iio.identical, iio.compared, iio.maxDiff), fill: Fill.imageio),
-                 Bar(name: pcDecoders[3].name, value: Double(vt.identical) / Double(vt.compared) * 100, valueText: idText(vt.identical, vt.compared, vt.maxDiff), fill: Fill.videotoolbox)]
+    let right = [idBar("exact-jpeg-metal", ours, total, 0, Fill.ours), idBar("Apple ImageIO", iio.identical, iio.compared, iio.maxDiff, Fill.imageio),
+                 idBar(pcDecoders[3].name, vt.identical, vt.compared, vt.maxDiff, Fill.videotoolbox)]
     var y2 = drawBars(c, right, left: px[1], plotW: pw, y0: barsY, top: 100, step: 25, axisLabel: "files with pixels identical to libjpeg-turbo (% of the files)",
                       tick: { String(format: "%.0f%%", $0) })
     let small = [
@@ -626,15 +874,37 @@ func headlineChart(_ run: PCSetRun) -> String? {
 }
 
 /// One column per chip: the median decode time over every JPEG of the set, per decoder.
-func publicSetDevicesChart(_ runs: [PCSetRun]) -> String? {
-    var cols: [ColumnHead] = [], cells: [[Bar?]] = [], counts: [Int] = []
+private func median(_ xs: [Double]) -> Double? {
+    let v = xs.sorted()
+    guard !v.isEmpty else { return nil }
+    return v.count % 2 == 1 ? v[v.count / 2] : (v[v.count / 2 - 1] + v[v.count / 2]) / 2
+}
+
+/// The iPhone's run of the same set (`results/ios/*-pc-set.json`, the "public" object), and optionally the check
+/// run whose synthetic two-in-flight timings go into its note.
+struct PhoneSetRun { let file: String; let json: [String: Any]; let check: (file: String, json: [String: Any])? }
+
+/// the latest iOS pc-set record, with the latest iOS "-check" record if there is one
+func loadPhoneSetRun(_ results: String) -> PhoneSetRun? {
+    let dir = results + "/ios"
+    let names = ((try? FileManager.default.contentsOfDirectory(atPath: dir)) ?? []).sorted()
+    guard let f = names.filter({ $0.hasSuffix("-pc-set.json") }).last, let j = loadJSON(dir + "/" + f), j["public"] is [String: Any] else { return nil }
+    let check = names.filter { $0.hasSuffix("-check.json") }.last.flatMap { n in loadJSON(dir + "/" + n).map { (n, $0) } }
+    return PhoneSetRun(file: f, json: j, check: check)
+}
+
+/// One column per device: the median decode time over every JPEG of the set, per decoder. The iPhone's run timed
+/// only exact-jpeg-metal and ImageIO (libjpeg-turbo is not on iOS; VideoToolbox was not timed), so it has those two.
+func publicSetDevicesChart(_ runs: [PCSetRun], phone: PhoneSetRun?) -> String? {
+    func fail(_ why: String) -> String? { print("chart public-set-devices: \(why)"); return nil }
+    var cols: [ColumnHead] = [], cells: [[Bar?]] = [], counts: [Int] = [], notes: [String] = []
     for r in runs {
         let files = r.json["files"] as! [[String: Any]]
         var meds: [Double] = []
         for d in pcDecoders {
-            let v = files.compactMap { ($0["ms"] as? [String: Any])?[d.key] as? Double }.sorted()
-            if v.count != files.count || v.isEmpty { print("chart public-set-devices: \(r.file): \(d.key) has no time for \(files.count - v.count) files"); return nil }
-            meds.append(v.count % 2 == 1 ? v[v.count / 2] : (v[v.count / 2 - 1] + v[v.count / 2]) / 2)
+            let v = files.compactMap { ($0["ms"] as? [String: Any])?[d.key] as? Double }
+            guard v.count == files.count, let m = median(v) else { return fail("\(r.file): \(d.key) has no time for \(files.count - v.count) files") }
+            meds.append(m)
         }
         let ver = r.json["versions"] as? [String: Any] ?? [:], cond = r.json["conditions"] as? [String: Any] ?? [:]
         cols.append(ColumnHead(name: r.chip, spec: "\(r.gpuCores)-core GPU, macOS \(ver["macOS"] ?? "?"), libjpeg-turbo \(ver["libjpeg-turbo runtime"] ?? "?"), load \((cond["load_average_before"] as? String)?.split(separator: " ").first ?? "?") at start; \(r.file)"))
@@ -642,16 +912,61 @@ func publicSetDevicesChart(_ runs: [PCSetRun]) -> String? {
             Bar(name: pcDecoders[k].name, value: meds[k], valueText: fmtV(meds[k]) + " ms", comparison: k == 0 ? versusTurbo(meds[0], meds[1]) : nil, fill: pcDecoders[k].fill)
         })
         counts.append(files.count)
+        notes.append("")
     }
-    guard let n = counts.first, counts.allSatisfy({ $0 == n }), let first = runs.first else { print("chart public-set-devices: the records hold different numbers of JPEGs"); return nil }
+    guard let first = runs.first else { return fail("no Mac record") }
     let shape = pcSetShape(first.json)
-    return gridChart("public-set-devices", title: "Median decode time over the \(n) public test JPEGs, per Mac", higherIsBetter: false,
-                     subtitle: [String(format: "The set of exact-gpu-jpeg: %d images, %d settings each, %.1f to %.0f MP. Per JPEG the median of %@ calls; the bar is the median over the %d JPEGs. Each column is one Mac against itself.",
-                                       shape.images, shape.settings, shape.minMP, shape.maxMP, shape.iters, n)],
-                     columns: cols, rows: [BarRow(title: "Median over \(n) JPEGs", cells: cells)], axisLabel: "median wall time per JPEG (ms)",
+    var phoneCalls = ""
+    if let ph = phone {
+        let pub = ph.json["public"] as! [String: Any]
+        let recs = pub["records"] as? [[String: Any]] ?? [], cond = pub["conditions"] as? [String: Any] ?? [:]
+        let dev = ph.json["device"] as? [String: Any] ?? [:]
+        let pairs = recs.compactMap { r -> (m: Double, i: Double, mp: Double, file: String)? in
+            guard let m = (r["metal_decode"] as? [String: Any])?["wall_ms"] as? Double, let i = (r["imageio"] as? [String: Any])?["ms_1_thread"] as? Double,
+                  let w = r["width"] as? Int, let h = r["height"] as? Int else { return nil }
+            return (m, i, Double(w * h) / 1e6, r["file"] as? String ?? "")
+        }
+        guard pairs.count == recs.count, let mm = median(pairs.map(\.m)), let im = median(pairs.map(\.i)) else {
+            return fail("\(ph.file): \(recs.count - pairs.count) records lack a Metal or ImageIO time")
+        }
+        let idt = (pub["summary"] as? [String: Any])?["identity"] as? [String: Any] ?? [:]
+        func ident(_ k: String) -> (Int, Int)? { (idt[k] as? [String: Any]).flatMap { d in (d["identical"] as? Int).flatMap { i in (d["files"] as? Int).map { (i, $0) } } } }
+        guard let md = ident("metal_decode"), let io = ident("imageio_hardware_key") else { return fail("\(ph.file): no identity summary") }
+        let big = pairs.filter { $0.mp > 20 }
+        let photos = Set(big.map { ($0.file as NSString).lastPathComponent.components(separatedBy: "__").first ?? $0.file }).count
+        let bigFaster = big.filter { $0.m < $0.i }.count
+        let cmp = mm <= im ? String(format: "%.1fx faster than ImageIO one at a time", im / mm) : String(format: "%.1fx slower than ImageIO one at a time", mm / im)
+        cells.append([Bar(name: "exact-jpeg-metal", value: mm, valueText: fmtV(mm) + " ms", comparison: cmp, fill: Fill.ours), nil,
+                      Bar(name: "Apple ImageIO", value: im, valueText: fmtV(im) + " ms", fill: Fill.imageio), nil])
+        counts.append(recs.count)
+        func onOff(_ v: Any?) -> String { (v as? Bool).map { $0 ? "on" : "off" } ?? "?" }
+        cols.append(ColumnHead(name: "iPhone 13", spec: "A15, 4-core GPU, iOS \(dev["ios_version"] ?? "?"), Low Power Mode \(onOff(cond["low_power_mode_start"])), thermal \(cond["thermal_start"] ?? "?"); \(ph.file)"))
+        var note = "Timed: exact-jpeg-metal and ImageIO only (no libjpeg-turbo on iOS; VideoToolbox not timed). One call at a time, the A15 GPU drops to a slow clock between calls (docs/HOW-IT-WORKS.md, \"Why one call at a time is slow on the iPhone 13\"). exact-jpeg-metal was faster on \(bigFaster) of the \(big.count) JPEGs above 20 MP (\(photos) photos at \(big.count / max(photos, 1)) settings)."
+        // two decoders in flight against ImageIO on two threads, synthetic photos: the smallest size from which on it wins
+        if let (cf, cj) = ph.check, let rows = (cj["timing"] as? [String: Any])?["rows"] as? [[String: Any]] {
+            let dec = rows.compactMap { r -> (case: String, px: Int, m: Double, i: Double)? in
+                guard r["op"] as? String == "decode", let cs = r["case"] as? String, let m = r["metal_two_threads_ms_per_image"] as? Double,
+                      let i = r["imageio_two_threads_ms_per_image"] as? Double, let dims = cs.split(separator: " ").first?.split(separator: "x"),
+                      dims.count == 2, let w = Int(dims[0]), let h = Int(dims[1]) else { return nil }
+                return (cs, w * h, m, i)
+            }.sorted { $0.px < $1.px }
+            if let k = dec.indices.first(where: { k in dec[k...].allSatisfy { $0.m < $0.i } }) {
+                let size = String(dec[k].case.split(separator: " ").first!)
+                note += " With two decoders in flight it beat ImageIO on two threads from \(size) up (synthetic photos, not this set: results/ios/\(cf))."
+            }
+        }
+        note += " Decodes identical: \(md.0) of \(md.1); ImageIO \(io.0) of \(io.1)."
+        notes.append(note)
+        phoneCalls = "\(cond["iters"] ?? "?") (\(cond["iters_above_20_mp"] ?? "?") above 20 MP) on the iPhone"
+    }
+    guard let n = counts.first, counts.allSatisfy({ $0 == n }) else { return fail("the records hold different numbers of JPEGs") }
+    let calls = shape.iters + " calls" + (phoneCalls.isEmpty ? "" : " on the Macs, " + phoneCalls)
+    return gridChart("public-set-devices", title: "Median decode time over the \(n) public test JPEGs, per device", higherIsBetter: false,
+                     subtitle: [String(format: "The set of exact-gpu-jpeg: %d images, %d settings each, %.1f to %.0f MP. One decode at a time; per JPEG the median of %@; the bar is the median over the %d JPEGs. Each device is compared against itself.",
+                                       shape.images, shape.settings, shape.minMP, shape.maxMP, calls, n)],
+                     columns: cols, rows: [BarRow(title: "Median over \(n) JPEGs", notes: notes, cells: cells)], axisLabel: "median wall time per JPEG (ms)",
                      notes: ["Only exact-jpeg-metal's pixels are identical to libjpeg-turbo's on every file."])
 }
-
 
 // ---- README text generated from the same results as the charts, so the numbers always match ----
 
