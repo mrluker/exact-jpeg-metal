@@ -1,5 +1,9 @@
 # Changes
 
+## 0.1.0 (2026-11-19)
+
+First tagged release (`v0.1.0`). Everything below, from the first public commit on.
+
 ## 2026-11-19: `ejm decode-split`
 
 New command `ejm decode-split [seconds] [rounds] [--quick] [--out <path>]` (CLI.md): decode throughput with 2 GPU

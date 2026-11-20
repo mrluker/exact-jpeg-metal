@@ -22,7 +22,7 @@ and depend on the product `ExactJPEG`:
 
 ```swift
 // Package.swift of your app or tool
-// dependencies: [.package(url: "https://github.com/mrluker/exact-jpeg-metal", branch: "main")]
+// dependencies: [.package(url: "https://github.com/mrluker/exact-jpeg-metal", from: "0.1.0")]
 // target dependency: .product(name: "ExactJPEG", package: "exact-jpeg-metal")
 ```
 

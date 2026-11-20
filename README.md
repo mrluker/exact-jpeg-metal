@@ -229,7 +229,7 @@ and the full decline list: [docs/API.md](docs/API.md#decline-reasons) and
 Add the package to your `Package.swift`:
 
 ```swift
-dependencies: [.package(url: "https://github.com/mrluker/exact-jpeg-metal", branch: "main")],
+dependencies: [.package(url: "https://github.com/mrluker/exact-jpeg-metal", from: "0.1.0")],
 // in your target:
 dependencies: [.product(name: "ExactJPEG", package: "exact-jpeg-metal")]
 ```
